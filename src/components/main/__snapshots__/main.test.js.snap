@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Main /> renders correctly 1`] = `
+<div>
+  <ul>
+    <li>
+      <span>
+        China
+      </span>
+       // 
+      <span>
+        Lushuihe
+      </span>
+    </li>
+    <li>
+      <span>
+        Thailand
+      </span>
+       // 
+      <span>
+        Nong Ruea
+      </span>
+    </li>
+  </ul>
+</div>
+`;
