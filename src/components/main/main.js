@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Main = ({data}) => {
+const Main = ({data, onTitleClick}) => {
   return (
-    <div>
+    <div className="offers">
+      <h1 onClick={onTitleClick} className="offers__title">Предложения аренды</h1>
       <ul>
         {data.map((el) =>
           <li key={el.id}>
@@ -20,7 +21,8 @@ Main.propTypes = {
     id: PropTypes.number,
     city: PropTypes.string,
     country: PropTypes.string
-  }))
+  })),
+  onTitleClick: PropTypes.func
 };
 
 export default Main;
