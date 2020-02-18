@@ -9,9 +9,14 @@ Enzyme.configure({adapter: new Adapter()});
 
 import PlaceCard from './place-card';
 
-it(`<PlaceCard /> renders correctly`, () => {
+it(`<PlaceCard /> mouse over on card should pass to the callback data-object of offer`, () => {
   const onMouseOver = jest.fn();
   const onTitleClick = jest.fn();
+
+  const onMouseOverData = {
+    id: offer.id,
+    title: offer.title
+  };
 
   const component = shallow(
       <PlaceCard
@@ -24,6 +29,8 @@ it(`<PlaceCard /> renders correctly`, () => {
   component.find(`.place-card`).simulate(`mouseover`);
   component.find(`.place-card__name a`).simulate(`click`);
 
-  expect(onMouseOver).toHaveBeenCalled();
-  expect(onTitleClick).toHaveBeenCalled();
+  expect(onMouseOver).toHaveBeenCalledTimes(1);
+  expect(onTitleClick).toHaveBeenCalledTimes(1);
+
+  expect(onMouseOver.mock.calls[0][0]).toMatchObject(onMouseOverData);
 });
