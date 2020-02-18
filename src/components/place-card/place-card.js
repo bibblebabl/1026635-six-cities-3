@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
 const PlaceCard = ({
   offer: {
     id,
@@ -15,6 +16,8 @@ const PlaceCard = ({
   onMouseOver,
   onTitleClick
 }) => {
+
+  const fixedRating = rating.toFixed();
 
   return (
     <article className="cities__place-card place-card" onMouseOver={() => onMouseOver({id, title})} >
@@ -45,12 +48,12 @@ const PlaceCard = ({
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${(rating * 100) / 10}%`}} />
+            <span style={{width: `${fixedRating * 20}%`}} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#" onClick={() => onTitleClick(title)}>{title}</a>
+          <a href="#" onClick={() => onTitleClick(id)}>{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
@@ -58,19 +61,31 @@ const PlaceCard = ({
   );
 };
 
+const {arrayOf, bool, func, number, shape, string} = PropTypes;
+
 PlaceCard.propTypes = {
-  offer: PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    image: PropTypes.string,
-    price: PropTypes.number,
-    rating: PropTypes.number,
-    type: PropTypes.string,
-    isPremium: PropTypes.bool,
-    isFavorite: PropTypes.bool,
-  }),
-  onTitleClick: PropTypes.func,
-  onMouseOver: PropTypes.func,
+  offer: shape({
+    bedrooms: number.isRequired,
+    city: string.isRequired,
+    description: arrayOf(string.isRequired).isRequired,
+    facilities: arrayOf(string.isRequired).isRequired,
+    host: shape({
+      avatar: string.isRequired,
+      name: string.isRequired
+    }).isRequired,
+    id: number.isRequired,
+    image: string.isRequired,
+    images: arrayOf(string.isRequired).isRequired,
+    isFavorite: bool.isRequired,
+    isPremium: bool.isRequired,
+    maxAdults: number.isRequired,
+    price: number.isRequired,
+    rating: number.isRequired,
+    title: string.isRequired,
+    type: string.isRequired
+  }).isRequired,
+  onTitleClick: func,
+  onMouseOver: func,
 };
 
 export default PlaceCard;
