@@ -1,9 +1,4 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-
-import App from './app';
-
-const offers = [
+export const offers = [
   {
     id: 1,
     city: `Amsterdam`,
@@ -27,9 +22,3 @@ const offers = [
     isPremium: false,
   },
 ];
-
-it(`<App /> renders correctly`, () => {
-  const component = renderer.create(<App offers={offers} />).toJSON();
-
-  expect(component).toMatchSnapshot();
-});

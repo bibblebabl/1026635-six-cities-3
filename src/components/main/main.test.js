@@ -3,22 +3,12 @@ import renderer from 'react-test-renderer';
 
 import Main from './main';
 
-const defaultProps = {
-  data: [
-    {
-      "id": 962,
-      "city": `Lushuihe`,
-      "country": `China`
-    }, {
-      "id": 605,
-      "city": `Nong Ruea`,
-      "country": `Thailand`
-    }
-  ]
-};
+import {offers} from './mock';
 
 it(`<Main /> renders correctly`, () => {
-  const component = renderer.create(<Main {...defaultProps} />).toJSON();
+  const component = renderer.create(
+      <Main offers={offers} />
+  ).toJSON();
 
   expect(component).toMatchSnapshot();
 });
