@@ -3,19 +3,11 @@ import PropTypes from 'prop-types';
 
 
 const PlaceCard = ({
-  offer: {
-    id,
-    title,
-    image,
-    price,
-    rating,
-    type,
-    isPremium,
-    isFavorite
-  },
+  offer,
   onMouseOver,
   onTitleClick
 }) => {
+  const {id, title, image, price, rating, type, isPremium, isFavorite} = offer;
 
   const fixedRating = rating.toFixed();
 
@@ -53,7 +45,7 @@ const PlaceCard = ({
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#" onClick={() => onTitleClick(id)}>{title}</a>
+          <a href="#" onClick={() => onTitleClick(offer)}>{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
