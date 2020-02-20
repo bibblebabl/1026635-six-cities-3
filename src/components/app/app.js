@@ -17,8 +17,8 @@ class App extends Component {
     this.handlePlaceCardMouseOver = this.handlePlaceCardMouseOver.bind(this);
   }
 
-  handleTitleClick(offer) {
-    this.setState({currentOffer: offer});
+  handleTitleClick(offerId) {
+    this.setState({currentOffer: offerId});
   }
 
   handlePlaceCardMouseOver() {}
@@ -36,8 +36,10 @@ class App extends Component {
       );
     }
 
-    if (currentOffer) {
-      return <Property offer={currentOffer} />;
+    const offer = this.props.offers.find((el) => el.id === currentOffer);
+
+    if (offer) {
+      return <Property offer={offer} />;
     }
 
     return null;

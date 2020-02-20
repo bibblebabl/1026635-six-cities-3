@@ -21,7 +21,6 @@ const Property = ({
     type,
   }
 }) => {
-  // const fixedRating = rating.toFixed();
   const fixedRating = rating;
   const propertyType = PROPERTY_TYPES[type];
 
@@ -322,24 +321,24 @@ const {arrayOf, bool, number, shape, string} = PropTypes;
 
 Property.propTypes = {
   offer: shape({
-    bedrooms: number.isRequired,
+    bedrooms: number,
     city: string.isRequired,
-    description: arrayOf(string.isRequired).isRequired,
-    facilities: arrayOf(string.isRequired).isRequired,
+    description: arrayOf(string.isRequired),
+    facilities: arrayOf(string.isRequired),
     host: shape({
-      avatar: string.isRequired,
+      avatar: string,
       name: string.isRequired
-    }).isRequired,
-    id: number.isRequired,
-    image: string.isRequired,
-    images: arrayOf(string.isRequired).isRequired,
-    isFavorite: bool.isRequired,
-    isPremium: bool.isRequired,
-    maxAdults: number.isRequired,
-    price: number.isRequired,
-    rating: number.isRequired,
-    title: string.isRequired,
-    type: string.isRequired
+    }),
+    id: number,
+    image: string,
+    images: arrayOf(string.isRequired),
+    isFavorite: bool,
+    isPremium: bool,
+    maxAdults: number,
+    price: number,
+    rating: number,
+    title: string,
+    type: string,
   }).isRequired,
 };
 

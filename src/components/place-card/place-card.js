@@ -45,7 +45,7 @@ const PlaceCard = ({
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#" onClick={() => onTitleClick(offer)}>{title}</a>
+          <a href="#" onClick={() => onTitleClick(offer.id)}>{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
@@ -57,24 +57,24 @@ const {arrayOf, bool, func, number, shape, string} = PropTypes;
 
 PlaceCard.propTypes = {
   offer: shape({
-    bedrooms: number.isRequired,
-    city: string.isRequired,
-    description: arrayOf(string.isRequired).isRequired,
-    facilities: arrayOf(string.isRequired).isRequired,
-    host: shape({
-      avatar: string.isRequired,
-      name: string.isRequired
-    }).isRequired,
     id: number.isRequired,
+    title: string.isRequired,
     image: string.isRequired,
-    images: arrayOf(string.isRequired).isRequired,
-    isFavorite: bool.isRequired,
-    isPremium: bool.isRequired,
-    maxAdults: number.isRequired,
     price: number.isRequired,
     rating: number.isRequired,
-    title: string.isRequired,
-    type: string.isRequired
+    type: string.isRequired,
+    isFavorite: bool.isRequired,
+    isPremium: bool.isRequired,
+
+    city: string,
+    description: arrayOf(string.isRequired),
+    facilities: arrayOf(string.isRequired),
+    host: shape({
+      avatar: string,
+      name: string.isRequired
+    }),
+    images: arrayOf(string.isRequired),
+    maxAdults: number,
   }).isRequired,
   onTitleClick: func,
   onMouseOver: func,
