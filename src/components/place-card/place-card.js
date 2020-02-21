@@ -1,20 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
 const PlaceCard = ({
-  offer: {
-    id,
-    title,
-    image,
-    price,
-    rating,
-    type,
-    isPremium,
-    isFavorite
-  },
+  offer,
   onMouseOver,
   onTitleClick
 }) => {
+  const {id, title, image, price, rating, type, isPremium, isFavorite} = offer;
+
+  const fixedRating = rating.toFixed();
 
   return (
     <article className="cities__place-card place-card" onMouseOver={() => onMouseOver({id, title})} >
@@ -45,12 +40,12 @@ const PlaceCard = ({
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${(rating * 100) / 10}%`}} />
+            <span style={{width: `${fixedRating * 20}%`}} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#" onClick={() => onTitleClick(title)}>{title}</a>
+          <a href="#" onClick={() => onTitleClick(offer.id)}>{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
@@ -58,19 +53,31 @@ const PlaceCard = ({
   );
 };
 
+const {arrayOf, bool, func, number, shape, string} = PropTypes;
+
 PlaceCard.propTypes = {
-  offer: PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    image: PropTypes.string,
-    price: PropTypes.number,
-    rating: PropTypes.number,
-    type: PropTypes.string,
-    isPremium: PropTypes.bool,
-    isFavorite: PropTypes.bool,
-  }),
-  onTitleClick: PropTypes.func,
-  onMouseOver: PropTypes.func,
+  offer: shape({
+    id: number.isRequired,
+    title: string.isRequired,
+    image: string.isRequired,
+    price: number.isRequired,
+    rating: number.isRequired,
+    type: string.isRequired,
+    isFavorite: bool.isRequired,
+    isPremium: bool.isRequired,
+
+    city: string,
+    description: arrayOf(string.isRequired),
+    facilities: arrayOf(string.isRequired),
+    host: shape({
+      avatar: string,
+      name: string.isRequired
+    }),
+    images: arrayOf(string.isRequired),
+    maxAdults: number,
+  }).isRequired,
+  onTitleClick: func,
+  onMouseOver: func,
 };
 
 export default PlaceCard;
