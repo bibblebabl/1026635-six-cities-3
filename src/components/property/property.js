@@ -2,27 +2,9 @@ import React from 'react';
 import {PropTypes} from 'prop-types';
 import {PROPERTY_TYPES} from '../../data/map';
 
-const Property = ({
-  offer: {
-    bedrooms,
-    // city,
-    description,
-    facilities,
-    host,
-    // id,
-    // image,
-    images,
-    isFavorite,
-    isPremium,
-    maxAdults,
-    price,
-    rating,
-    title,
-    type,
-  }
-}) => {
-  const fixedRating = rating;
-  const propertyType = PROPERTY_TYPES[type];
+const Property = ({offer}) => {
+  const fixedRating = offer.rating;
+  const propertyType = PROPERTY_TYPES[offer.type];
 
   return (
     <div className="page">
@@ -53,7 +35,7 @@ const Property = ({
           <div className="property__gallery-container container">
             <div className="property__gallery">
               {
-                images.map((img) => {
+                offer.images.map((img) => {
                   return (
                     <div key={img} className="property__image-wrapper">
                       <img className="property__image" src={img} alt="Photo studio" />
@@ -65,16 +47,16 @@ const Property = ({
           </div>
           <div className="property__container container">
             <div className="property__wrapper">
-              {isPremium && (
+              {offer.isPremium && (
                 <div className="property__mark">
                   <span>Premium</span>
                 </div>
               )}
               <div className="property__name-wrapper">
                 <h1 className="property__name">
-                  {title}
+                  {offer.title}
                 </h1>
-                <button className={`property__bookmark-button ${isFavorite ? `property__bookmark-button--active` : ``} button`} type="button">
+                <button className={`property__bookmark-button ${offer.isFavorite ? `property__bookmark-button--active` : ``} button`} type="button">
                   <svg className="property__bookmark-icon" width={31} height={33}>
                     <use xlinkHref="#icon-bookmark" />
                   </svg>
@@ -94,21 +76,21 @@ const Property = ({
                   {propertyType}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
-                  {bedrooms} Bedrooms
+                  {offer.bedrooms} Bedrooms
                 </li>
                 <li className="property__feature property__feature--adults">
-                  Max {maxAdults} adults
+                  Max {offer.maxAdults} adults
                 </li>
               </ul>
               <div className="property__price">
-                <b className="property__price-value">€${price}</b>
+                <b className="property__price-value">€${offer.price}</b>
                 <span className="property__price-text">&nbsp;night</span>
               </div>
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
                   {
-                    facilities.map((facility) => {
+                    offer.facilities.map((facility) => {
                       return (
                         <li key={facility} className="property__inside-item">
                           {facility}
@@ -122,15 +104,15 @@ const Property = ({
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
                   <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                    <img className="property__avatar user__avatar" src={host.avatar} width={74} height={74} alt="Host avatar" />
+                    <img className="property__avatar user__avatar" src={offer.host.avatar} width={74} height={74} alt="Host avatar" />
                   </div>
                   <span className="property__user-name">
-                    {host.name}
+                    {offer.host.name}
                   </span>
                 </div>
                 <div className="property__description">
                   {
-                    description.map((desc) => {
+                    offer.description.map((desc) => {
                       return (
                         <p key={desc} className="property__text">
                           {desc}
@@ -317,29 +299,31 @@ const Property = ({
   );
 };
 
-const {arrayOf, bool, number, shape, string} = PropTypes;
 
 Property.propTypes = {
-  offer: shape({
-    bedrooms: number,
-    city: string.isRequired,
-    description: arrayOf(string.isRequired),
-    facilities: arrayOf(string.isRequired),
-    host: shape({
-      avatar: string,
-      name: string.isRequired
+  offer: PropTypes.shape({
+    id: PropTypes.number,
+    city: PropTypes.string,
+    title: PropTypes.string,
+    image: PropTypes.string,
+    description: PropTypes.arrayOf(PropTypes.string),
+    images: PropTypes.arrayOf(PropTypes.string),
+    facilities: PropTypes.arrayOf(PropTypes.string),
+    price: PropTypes.number,
+    rating: PropTypes.number,
+    type: PropTypes.string,
+    isFavorite: PropTypes.bool,
+    isPremium: PropTypes.bool,
+    bedrooms: PropTypes.number,
+    maxAdults: PropTypes.number,
+    host: PropTypes.shape({
+      name: PropTypes.string,
+      avatar: PropTypes.string,
     }),
-    id: number,
-    image: string,
-    images: arrayOf(string.isRequired),
-    isFavorite: bool,
-    isPremium: bool,
-    maxAdults: number,
-    price: number,
-    rating: number,
-    title: string,
-    type: string,
   }).isRequired,
 };
 
+
 export default Property;
+
+

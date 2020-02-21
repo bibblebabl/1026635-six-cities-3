@@ -7,9 +7,7 @@ import {offer} from './mock';
 
 it(`<Property /> renders correctly`, () => {
   const component = renderer.create(
-      <Property
-        offer={offer}
-      />
+      <Property offer={offer} />
   ).toJSON();
   expect(component).toMatchSnapshot();
 });

@@ -63,7 +63,7 @@ class App extends Component {
 
 
 App.propTypes = {
-  offers: PropTypes.array
+  offers: PropTypes.array.isRequired
 };
 
 export default App;

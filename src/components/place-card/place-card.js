@@ -53,31 +53,31 @@ const PlaceCard = ({
   );
 };
 
-const {arrayOf, bool, func, number, shape, string} = PropTypes;
 
 PlaceCard.propTypes = {
-  offer: shape({
-    id: number.isRequired,
-    title: string.isRequired,
-    image: string.isRequired,
-    price: number.isRequired,
-    rating: number.isRequired,
-    type: string.isRequired,
-    isFavorite: bool.isRequired,
-    isPremium: bool.isRequired,
-
-    city: string,
-    description: arrayOf(string.isRequired),
-    facilities: arrayOf(string.isRequired),
-    host: shape({
-      avatar: string,
-      name: string.isRequired
+  offer: PropTypes.shape({
+    id: PropTypes.number,
+    city: PropTypes.string,
+    title: PropTypes.string,
+    image: PropTypes.string,
+    description: PropTypes.arrayOf(PropTypes.string),
+    images: PropTypes.arrayOf(PropTypes.string),
+    facilities: PropTypes.arrayOf(PropTypes.string),
+    price: PropTypes.number,
+    rating: PropTypes.number,
+    type: PropTypes.string,
+    isFavorite: PropTypes.bool,
+    isPremium: PropTypes.bool,
+    bedrooms: PropTypes.number,
+    maxAdults: PropTypes.number,
+    host: PropTypes.shape({
+      name: PropTypes.string,
+      avatar: PropTypes.string,
     }),
-    images: arrayOf(string.isRequired),
-    maxAdults: number,
   }).isRequired,
-  onTitleClick: func,
-  onMouseOver: func,
+  onTitleClick: PropTypes.func,
+  onMouseOver: PropTypes.func,
 };
+
 
 export default PlaceCard;
