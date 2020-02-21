@@ -58,23 +58,29 @@ const {arrayOf, bool, func, number, shape, string} = PropTypes;
 PlaceCard.propTypes = {
   offer: shape({
     id: number.isRequired,
+    city: shape({
+      name: string.isRequired,
+      location: shape({
+        x: number.isRequired,
+        y: number.isRequired,
+      }).isRequired,
+    }).isRequired,
     title: string.isRequired,
     image: string.isRequired,
+    description: arrayOf(string.isRequired).isRequired,
+    images: arrayOf(string.isRequired).isRequired,
+    facilities: arrayOf(string.isRequired).isRequired,
     price: number.isRequired,
     rating: number.isRequired,
     type: string.isRequired,
     isFavorite: bool.isRequired,
     isPremium: bool.isRequired,
-
-    city: string,
-    description: arrayOf(string.isRequired),
-    facilities: arrayOf(string.isRequired),
+    bedrooms: number.isRequired,
+    maxAdults: number.isRequired,
     host: shape({
-      avatar: string,
-      name: string.isRequired
-    }),
-    images: arrayOf(string.isRequired),
-    maxAdults: number,
+      name: string.isRequired,
+      avatar: string.isRequired,
+    }).isRequired,
   }).isRequired,
   onTitleClick: func,
   onMouseOver: func,

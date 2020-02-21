@@ -1,53 +1,8 @@
 export const offers = [
   {
-    id: 3,
+    id: 1,
     city: {
       name: `Paris`,
-      location: {
-        x: 52.3909553943508,
-        y: 4.85309666406198
-      }
-    },
-    title: `Beautiful & luxurious studio at great location`,
-    image: `img/apartment-03.jpg`,
-    description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-      `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`],
-    images: [
-      `img/room.jpg`,
-      `img/apartment-01.jpg`,
-      `img/apartment-02.jpg`,
-      `img/apartment-03.jpg`,
-      `img/studio-01.jpg`,
-      `img/studio-photos.jpg`,
-    ],
-    facilities: [
-      `Wi-Fi`,
-      `Washing machine`,
-      `Towels`,
-      `Heating`,
-      `Coffee machine`,
-      `Baby seat`,
-      `Kitchen`,
-      `Dishwasher`,
-      `Cabel TV`,
-      `Fridge`,
-    ],
-    price: 120,
-    rating: 4.8,
-    type: `apartment`,
-    isFavorite: false,
-    isPremium: false,
-    bedrooms: 3,
-    maxAdults: 4,
-    host: {
-      name: ``,
-      avatar: `img/avatar-angelina.jpg`,
-    }
-  },
-  {
-    id: 4,
-    city: {
-      name: `Amsterdam`,
       location: {
         x: 52.3909553943508,
         y: 4.85309666406198
@@ -85,13 +40,19 @@ export const offers = [
     bedrooms: 3,
     maxAdults: 4,
     host: {
-      name: ``,
+      name: `Angelina`,
       avatar: `img/avatar-angelina.jpg`,
     }
   },
   {
-    id: 5,
-    city: `Amsterdam`,
+    id: 2,
+    city: {
+      name: `Cologne`,
+      location: {
+        x: 52.3909553943508,
+        y: 4.85309666406198
+      }
+    },
     title: `Beautiful & luxurious studio at great location`,
     image: `img/apartment-02.jpg`,
     description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -119,7 +80,7 @@ export const offers = [
     price: 120,
     rating: 4.8,
     type: `apartment`,
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     bedrooms: 3,
     maxAdults: 4,
@@ -127,5 +88,5 @@ export const offers = [
       name: ``,
       avatar: `img/avatar-angelina.jpg`,
     }
-  }
+  },
 ];
