@@ -38,7 +38,8 @@ class App extends Component {
 
     const offer = this.props.offers.find((el) => el.id === currentOffer);
 
-    const recommendedOffers = this.props.offers.splice(2);
+    const recommendedOffers = [...this.props.offers].splice(2);
+
 
     if (offer) {
       return <Property offer={offer} reviews={this.props.reviews} recommendedOffers={recommendedOffers} />;
@@ -50,6 +51,8 @@ class App extends Component {
   render() {
     const {offers, reviews} = this.props;
 
+    const recommendedOffers = [...offers].splice(2);
+
     return (
       <BrowserRouter>
         <Switch>
@@ -57,7 +60,11 @@ class App extends Component {
             {this.renderApp()}
           </Route>
           <Route exact path="/dev-offer">
-            <Property offer={offers[0]} reviews={reviews} offers={this.props.offers.splice(2)} />
+            <Property
+              offer={offers[0]}
+              reviews={reviews}
+              recommendedOffers={recommendedOffers}
+            />
           </Route>
         </Switch>
       </BrowserRouter>
