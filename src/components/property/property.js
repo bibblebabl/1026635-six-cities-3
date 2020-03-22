@@ -321,24 +321,30 @@ const {arrayOf, bool, number, shape, string} = PropTypes;
 
 Property.propTypes = {
   offer: shape({
-    bedrooms: number,
-    city: string.isRequired,
-    description: arrayOf(string.isRequired),
-    facilities: arrayOf(string.isRequired),
+    id: number.isRequired,
+    city: shape({
+      name: string.isRequired,
+      location: shape({
+        x: number.isRequired,
+        y: number.isRequired,
+      }).isRequired,
+    }).isRequired,
+    title: string.isRequired,
+    image: string.isRequired,
+    description: arrayOf(string.isRequired).isRequired,
+    images: arrayOf(string.isRequired).isRequired,
+    facilities: arrayOf(string.isRequired).isRequired,
+    price: number.isRequired,
+    rating: number.isRequired,
+    type: string.isRequired,
+    isFavorite: bool.isRequired,
+    isPremium: bool.isRequired,
+    bedrooms: number.isRequired,
+    maxAdults: number.isRequired,
     host: shape({
-      avatar: string,
-      name: string.isRequired
-    }),
-    id: number,
-    image: string,
-    images: arrayOf(string.isRequired),
-    isFavorite: bool,
-    isPremium: bool,
-    maxAdults: number,
-    price: number,
-    rating: number,
-    title: string,
-    type: string,
+      name: string.isRequired,
+      avatar: string.isRequired,
+    }).isRequired,
   }).isRequired,
 };
 

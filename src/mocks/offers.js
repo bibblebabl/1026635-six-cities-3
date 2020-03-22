@@ -1,9 +1,13 @@
-
-
 export default [
   {
     id: 1,
-    city: `Amsterdam`,
+    city: {
+      name: `Amsterdam`,
+      location: {
+        x: 52.3909553943508,
+        y: 4.85309666406198
+      }
+    },
     title: `Beautiful & luxurious studio at great location`,
     image: `img/apartment-01.jpg`,
     description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -42,7 +46,13 @@ export default [
   },
   {
     id: 2,
-    city: `Amsterdam`,
+    city: {
+      name: `Cologne`,
+      location: {
+        x: 52.3909553943508,
+        y: 4.85309666406198
+      }
+    },
     title: `Beautiful & luxurious studio at great location`,
     image: `img/apartment-02.jpg`,
     description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -75,13 +85,19 @@ export default [
     bedrooms: 3,
     maxAdults: 4,
     host: {
-      name: ``,
+      name: `Angelina`,
       avatar: `img/avatar-angelina.jpg`,
     }
   },
   {
     id: 3,
-    city: `Amsterdam`,
+    city: {
+      name: `Amsterdam`,
+      location: {
+        x: 52.369553943508,
+        y: 4.85309666406198
+      }
+    },
     title: `Beautiful & luxurious studio at great location`,
     image: `img/apartment-03.jpg`,
     description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -114,13 +130,19 @@ export default [
     bedrooms: 3,
     maxAdults: 4,
     host: {
-      name: ``,
+      name: `Angelina`,
       avatar: `img/avatar-angelina.jpg`,
     }
   },
   {
     id: 4,
-    city: `Amsterdam`,
+    city: {
+      name: `Amsterdam`,
+      location: {
+        x: 52.3909553943508,
+        y: 4.929309666406198
+      }
+    },
     title: `Beautiful & luxurious studio at great location`,
     image: `img/apartment-01.jpg`,
     description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -153,13 +175,19 @@ export default [
     bedrooms: 3,
     maxAdults: 4,
     host: {
-      name: ``,
+      name: `Angelina`,
       avatar: `img/avatar-angelina.jpg`,
     }
   },
   {
     id: 5,
-    city: `Amsterdam`,
+    city: {
+      name: `Amsterdam`,
+      location: {
+        x: 52.3809553943508,
+        y: 4.939309666406198
+      }
+    },
     title: `Beautiful & luxurious studio at great location`,
     image: `img/apartment-02.jpg`,
     description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -192,7 +220,7 @@ export default [
     bedrooms: 3,
     maxAdults: 4,
     host: {
-      name: ``,
+      name: `Angelina`,
       avatar: `img/avatar-angelina.jpg`,
     }
   },

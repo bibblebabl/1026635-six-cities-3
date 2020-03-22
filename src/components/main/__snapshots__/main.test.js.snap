@@ -466,7 +466,29 @@ exports[`<Main /> renders correctly 1`] = `
       >
         <section
           className="cities__map map"
-        />
+        >
+          <Map
+            offersCities={
+              Array [
+                Object {
+                  "location": Object {
+                    "x": 52.3909553943508,
+                    "y": 4.85309666406198,
+                  },
+                  "name": "Paris",
+                },
+                Object {
+                  "location": Object {
+                    "x": 52.3909553943508,
+                    "y": 4.85309666406198,
+                  },
+                  "name": "Amsterdam",
+                },
+                "Amsterdam",
+              ]
+            }
+          />
+        </section>
       </div>
     </div>
   </div>
