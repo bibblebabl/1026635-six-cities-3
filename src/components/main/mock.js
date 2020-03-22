@@ -91,7 +91,13 @@ export const offers = [
   },
   {
     id: 5,
-    city: `Amsterdam`,
+    city: {
+      name: `Amsterdam`,
+      location: {
+        x: 52.3909553943508,
+        y: 4.85309666406198
+      }
+    },
     title: `Beautiful & luxurious studio at great location`,
     image: `img/apartment-02.jpg`,
     description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,

@@ -5,10 +5,12 @@ import App from './app';
 
 import {offers} from './mock';
 
-jest.mock(`../map/map`, () => `Map`);
-
 it(`<App /> renders correctly`, () => {
-  const component = renderer.create(<App offers={offers} />).toJSON();
+  const component = renderer.create(<App offers={offers} />,
+      {
+        createNodeMock: () => document.createElement(`div`)
+      })
+.toJSON();
 
   expect(component).toMatchSnapshot();
 });

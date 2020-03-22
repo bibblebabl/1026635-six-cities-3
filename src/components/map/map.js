@@ -19,7 +19,7 @@ class Map extends Component {
   }
 
   componentDidMount() {
-    this.map = leaflet.map(`map`, {
+    this.map = leaflet.map(this.map.current, {
       center: CITY_COORDINATES,
       zoom: ZOOM,
       zoomControl: false,
