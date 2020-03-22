@@ -8,6 +8,8 @@ const Main = ({
   handlePlaceCardMouseOver,
   handleTitleClick
 }) => {
+  const offersCities = offers.map((offer) => offer.city);
+
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -90,7 +92,7 @@ const Main = ({
           </section>
           <div className="cities__right-section">
             <section className="cities__map map">
-              <Map />
+              <Map offersCities={offersCities}/>
             </section>
           </div>
         </div>
@@ -99,10 +101,37 @@ const Main = ({
   );
 };
 
+const {arrayOf, bool, func, number, shape, string} = PropTypes;
+
 Main.propTypes = {
-  offers: PropTypes.array,
-  handlePlaceCardMouseOver: PropTypes.func,
-  handleTitleClick: PropTypes.func,
+  offers: PropTypes.arrayOf(PropTypes.shape({
+    id: number.isRequired,
+    city: shape({
+      name: string.isRequired,
+      location: shape({
+        x: number.isRequired,
+        y: number.isRequired,
+      }).isRequired,
+    }).isRequired,
+    title: string.isRequired,
+    image: string.isRequired,
+    description: arrayOf(string.isRequired).isRequired,
+    images: arrayOf(string.isRequired).isRequired,
+    facilities: arrayOf(string.isRequired).isRequired,
+    price: number.isRequired,
+    rating: number.isRequired,
+    type: string.isRequired,
+    isFavorite: bool.isRequired,
+    isPremium: bool.isRequired,
+    bedrooms: number.isRequired,
+    maxAdults: number.isRequired,
+    host: shape({
+      name: string.isRequired,
+      avatar: string.isRequired,
+    }).isRequired,
+  }).isRequired),
+  handlePlaceCardMouseOver: func,
+  handleTitleClick: func,
 };
 
 export default Main;
