@@ -392,13 +392,13 @@ exports[`<Property /> renders correctly 1`] = `
                   <p
                     className="reviews__text"
                   >
-                    A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+                    A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.
                   </p>
                   <time
                     className="reviews__time"
-                    dateTime="2019-04-24"
+                    dateTime="5/8/2019"
                   >
-                    April 2019
+                    May 8
                   </time>
                 </div>
               </li>
