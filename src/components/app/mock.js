@@ -108,5 +108,5 @@ const reviews = [
 
 export {
   offers,
-  reviews
+  reviews,
 };

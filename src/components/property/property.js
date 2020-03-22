@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import Reviews from '../reviews/reviews';
 
 import {PROPERTY_TYPES} from '../../data/map';
-
+import Map from '../map/map';
 
 const Property = ({
   reviews,
+  recommendedOffers,
   offer: {
     bedrooms,
     // city,
@@ -28,6 +29,8 @@ const Property = ({
 }) => {
   const fixedPropertyRating = rating;
   const propertyType = PROPERTY_TYPES[type];
+
+  const recommendedOffersLocation = recommendedOffers.map((offer) => offer.city);
 
   return (
     <div className="page">
@@ -106,7 +109,7 @@ const Property = ({
                 </li>
               </ul>
               <div className="property__price">
-                <b className="property__price-value">€${price}</b>
+                <b className="property__price-value">€{price}</b>
                 <span className="property__price-text">&nbsp;night</span>
               </div>
               <div className="property__inside">
@@ -193,7 +196,11 @@ const Property = ({
               </section>
             </div>
           </div>
-          <section className="property__map map" />
+          <section className="property__map map">
+
+            <Map offersCities={recommendedOffersLocation}/>
+
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">
@@ -300,7 +307,7 @@ const Property = ({
   );
 };
 
-const {arrayOf, bool, number, shape, string} = PropTypes;
+const {array, arrayOf, bool, number, shape, string} = PropTypes;
 
 Property.propTypes = {
   offer: shape({
@@ -340,7 +347,8 @@ Property.propTypes = {
       isPro: bool.isRequired,
       name: string.isRequired
     }).isRequired
-  }).isRequired).isRequired
+  }).isRequired).isRequired,
+  recommendedOffers: array,
 };
 
 export default Property;
