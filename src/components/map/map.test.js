@@ -5,26 +5,13 @@ import Map from './map';
 
 import {offersCities} from './mock';
 
-jest.mock(`leaflet`, () => ({
-  icon: jest.fn(),
-  map: jest.fn().mockReturnValue({
-    setView: jest.fn(),
-    remove: jest.fn()
-  }),
-  tileLayer: jest.fn().mockReturnValue({
-    addTo: jest.fn()
-  }),
-  marker: jest.fn().mockReturnValue({
-    addTo: jest.fn()
-  }),
-}));
-
 it(`<Map /> renders correctly`, () => {
   const component = renderer.create(
-      <Map offersCities={offersCities} />, {
+      <Map offersCities={offersCities} />,
+      {
         createNodeMock: () => document.createElement(`div`)
-      }
-  ).toJSON();
+      })
+  .toJSON();
 
   expect(component).toMatchSnapshot();
 });

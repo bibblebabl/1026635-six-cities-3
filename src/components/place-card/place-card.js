@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 
 const PlaceCard = ({
+  cardType = `cities`,
   offer,
   onMouseOver,
   onTitleClick
@@ -11,8 +12,14 @@ const PlaceCard = ({
 
   const fixedRating = rating.toFixed();
 
+  const articleTitle = cardType === `cities` ? `cities__place-card` : `near-places__card`;
+  const secondenaryClassName = cardType === `cities` ? `cities` : `near-places`;
+
   return (
-    <article className="cities__place-card place-card" onMouseOver={() => onMouseOver({id, title})} >
+    <article
+      className={`${articleTitle} place-card`}
+      onMouseOver={() => onMouseOver({id, title})}
+    >
       {
         isPremium && (
           <div className="place-card__mark">
@@ -20,7 +27,7 @@ const PlaceCard = ({
           </div>
         )
       }
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${secondenaryClassName}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image" src={image} width={260} height={200} alt="Place image" />
         </a>
@@ -56,6 +63,7 @@ const PlaceCard = ({
 const {arrayOf, bool, func, number, shape, string} = PropTypes;
 
 PlaceCard.propTypes = {
+  cardType: string,
   offer: shape({
     id: number.isRequired,
     city: shape({
