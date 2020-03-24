@@ -2,10 +2,11 @@ import offers from "../mocks/offers";
 import reviews from "../mocks/reviews";
 import {ActionTypes} from './actions';
 
-const initialState = {
+export const initialState = {
+  selectedCity: ``,
+  currentOffer: null,
   offers,
   reviews,
-  currentOffer: null
 };
 
 const reducer = (state = initialState, {type, payload}) => {
@@ -14,6 +15,12 @@ const reducer = (state = initialState, {type, payload}) => {
       return {
         ...state,
         currentOffer: payload.id
+      };
+
+    case ActionTypes.SET_SELECTED_CITY:
+      return {
+        ...state,
+        selectedCity: payload.name
       };
   }
 

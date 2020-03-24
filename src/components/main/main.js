@@ -1,59 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+// Components
 import PlaceCard from '../place-card/place-card';
 import Map from '../map/map';
+import LocationsList from '../locations-list/locations-list';
+
+import {getCities, getOffersByCity} from '../../utils/';
+import {MAX_CITIES} from '../../data/constants';
+import {getUniqueArray} from '../../utils/index';
 
 const Main = ({
   offers,
+  selectedCity,
   handlePlaceCardMouseOver,
-  handleTitleClick
+  handleTitleClick,
+  handleCityNameClick
 }) => {
   const offersCities = offers.map((offer) => offer.city);
+  const cities = getUniqueArray(getCities(offers)).slice(0, MAX_CITIES);
+  const selectedCityDefault = selectedCity || cities[0];
+  const offersByCity = getOffersByCity(offers, selectedCityDefault);
 
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
         <section className="locations container">
-          <ul className="locations__list tabs__list">
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Paris</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Cologne</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Brussels</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item tabs__item--active">
-                <span>Amsterdam</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Hamburg</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Dusseldorf</span>
-              </a>
-            </li>
-          </ul>
+
+          <LocationsList
+            cities={cities}
+            onCityNameClick={handleCityNameClick}
+            selectedCity={selectedCityDefault}
+          />
+
         </section>
       </div>
       <div className="cities">
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">312 places to stay in Amsterdam</b>
+            <b className="places__found">{offersByCity.length} places to stay in {selectedCityDefault}</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex={0}>
@@ -79,7 +66,7 @@ const Main = ({
             </form>
             <div className="cities__places-list places__list tabs__content">
               {
-                offers.map((offer) =>
+                offersByCity.map((offer) =>
                   <PlaceCard
                     key={offer.id}
                     offer={offer}
@@ -104,6 +91,7 @@ const Main = ({
 const {arrayOf, bool, func, number, shape, string} = PropTypes;
 
 Main.propTypes = {
+  selectedCity: string,
   offers: PropTypes.arrayOf(PropTypes.shape({
     id: number.isRequired,
     city: shape({
@@ -115,7 +103,7 @@ Main.propTypes = {
     }).isRequired,
     title: string.isRequired,
     image: string.isRequired,
-    description: arrayOf(string.isRequired).isRequired,
+    description: string.isRequired,
     images: arrayOf(string.isRequired).isRequired,
     facilities: arrayOf(string.isRequired).isRequired,
     price: number.isRequired,
@@ -132,6 +120,7 @@ Main.propTypes = {
   }).isRequired),
   handlePlaceCardMouseOver: func,
   handleTitleClick: func,
+  handleCityNameClick: func
 };
 
 export default Main;

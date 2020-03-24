@@ -1,51 +1,38 @@
-import React, {Component} from 'react';
-import {array, arrayOf, bool, func, number, shape, string} from 'prop-types';
+import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {array, arrayOf, bool, func, number, shape, string} from 'prop-types';
 
+// Components
 import Main from '../main/main';
 import Property from '../property/property';
 
 // Redux
-import {offersSelector, reviewsSelector} from '../../redux/selectors';
+import * as selectors from '../../redux/selectors';
 import {ActionCreators} from '../../redux/actions';
+import {MAX_RECOMMENDATIONS} from '../../data/constants';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      currentOffer: null
-    };
-
-    this.handleTitleClick = this.handleTitleClick.bind(this);
-    this.handlePlaceCardMouseOver = this.handlePlaceCardMouseOver.bind(this);
-  }
-
-
-  handlePlaceCardMouseOver() {}
-
+class App extends PureComponent {
   renderApp() {
-    const {currentOffer} = this.state;
-    const {setCurrentOffer} = this.props;
+    const {currentOffer, setSelectedCity, setCurrentOffer} = this.props;
 
     if (!currentOffer) {
       return (
         <Main
           {...this.props}
-          handlePlaceCardMouseOver={this.handlePlaceCardMouseOver}
+          handlePlaceCardMouseOver={() => {}}
           handleTitleClick={setCurrentOffer}
+          handleCityNameClick={setSelectedCity}
         />
       );
     }
 
-    const offer = this.props.offers.find((el) => el.id === currentOffer);
-
-    const recommendedOffers = [...this.props.offers].splice(2);
-
+    const {offers, reviews} = this.props;
+    const offer = offers.find((el) => el.id === currentOffer);
+    const recommendedOffers = [...offers].splice(0, MAX_RECOMMENDATIONS);
 
     if (offer) {
-      return <Property offer={offer} reviews={this.props.reviews} recommendedOffers={recommendedOffers} />;
+      return <Property offer={offer} reviews={reviews} recommendedOffers={recommendedOffers} />;
     }
 
     return null;
@@ -53,8 +40,7 @@ class App extends Component {
 
   render() {
     const {offers, reviews} = this.props;
-
-    const recommendedOffers = [...offers].splice(2);
+    const recommendedOffers = [...offers].splice(0, MAX_RECOMMENDATIONS);
 
     return (
       <BrowserRouter>
@@ -76,6 +62,8 @@ class App extends Component {
 }
 
 App.propTypes = {
+  selectedCity: string,
+  currentOffer: number,
   offers: array,
   reviews: arrayOf(shape({
     comment: string.isRequired,
@@ -90,15 +78,19 @@ App.propTypes = {
     }).isRequired
   }).isRequired).isRequired,
   setCurrentOffer: func,
+  setSelectedCity: func,
 };
 
 const mapStateToProps = (state) => ({
-  offers: offersSelector(state),
-  reviews: reviewsSelector(state)
+  offers: selectors.offersSelector(state),
+  reviews: selectors.reviewsSelector(state),
+  selectedCity: selectors.selectedCitySelector(state),
+  currentOffer: selectors.currentOfferSelector(state)
 });
 
 const mapDispatchToProps = {
-  setCurrentOffer: ActionCreators.setCurrentOffer
+  setCurrentOffer: ActionCreators.setCurrentOffer,
+  setSelectedCity: ActionCreators.setSelectedCity
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

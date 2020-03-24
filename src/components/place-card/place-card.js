@@ -52,7 +52,7 @@ const PlaceCard = ({
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#" onClick={() => onTitleClick(offer.id))}>{title}</a>
+          <a href="#" onClick={() => onTitleClick(offer.id)}>{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
@@ -75,7 +75,7 @@ PlaceCard.propTypes = {
     }).isRequired,
     title: string.isRequired,
     image: string.isRequired,
-    description: arrayOf(string.isRequired).isRequired,
+    description: string.isRequired,
     images: arrayOf(string.isRequired).isRequired,
     facilities: arrayOf(string.isRequired).isRequired,
     price: number.isRequired,

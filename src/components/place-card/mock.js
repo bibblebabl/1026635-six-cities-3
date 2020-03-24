@@ -9,8 +9,7 @@ export const offer = {
   },
   title: `Beautiful & luxurious studio at great location`,
   image: `img/apartment-02.jpg`,
-  description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-    `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`],
+  description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
   images: [
     `img/room.jpg`,
     `img/apartment-01.jpg`,
