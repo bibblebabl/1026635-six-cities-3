@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import {array, arrayOf, bool, func, number, shape, string} from 'prop-types';
+import {connect} from 'react-redux';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 import Main from '../main/main';
 import Property from '../property/property';
+
+// Redux
+import {offersSelector, reviewsSelector} from '../../redux/selectors';
+import {ActionCreators} from '../../redux/actions';
 
 class App extends Component {
   constructor(props) {
@@ -17,21 +22,19 @@ class App extends Component {
     this.handlePlaceCardMouseOver = this.handlePlaceCardMouseOver.bind(this);
   }
 
-  handleTitleClick(offerId) {
-    this.setState({currentOffer: offerId});
-  }
 
   handlePlaceCardMouseOver() {}
 
   renderApp() {
     const {currentOffer} = this.state;
+    const {setCurrentOffer} = this.props;
 
     if (!currentOffer) {
       return (
         <Main
           {...this.props}
           handlePlaceCardMouseOver={this.handlePlaceCardMouseOver}
-          handleTitleClick={this.handleTitleClick}
+          handleTitleClick={setCurrentOffer}
         />
       );
     }
@@ -72,8 +75,6 @@ class App extends Component {
   }
 }
 
-const {array, arrayOf, bool, number, shape, string} = PropTypes;
-
 App.propTypes = {
   offers: array,
   reviews: arrayOf(shape({
@@ -87,7 +88,18 @@ App.propTypes = {
       isPro: bool.isRequired,
       name: string.isRequired
     }).isRequired
-  }).isRequired).isRequired
+  }).isRequired).isRequired,
+  setCurrentOffer: func,
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  offers: offersSelector(state),
+  reviews: reviewsSelector(state)
+});
+
+const mapDispatchToProps = {
+  setCurrentOffer: ActionCreators.setCurrentOffer
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+
