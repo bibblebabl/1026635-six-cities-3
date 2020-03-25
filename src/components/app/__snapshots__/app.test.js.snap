@@ -1,179 +1,601 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<App /> renders correctly 1`] = `
-<main
-  className="page__main page__main--index"
+<div
+  className="page"
 >
-  <h1
-    className="visually-hidden"
-  >
-    Cities
-  </h1>
-  <div
-    className="tabs"
-  >
-    <section
-      className="locations container"
-    >
-      <ul
-        className="locations__list tabs__list"
-      >
-        <li
-          className="locations__item"
-        >
-          <a
-            className="locations__item-link tabs__item"
-            href="#"
-          >
-            <span>
-              Paris
-            </span>
-          </a>
-        </li>
-        <li
-          className="locations__item"
-        >
-          <a
-            className="locations__item-link tabs__item"
-            href="#"
-          >
-            <span>
-              Cologne
-            </span>
-          </a>
-        </li>
-        <li
-          className="locations__item"
-        >
-          <a
-            className="locations__item-link tabs__item"
-            href="#"
-          >
-            <span>
-              Brussels
-            </span>
-          </a>
-        </li>
-        <li
-          className="locations__item"
-        >
-          <a
-            className="locations__item-link tabs__item tabs__item--active"
-          >
-            <span>
-              Amsterdam
-            </span>
-          </a>
-        </li>
-        <li
-          className="locations__item"
-        >
-          <a
-            className="locations__item-link tabs__item"
-            href="#"
-          >
-            <span>
-              Hamburg
-            </span>
-          </a>
-        </li>
-        <li
-          className="locations__item"
-        >
-          <a
-            className="locations__item-link tabs__item"
-            href="#"
-          >
-            <span>
-              Dusseldorf
-            </span>
-          </a>
-        </li>
-      </ul>
-    </section>
-  </div>
-  <div
-    className="cities"
+  <header
+    className="header"
   >
     <div
-      className="cities__places-container container"
+      className="container"
     >
-      <section
-        className="cities__places places"
+      <div
+        className="header__wrapper"
       >
-        <h2
-          className="visually-hidden"
+        <div
+          className="header__left"
         >
-          Places
-        </h2>
-        <b
-          className="places__found"
-        >
-          312 places to stay in Amsterdam
-        </b>
-        <form
-          action="#"
-          className="places__sorting"
-          method="get"
-        >
-          <span
-            className="places__sorting-caption"
+          <a
+            className="header__logo-link"
+            href="main.html"
           >
-            Sort by
-          </span>
-          <span
-            className="places__sorting-type"
-            tabIndex={0}
-          >
-            Popular
-            <svg
-              className="places__sorting-arrow"
-              height={4}
-              width={7}
-            >
-              <use
-                xlinkHref="#icon-arrow-select"
-              />
-            </svg>
-          </span>
+            <img
+              alt="6 cities logo"
+              className="header__logo"
+              height={41}
+              src="img/logo.svg"
+              width={81}
+            />
+          </a>
+        </div>
+        <nav
+          className="header__nav"
+        >
           <ul
-            className="places__options places__options--custom places__options--opened"
+            className="header__nav-list"
           >
             <li
-              className="places__option places__option--active"
-              tabIndex={0}
+              className="header__nav-item user"
             >
-              Popular
-            </li>
-            <li
-              className="places__option"
-              tabIndex={0}
-            >
-              Price: low to high
-            </li>
-            <li
-              className="places__option"
-              tabIndex={0}
-            >
-              Price: high to low
-            </li>
-            <li
-              className="places__option"
-              tabIndex={0}
-            >
-              Top rated first
+              <a
+                className="header__nav-link header__nav-link--profile"
+                href="#"
+              >
+                <div
+                  className="header__avatar-wrapper user__avatar-wrapper"
+                />
+                <span
+                  className="header__user-name user__name"
+                >
+                  Oliver.conner@gmail.com
+                </span>
+              </a>
             </li>
           </ul>
-        </form>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <main
+    className="page__main page__main--property"
+  >
+    <section
+      className="property"
+    >
+      <div
+        className="property__gallery-container container"
+      >
         <div
-          className="cities__places-list places__list tabs__content"
+          className="property__gallery"
+        >
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="img/room.jpg"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="img/apartment-01.jpg"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="img/apartment-02.jpg"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="img/apartment-03.jpg"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="img/studio-01.jpg"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="img/studio-photos.jpg"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="property__container container"
+      >
+        <div
+          className="property__wrapper"
+        >
+          <div
+            className="property__name-wrapper"
+          >
+            <h1
+              className="property__name"
+            >
+              Beautiful & luxurious studio at great location
+            </h1>
+            <button
+              className="property__bookmark-button  button"
+              type="button"
+            >
+              <svg
+                className="property__bookmark-icon"
+                height={33}
+                width={31}
+              >
+                <use
+                  xlinkHref="#icon-bookmark"
+                />
+              </svg>
+              <span
+                className="visually-hidden"
+              >
+                To bookmarks
+              </span>
+            </button>
+          </div>
+          <div
+            className="property__rating rating"
+          >
+            <div
+              className="property__stars rating__stars"
+            >
+              <span
+                style={
+                  Object {
+                    "width": "96%",
+                  }
+                }
+              />
+              <span
+                className="visually-hidden"
+              >
+                Rating
+              </span>
+            </div>
+            <span
+              className="property__rating-value rating__value"
+            >
+              4.8
+            </span>
+          </div>
+          <ul
+            className="property__features"
+          >
+            <li
+              className="property__feature property__feature--entire"
+            >
+              Apartment
+            </li>
+            <li
+              className="property__feature property__feature--bedrooms"
+            >
+              3
+               Bedrooms
+            </li>
+            <li
+              className="property__feature property__feature--adults"
+            >
+              Max 
+              4
+               adults
+            </li>
+          </ul>
+          <div
+            className="property__price"
+          >
+            <b
+              className="property__price-value"
+            >
+              €
+              120
+            </b>
+            <span
+              className="property__price-text"
+            >
+               night
+            </span>
+          </div>
+          <div
+            className="property__inside"
+          >
+            <h2
+              className="property__inside-title"
+            >
+              What's inside
+            </h2>
+            <ul
+              className="property__inside-list"
+            >
+              <li
+                className="property__inside-item"
+              >
+                Wi-Fi
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Washing machine
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Towels
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Heating
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Coffee machine
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Baby seat
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Kitchen
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Dishwasher
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Cabel TV
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Fridge
+              </li>
+            </ul>
+          </div>
+          <div
+            className="property__host"
+          >
+            <h2
+              className="property__host-title"
+            >
+              Meet the host
+            </h2>
+            <div
+              className="property__host-user user"
+            >
+              <div
+                className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper"
+              >
+                <img
+                  alt="Host avatar"
+                  className="property__avatar user__avatar"
+                  height={74}
+                  src="img/avatar-angelina.jpg"
+                  width={74}
+                />
+              </div>
+              <span
+                className="property__user-name"
+              >
+                Angelina
+              </span>
+            </div>
+            <div
+              className="property__description"
+            >
+              <p
+                className="property__text"
+              >
+                A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+                An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
+              </p>
+            </div>
+          </div>
+          <section
+            className="property__reviews reviews"
+          >
+            <h2
+              className="reviews__title"
+            >
+              Reviews · 
+              <span
+                className="reviews__amount"
+              >
+                1
+              </span>
+            </h2>
+            <ul
+              className="reviews__list"
+            >
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Reviews avatar"
+                      className="reviews__avatar user__avatar"
+                      height={54}
+                      src="img/avatar-max.jpg"
+                      width={54}
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
+                    Max
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "80%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="5/8/2019"
+                  >
+                    May 8
+                  </time>
+                </div>
+              </li>
+            </ul>
+            <form
+              action="#"
+              className="reviews__form form"
+              method="post"
+            >
+              <label
+                className="reviews__label form__label"
+                htmlFor="review"
+              >
+                Your review
+              </label>
+              <div
+                className="reviews__rating-form form__rating"
+              >
+                <input
+                  className="form__rating-input visually-hidden"
+                  defaultValue={5}
+                  id="5-stars"
+                  name="rating"
+                  type="radio"
+                />
+                <label
+                  className="reviews__rating-label form__rating-label"
+                  htmlFor="5-stars"
+                  title="perfect"
+                >
+                  <svg
+                    className="form__star-image"
+                    height={33}
+                    width={37}
+                  >
+                    <use
+                      xlinkHref="#icon-star"
+                    />
+                  </svg>
+                </label>
+                <input
+                  className="form__rating-input visually-hidden"
+                  defaultValue={4}
+                  id="4-stars"
+                  name="rating"
+                  type="radio"
+                />
+                <label
+                  className="reviews__rating-label form__rating-label"
+                  htmlFor="4-stars"
+                  title="good"
+                >
+                  <svg
+                    className="form__star-image"
+                    height={33}
+                    width={37}
+                  >
+                    <use
+                      xlinkHref="#icon-star"
+                    />
+                  </svg>
+                </label>
+                <input
+                  className="form__rating-input visually-hidden"
+                  defaultValue={3}
+                  id="3-stars"
+                  name="rating"
+                  type="radio"
+                />
+                <label
+                  className="reviews__rating-label form__rating-label"
+                  htmlFor="3-stars"
+                  title="not bad"
+                >
+                  <svg
+                    className="form__star-image"
+                    height={33}
+                    width={37}
+                  >
+                    <use
+                      xlinkHref="#icon-star"
+                    />
+                  </svg>
+                </label>
+                <input
+                  className="form__rating-input visually-hidden"
+                  defaultValue={2}
+                  id="2-stars"
+                  name="rating"
+                  type="radio"
+                />
+                <label
+                  className="reviews__rating-label form__rating-label"
+                  htmlFor="2-stars"
+                  title="badly"
+                >
+                  <svg
+                    className="form__star-image"
+                    height={33}
+                    width={37}
+                  >
+                    <use
+                      xlinkHref="#icon-star"
+                    />
+                  </svg>
+                </label>
+                <input
+                  className="form__rating-input visually-hidden"
+                  defaultValue={1}
+                  id="1-star"
+                  name="rating"
+                  type="radio"
+                />
+                <label
+                  className="reviews__rating-label form__rating-label"
+                  htmlFor="1-star"
+                  title="terribly"
+                >
+                  <svg
+                    className="form__star-image"
+                    height={33}
+                    width={37}
+                  >
+                    <use
+                      xlinkHref="#icon-star"
+                    />
+                  </svg>
+                </label>
+              </div>
+              <textarea
+                className="reviews__textarea form__textarea"
+                defaultValue=""
+                id="review"
+                name="review"
+                placeholder="Tell how was your stay, what you like and what can be improved"
+              />
+              <div
+                className="reviews__button-wrapper"
+              >
+                <p
+                  className="reviews__help"
+                >
+                  To submit review please make sure to set 
+                  <span
+                    className="reviews__star"
+                  >
+                    rating
+                  </span>
+                   and describe your stay with at least 
+                  <b
+                    className="reviews__text-amount"
+                  >
+                    50 characters
+                  </b>
+                  .
+                </p>
+                <button
+                  className="reviews__submit form__submit button"
+                  disabled={true}
+                  type="submit"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+      <section
+        className="property__map map"
+      >
+        <div
+          id="map"
+          style={
+            Object {
+              "height": "100%",
+            }
+          }
+        />
+      </section>
+    </section>
+    <div
+      className="container"
+    >
+      <section
+        className="near-places places"
+      >
+        <h2
+          className="near-places__title"
+        >
+          Other places in the neighbourhood
+        </h2>
+        <div
+          className="near-places__list places__list"
         >
           <article
-            className="cities__place-card place-card"
+            className="near-places__card place-card"
             onMouseOver={[Function]}
           >
             <div
-              className="cities__image-wrapper place-card__image-wrapper"
+              className="near-places__image-wrapper place-card__image-wrapper"
             >
               <a
                 href="#"
@@ -266,11 +688,11 @@ exports[`<App /> renders correctly 1`] = `
             </div>
           </article>
           <article
-            className="cities__place-card place-card"
+            className="near-places__card place-card"
             onMouseOver={[Function]}
           >
             <div
-              className="cities__image-wrapper place-card__image-wrapper"
+              className="near-places__image-wrapper place-card__image-wrapper"
             >
               <a
                 href="#"
@@ -364,23 +786,7 @@ exports[`<App /> renders correctly 1`] = `
           </article>
         </div>
       </section>
-      <div
-        className="cities__right-section"
-      >
-        <section
-          className="cities__map map"
-        >
-          <div
-            id="map"
-            style={
-              Object {
-                "height": "100%",
-              }
-            }
-          />
-        </section>
-      </div>
     </div>
-  </div>
-</main>
+  </main>
+</div>
 `;
