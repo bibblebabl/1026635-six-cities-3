@@ -12,9 +12,15 @@ const cities = [
   `Amsterdam`
 ];
 
+const props = {
+  cities,
+  selectedCity: ``,
+  onCityNameClick: jest.fn()
+};
+
 it(`<LocationsList /> renders correctly`, () => {
   const component = renderer.create(
-      <LocationsList cities={cities} />,
+      <LocationsList {...props} />,
       {
         createNodeMock: () => document.createElement(`div`)
       })

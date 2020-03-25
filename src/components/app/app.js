@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import {array, arrayOf, bool, func, number, shape, string} from 'prop-types';
+import {arrayOf, bool, func, number, shape, string} from 'prop-types';
 
 // Components
 import Main from '../main/main';
@@ -64,7 +64,32 @@ class App extends PureComponent {
 App.propTypes = {
   selectedCity: string,
   currentOffer: number,
-  offers: array,
+  offers: arrayOf(shape({
+    id: number.isRequired,
+    city: shape({
+      name: string.isRequired,
+      location: shape({
+        x: number.isRequired,
+        y: number.isRequired,
+      }).isRequired,
+    }).isRequired,
+    title: string.isRequired,
+    image: string.isRequired,
+    description: string.isRequired,
+    images: arrayOf(string.isRequired).isRequired,
+    facilities: arrayOf(string.isRequired).isRequired,
+    price: number.isRequired,
+    rating: number.isRequired,
+    type: string.isRequired,
+    isFavorite: bool.isRequired,
+    isPremium: bool.isRequired,
+    bedrooms: number.isRequired,
+    maxAdults: number.isRequired,
+    host: shape({
+      name: string.isRequired,
+      avatar: string.isRequired,
+    }).isRequired,
+  }).isRequired),
   reviews: arrayOf(shape({
     comment: string.isRequired,
     date: string.isRequired,

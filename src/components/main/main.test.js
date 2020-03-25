@@ -6,8 +6,18 @@ import Main from './main';
 import {offers} from './mock';
 
 it(`<Main /> renders correctly`, () => {
+
+  const props = {
+    offers,
+    selectedCity: ``,
+    handlePlaceCardMouseOver: jest.fn(),
+    handleTitleClick: jest.fn(),
+    handleCityNameClick: jest.fn()
+  };
+
+
   const component = renderer.create(
-      <Main offers={offers} />,
+      <Main {...props} />,
       {
         createNodeMock: () => document.createElement(`div`)
       })

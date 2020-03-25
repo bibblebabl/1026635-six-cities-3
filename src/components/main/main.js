@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {arrayOf, bool, func, number, shape, string} from 'prop-types';
 
 // Components
 import PlaceCard from '../place-card/place-card';
@@ -88,11 +88,9 @@ const Main = ({
   );
 };
 
-const {arrayOf, bool, func, number, shape, string} = PropTypes;
-
 Main.propTypes = {
   selectedCity: string,
-  offers: PropTypes.arrayOf(PropTypes.shape({
+  offers: arrayOf(shape({
     id: number.isRequired,
     city: shape({
       name: string.isRequired,
