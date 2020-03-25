@@ -3,14 +3,13 @@ import renderer from 'react-test-renderer';
 
 import LocationsList from './locations-list';
 
-const cities = [
-  `Cologne`,
-  `Hamburg`,
-  `Brussels`,
-  `Dusseldorf`,
-  `Paris`,
-  `Amsterdam`
-];
+import {getUniqueArray, getCities} from '../../utils';
+
+import offers from '../../mocks/tests/offers';
+
+const MAX_CITIES = 4;
+
+const cities = getUniqueArray(getCities(offers)).slice(0, MAX_CITIES);
 
 const props = {
   cities,

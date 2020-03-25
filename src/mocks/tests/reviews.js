@@ -1,4 +1,4 @@
-const reviews = [
+export default [
   {
     "comment": `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
     "date": `2019-05-08T14:13:56.569Z`,
@@ -10,10 +10,6 @@ const reviews = [
       "isPro": false,
       "name": `Max`
     }
-  }
+  },
 ];
 
-
-export {
-  reviews
-};

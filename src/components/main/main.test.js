@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 
 import Main from './main';
 
-import {offers} from './mock';
+import offers from '../../mocks/offers';
 
 it(`<Main /> renders correctly`, () => {
 

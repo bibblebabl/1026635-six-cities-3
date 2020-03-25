@@ -6,7 +6,8 @@ import renderer from 'react-test-renderer';
 
 import App from './app';
 
-import {offers, reviews} from './mock';
+import offers from '../../mocks/tests/offers';
+import reviews from '../../mocks/tests/reviews';
 
 export const initialState = {
   selectedCity: `Amsterdam`,
