@@ -137,10 +137,10 @@ exports[`<Property /> renders correctly 1`] = `
             <h1
               className="property__name"
             >
-              Beautiful & luxurious studio at great location
+              Wood and stone place
             </h1>
             <button
-              className="property__bookmark-button property__bookmark-button--active button"
+              className="property__bookmark-button  button"
               type="button"
             >
               <svg
@@ -168,7 +168,7 @@ exports[`<Property /> renders correctly 1`] = `
               <span
                 style={
                   Object {
-                    "width": "96%",
+                    "width": "48%",
                   }
                 }
               />
@@ -181,7 +181,7 @@ exports[`<Property /> renders correctly 1`] = `
             <span
               className="property__rating-value rating__value"
             >
-              4.8
+              2.4
             </span>
           </div>
           <ul
@@ -190,19 +190,19 @@ exports[`<Property /> renders correctly 1`] = `
             <li
               className="property__feature property__feature--entire"
             >
-              Apartment
+              House
             </li>
             <li
               className="property__feature property__feature--bedrooms"
             >
-              3
+              4
                Bedrooms
             </li>
             <li
               className="property__feature property__feature--adults"
             >
               Max 
-              4
+              5
                adults
             </li>
           </ul>
@@ -213,7 +213,7 @@ exports[`<Property /> renders correctly 1`] = `
               className="property__price-value"
             >
               €
-              120
+              512
             </b>
             <span
               className="property__price-text"
@@ -235,12 +235,12 @@ exports[`<Property /> renders correctly 1`] = `
               <li
                 className="property__inside-item"
               >
-                Wi-Fi
+                Baby seat
               </li>
               <li
                 className="property__inside-item"
               >
-                Washing machine
+                Laptop friendly workspace
               </li>
               <li
                 className="property__inside-item"
@@ -250,37 +250,17 @@ exports[`<Property /> renders correctly 1`] = `
               <li
                 className="property__inside-item"
               >
-                Heating
+                Air conditioning
               </li>
               <li
                 className="property__inside-item"
               >
-                Coffee machine
+                Breakfast
               </li>
               <li
                 className="property__inside-item"
               >
-                Baby seat
-              </li>
-              <li
-                className="property__inside-item"
-              >
-                Kitchen
-              </li>
-              <li
-                className="property__inside-item"
-              >
-                Dishwasher
-              </li>
-              <li
-                className="property__inside-item"
-              >
-                Cabel TV
-              </li>
-              <li
-                className="property__inside-item"
-              >
-                Fridge
+                Washer
               </li>
             </ul>
           </div>
@@ -309,7 +289,7 @@ exports[`<Property /> renders correctly 1`] = `
               <span
                 className="property__user-name"
               >
-                
+                Angelina
               </span>
             </div>
             <div
@@ -318,12 +298,7 @@ exports[`<Property /> renders correctly 1`] = `
               <p
                 className="property__text"
               >
-                A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-              </p>
-              <p
-                className="property__text"
-              >
-                An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
+                Peaceful studio in the most wanted area in town. Quiet house Near of everything. Completely renovated. Lovely neighbourhood, lot of trendy shops, restaurants and bars in a walking distance.
               </p>
             </div>
           </div>
@@ -608,7 +583,7 @@ exports[`<Property /> renders correctly 1`] = `
                   alt="Place image"
                   className="place-card__image"
                   height={200}
-                  src="img/apartment-03.jpg"
+                  src="img/apartment-01.jpg"
                   width={260}
                 />
               </a>
@@ -626,7 +601,7 @@ exports[`<Property /> renders correctly 1`] = `
                     className="place-card__price-value"
                   >
                     €
-                    120
+                    512
                   </b>
                   <span
                     className="place-card__price-text"
@@ -663,7 +638,7 @@ exports[`<Property /> renders correctly 1`] = `
                   <span
                     style={
                       Object {
-                        "width": "100%",
+                        "width": "40%",
                       }
                     }
                   />
@@ -681,13 +656,13 @@ exports[`<Property /> renders correctly 1`] = `
                   href="#"
                   onClick={[Function]}
                 >
-                  Beautiful & luxurious studio at great location
+                  Wood and stone place
                 </a>
               </h2>
               <p
                 className="place-card__type"
               >
-                apartment
+                house
               </p>
             </div>
           </article>
@@ -723,7 +698,7 @@ exports[`<Property /> renders correctly 1`] = `
                     className="place-card__price-value"
                   >
                     €
-                    120
+                    145
                   </b>
                   <span
                     className="place-card__price-text"
@@ -760,7 +735,7 @@ exports[`<Property /> renders correctly 1`] = `
                   <span
                     style={
                       Object {
-                        "width": "100%",
+                        "width": "80%",
                       }
                     }
                   />
@@ -778,13 +753,13 @@ exports[`<Property /> renders correctly 1`] = `
                   href="#"
                   onClick={[Function]}
                 >
-                  Beautiful & luxurious studio at great location
+                  Wood and stone place
                 </a>
               </h2>
               <p
                 className="place-card__type"
               >
-                apartment
+                room
               </p>
             </div>
           </article>
@@ -792,6 +767,13 @@ exports[`<Property /> renders correctly 1`] = `
             className="near-places__card place-card"
             onMouseOver={[Function]}
           >
+            <div
+              className="place-card__mark"
+            >
+              <span>
+                Premium
+              </span>
+            </div>
             <div
               className="near-places__image-wrapper place-card__image-wrapper"
             >
@@ -802,7 +784,7 @@ exports[`<Property /> renders correctly 1`] = `
                   alt="Place image"
                   className="place-card__image"
                   height={200}
-                  src="img/apartment-02.jpg"
+                  src="img/apartment-01.jpg"
                   width={260}
                 />
               </a>
@@ -820,7 +802,7 @@ exports[`<Property /> renders correctly 1`] = `
                     className="place-card__price-value"
                   >
                     €
-                    120
+                    235
                   </b>
                   <span
                     className="place-card__price-text"
@@ -875,13 +857,304 @@ exports[`<Property /> renders correctly 1`] = `
                   href="#"
                   onClick={[Function]}
                 >
-                  Beautiful & luxurious studio at great location
+                  Nice, cozy, warm big bed apartment
                 </a>
               </h2>
               <p
                 className="place-card__type"
               >
-                apartment
+                room
+              </p>
+            </div>
+          </article>
+          <article
+            className="near-places__card place-card"
+            onMouseOver={[Function]}
+          >
+            <div
+              className="near-places__image-wrapper place-card__image-wrapper"
+            >
+              <a
+                href="#"
+              >
+                <img
+                  alt="Place image"
+                  className="place-card__image"
+                  height={200}
+                  src="img/apartment-01.jpg"
+                  width={260}
+                />
+              </a>
+            </div>
+            <div
+              className="place-card__info"
+            >
+              <div
+                className="place-card__price-wrapper"
+              >
+                <div
+                  className="place-card__price"
+                >
+                  <b
+                    className="place-card__price-value"
+                  >
+                    €
+                    182
+                  </b>
+                  <span
+                    className="place-card__price-text"
+                  >
+                    / night
+                  </span>
+                </div>
+                <button
+                  className="place-card__bookmark-button  button"
+                  type="button"
+                >
+                  <svg
+                    className="place-card__bookmark-icon"
+                    height="19"
+                    width="18"
+                  >
+                    <use
+                      xlinkHref="#icon-bookmark"
+                    />
+                  </svg>
+                  <span
+                    className="visually-hidden"
+                  >
+                    In bookmarks
+                  </span>
+                </button>
+              </div>
+              <div
+                className="place-card__rating rating"
+              >
+                <div
+                  className="place-card__stars rating__stars"
+                >
+                  <span
+                    style={
+                      Object {
+                        "width": "60%",
+                      }
+                    }
+                  />
+                  <span
+                    className="visually-hidden"
+                  >
+                    Rating
+                  </span>
+                </div>
+              </div>
+              <h2
+                className="place-card__name"
+              >
+                <a
+                  href="#"
+                  onClick={[Function]}
+                >
+                  The Pondhouse - A Magical Place
+                </a>
+              </h2>
+              <p
+                className="place-card__type"
+              >
+                room
+              </p>
+            </div>
+          </article>
+          <article
+            className="near-places__card place-card"
+            onMouseOver={[Function]}
+          >
+            <div
+              className="near-places__image-wrapper place-card__image-wrapper"
+            >
+              <a
+                href="#"
+              >
+                <img
+                  alt="Place image"
+                  className="place-card__image"
+                  height={200}
+                  src="img/apartment-01.jpg"
+                  width={260}
+                />
+              </a>
+            </div>
+            <div
+              className="place-card__info"
+            >
+              <div
+                className="place-card__price-wrapper"
+              >
+                <div
+                  className="place-card__price"
+                >
+                  <b
+                    className="place-card__price-value"
+                  >
+                    €
+                    128
+                  </b>
+                  <span
+                    className="place-card__price-text"
+                  >
+                    / night
+                  </span>
+                </div>
+                <button
+                  className="place-card__bookmark-button  button"
+                  type="button"
+                >
+                  <svg
+                    className="place-card__bookmark-icon"
+                    height="19"
+                    width="18"
+                  >
+                    <use
+                      xlinkHref="#icon-bookmark"
+                    />
+                  </svg>
+                  <span
+                    className="visually-hidden"
+                  >
+                    In bookmarks
+                  </span>
+                </button>
+              </div>
+              <div
+                className="place-card__rating rating"
+              >
+                <div
+                  className="place-card__stars rating__stars"
+                >
+                  <span
+                    style={
+                      Object {
+                        "width": "100%",
+                      }
+                    }
+                  />
+                  <span
+                    className="visually-hidden"
+                  >
+                    Rating
+                  </span>
+                </div>
+              </div>
+              <h2
+                className="place-card__name"
+              >
+                <a
+                  href="#"
+                  onClick={[Function]}
+                >
+                  House in countryside
+                </a>
+              </h2>
+              <p
+                className="place-card__type"
+              >
+                room
+              </p>
+            </div>
+          </article>
+          <article
+            className="near-places__card place-card"
+            onMouseOver={[Function]}
+          >
+            <div
+              className="near-places__image-wrapper place-card__image-wrapper"
+            >
+              <a
+                href="#"
+              >
+                <img
+                  alt="Place image"
+                  className="place-card__image"
+                  height={200}
+                  src="img/apartment-01.jpg"
+                  width={260}
+                />
+              </a>
+            </div>
+            <div
+              className="place-card__info"
+            >
+              <div
+                className="place-card__price-wrapper"
+              >
+                <div
+                  className="place-card__price"
+                >
+                  <b
+                    className="place-card__price-value"
+                  >
+                    €
+                    232
+                  </b>
+                  <span
+                    className="place-card__price-text"
+                  >
+                    / night
+                  </span>
+                </div>
+                <button
+                  className="place-card__bookmark-button  button"
+                  type="button"
+                >
+                  <svg
+                    className="place-card__bookmark-icon"
+                    height="19"
+                    width="18"
+                  >
+                    <use
+                      xlinkHref="#icon-bookmark"
+                    />
+                  </svg>
+                  <span
+                    className="visually-hidden"
+                  >
+                    In bookmarks
+                  </span>
+                </button>
+              </div>
+              <div
+                className="place-card__rating rating"
+              >
+                <div
+                  className="place-card__stars rating__stars"
+                >
+                  <span
+                    style={
+                      Object {
+                        "width": "80%",
+                      }
+                    }
+                  />
+                  <span
+                    className="visually-hidden"
+                  >
+                    Rating
+                  </span>
+                </div>
+              </div>
+              <h2
+                className="place-card__name"
+              >
+                <a
+                  href="#"
+                  onClick={[Function]}
+                >
+                  Wood and stone place
+                </a>
+              </h2>
+              <p
+                className="place-card__type"
+              >
+                hotel
               </p>
             </div>
           </article>

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 const PlaceCard = ({
   cardType = `cities`,
   offer,
@@ -75,7 +74,7 @@ PlaceCard.propTypes = {
     }).isRequired,
     title: string.isRequired,
     image: string.isRequired,
-    description: arrayOf(string.isRequired).isRequired,
+    description: string.isRequired,
     images: arrayOf(string.isRequired).isRequired,
     facilities: arrayOf(string.isRequired).isRequired,
     price: number.isRequired,

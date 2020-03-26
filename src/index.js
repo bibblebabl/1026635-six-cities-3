@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
 
 import App from './components/app/app';
 
-import offers from './mocks/offers';
-import reviews from './mocks/reviews';
+import store from './redux/store';
 
 ReactDOM.render(
-    <App offers={offers} reviews={reviews} />,
+    <Provider store={store}>
+      <App />
+    </Provider>,
     document.getElementById(`root`)
 );
 

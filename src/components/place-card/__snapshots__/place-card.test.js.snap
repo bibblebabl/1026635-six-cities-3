@@ -15,7 +15,7 @@ exports[`<PlaceCard /> renders correctly 1`] = `
         alt="Place image"
         className="place-card__image"
         height={200}
-        src="img/apartment-02.jpg"
+        src="img/apartment-01.jpg"
         width={260}
       />
     </a>
@@ -33,7 +33,7 @@ exports[`<PlaceCard /> renders correctly 1`] = `
           className="place-card__price-value"
         >
           €
-          120
+          512
         </b>
         <span
           className="place-card__price-text"
@@ -42,7 +42,7 @@ exports[`<PlaceCard /> renders correctly 1`] = `
         </span>
       </div>
       <button
-        className="place-card__bookmark-button place-card__bookmark-button--active button"
+        className="place-card__bookmark-button  button"
         type="button"
       >
         <svg
@@ -70,7 +70,7 @@ exports[`<PlaceCard /> renders correctly 1`] = `
         <span
           style={
             Object {
-              "width": "100%",
+              "width": "40%",
             }
           }
         />
@@ -88,13 +88,13 @@ exports[`<PlaceCard /> renders correctly 1`] = `
         href="#"
         onClick={[Function]}
       >
-        Beautiful & luxurious studio at great location
+        Wood and stone place
       </a>
     </h2>
     <p
       className="place-card__type"
     >
-      apartment
+      house
     </p>
   </div>
 </article>

@@ -1,48 +1,38 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
+import {connect} from 'react-redux';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {arrayOf, bool, func, number, shape, string} from 'prop-types';
 
+// Components
 import Main from '../main/main';
 import Property from '../property/property';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
+// Redux
+import * as selectors from '../../redux/selectors';
+import {ActionCreators} from '../../redux/actions';
+import {MAX_RECOMMENDATIONS} from '../../data/constants';
 
-    this.state = {
-      currentOffer: null
-    };
-
-    this.handleTitleClick = this.handleTitleClick.bind(this);
-    this.handlePlaceCardMouseOver = this.handlePlaceCardMouseOver.bind(this);
-  }
-
-  handleTitleClick(offerId) {
-    this.setState({currentOffer: offerId});
-  }
-
-  handlePlaceCardMouseOver() {}
-
+class App extends PureComponent {
   renderApp() {
-    const {currentOffer} = this.state;
+    const {currentOffer, setSelectedCity, setCurrentOffer} = this.props;
 
     if (!currentOffer) {
       return (
         <Main
           {...this.props}
-          handlePlaceCardMouseOver={this.handlePlaceCardMouseOver}
-          handleTitleClick={this.handleTitleClick}
+          handlePlaceCardMouseOver={() => {}}
+          handleTitleClick={setCurrentOffer}
+          handleCityNameClick={setSelectedCity}
         />
       );
     }
 
-    const offer = this.props.offers.find((el) => el.id === currentOffer);
-
-    const recommendedOffers = [...this.props.offers].splice(2);
-
+    const {offers, reviews} = this.props;
+    const offer = offers.find((el) => el.id === currentOffer);
+    const recommendedOffers = [...offers].splice(0, MAX_RECOMMENDATIONS);
 
     if (offer) {
-      return <Property offer={offer} reviews={this.props.reviews} recommendedOffers={recommendedOffers} />;
+      return <Property offer={offer} reviews={reviews} recommendedOffers={recommendedOffers} />;
     }
 
     return null;
@@ -50,8 +40,7 @@ class App extends Component {
 
   render() {
     const {offers, reviews} = this.props;
-
-    const recommendedOffers = [...offers].splice(2);
+    const recommendedOffers = [...offers].splice(0, MAX_RECOMMENDATIONS);
 
     return (
       <BrowserRouter>
@@ -72,10 +61,35 @@ class App extends Component {
   }
 }
 
-const {array, arrayOf, bool, number, shape, string} = PropTypes;
-
 App.propTypes = {
-  offers: array,
+  selectedCity: string,
+  currentOffer: number,
+  offers: arrayOf(shape({
+    id: number.isRequired,
+    city: shape({
+      name: string.isRequired,
+      location: shape({
+        x: number.isRequired,
+        y: number.isRequired,
+      }).isRequired,
+    }).isRequired,
+    title: string.isRequired,
+    image: string.isRequired,
+    description: string.isRequired,
+    images: arrayOf(string.isRequired).isRequired,
+    facilities: arrayOf(string.isRequired).isRequired,
+    price: number.isRequired,
+    rating: number.isRequired,
+    type: string.isRequired,
+    isFavorite: bool.isRequired,
+    isPremium: bool.isRequired,
+    bedrooms: number.isRequired,
+    maxAdults: number.isRequired,
+    host: shape({
+      name: string.isRequired,
+      avatar: string.isRequired,
+    }).isRequired,
+  }).isRequired),
   reviews: arrayOf(shape({
     comment: string.isRequired,
     date: string.isRequired,
@@ -87,7 +101,22 @@ App.propTypes = {
       isPro: bool.isRequired,
       name: string.isRequired
     }).isRequired
-  }).isRequired).isRequired
+  }).isRequired).isRequired,
+  setCurrentOffer: func,
+  setSelectedCity: func,
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  offers: selectors.offersSelector(state),
+  reviews: selectors.reviewsSelector(state),
+  selectedCity: selectors.selectedCitySelector(state),
+  currentOffer: selectors.currentOfferSelector(state)
+});
+
+const mapDispatchToProps = {
+  setCurrentOffer: ActionCreators.setCurrentOffer,
+  setSelectedCity: ActionCreators.setSelectedCity
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+

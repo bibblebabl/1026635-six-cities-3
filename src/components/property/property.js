@@ -117,13 +117,11 @@ const Property = ({
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
                   {
-                    facilities.map((facility) => {
-                      return (
-                        <li key={facility} className="property__inside-item">
-                          {facility}
-                        </li>
-                      );
-                    })
+                    facilities.map((facility) => (
+                      <li key={facility} className="property__inside-item">
+                        {facility}
+                      </li>
+                    ))
                   }
                 </ul>
               </div>
@@ -138,14 +136,9 @@ const Property = ({
                   </span>
                 </div>
                 <div className="property__description">
-                  {
-                    description.map((desc) => {
-                      return (
-                        <p key={desc} className="property__text">
-                          {desc}
-                        </p>);
-                    })
-                  }
+                  <p className="property__text">
+                    {description}
+                  </p>
                 </div>
               </div>
               <section className="property__reviews reviews">
@@ -240,7 +233,7 @@ Property.propTypes = {
     }).isRequired,
     title: string.isRequired,
     image: string.isRequired,
-    description: arrayOf(string.isRequired).isRequired,
+    description: string.isRequired,
     images: arrayOf(string.isRequired).isRequired,
     facilities: arrayOf(string.isRequired).isRequired,
     price: number.isRequired,
