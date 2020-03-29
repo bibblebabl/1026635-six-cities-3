@@ -1,5 +1,12 @@
+import {sortByType} from './sorting';
+
 export const getUniqueArray = (array) => [...new Set(array)];
 
 export const getCities = (offers) => offers.map((offer) => offer.city.name);
 
-export const getOffersByCity = (offers, city) => offers.filter((offer) => offer.city.name === city);
+export const getOffersByCityAndSorted = (offers, city, sortingType) => {
+  const offersByCity = offers.filter((offer) => offer.city.name === city);
+  const offersSorted = sortByType(offersByCity, sortingType);
+
+  return offersSorted;
+};

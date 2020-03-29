@@ -5,6 +5,7 @@ import {ActionTypes} from './actions';
 export const initialState = {
   selectedCity: ``,
   currentOffer: null,
+  sortingType: `Popular`,
   offers,
   reviews,
 };
@@ -21,6 +22,12 @@ const reducer = (state = initialState, {type, payload}) => {
       return {
         ...state,
         selectedCity: payload.name
+      };
+
+    case ActionTypes.SET_SORTING_TYPE:
+      return {
+        ...state,
+        sortingType: payload.type
       };
   }
 

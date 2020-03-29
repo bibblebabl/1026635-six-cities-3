@@ -14,7 +14,7 @@ import {MAX_RECOMMENDATIONS} from '../../data/constants';
 
 class App extends PureComponent {
   renderApp() {
-    const {currentOffer, setSelectedCity, setCurrentOffer} = this.props;
+    const {currentOffer, setSelectedCity, setSortingType, setCurrentOffer} = this.props;
 
     if (!currentOffer) {
       return (
@@ -23,6 +23,7 @@ class App extends PureComponent {
           handlePlaceCardMouseOver={() => {}}
           handleTitleClick={setCurrentOffer}
           handleCityNameClick={setSelectedCity}
+          handleChangeSortingType={setSortingType}
         />
       );
     }
@@ -104,18 +105,21 @@ App.propTypes = {
   }).isRequired).isRequired,
   setCurrentOffer: func,
   setSelectedCity: func,
+  setSortingType: func,
 };
 
 const mapStateToProps = (state) => ({
-  offers: selectors.offersSelector(state),
-  reviews: selectors.reviewsSelector(state),
-  selectedCity: selectors.selectedCitySelector(state),
-  currentOffer: selectors.currentOfferSelector(state)
+  offers: selectors.getOffersSelector(state),
+  reviews: selectors.getReviewsSelector(state),
+  selectedCity: selectors.getSelectedCitySelector(state),
+  currentOffer: selectors.getCurrentOfferSelector(state),
+  sortingType: selectors.getSortingTypeSelector(state)
 });
 
 const mapDispatchToProps = {
   setCurrentOffer: ActionCreators.setCurrentOffer,
-  setSelectedCity: ActionCreators.setSelectedCity
+  setSelectedCity: ActionCreators.setSelectedCity,
+  setSortingType: ActionCreators.setSortingType
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -48,6 +48,19 @@ it(`Reducer should set City Name string`, () => {
   });
 });
 
+it(`Reducer should set Sorting Type string`, () => {
+  expect(reducer({
+    sortingType: `Popular`
+  }, {
+    type: ActionTypes.SET_SORTING_TYPE,
+    payload: {
+      type: `Some Sorting`
+    },
+  })).toEqual({
+    sortingType: `Some Sorting`
+  });
+});
+
 describe(`Action Creators work correctly`, () => {
 
   it(`setCurrentOffer Action Creator for setting current offer returns correct action`, () => {

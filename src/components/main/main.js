@@ -5,22 +5,25 @@ import {arrayOf, bool, func, number, shape, string} from 'prop-types';
 import PlaceCard from '../place-card/place-card';
 import Map from '../map/map';
 import LocationsList from '../locations-list/locations-list';
+import Sorting from '../sorting/sorting';
 
-import {getCities, getOffersByCity} from '../../utils/';
+import {getCities, getOffersByCityAndSorted} from '../../utils/';
 import {MAX_CITIES} from '../../data/constants';
 import {getUniqueArray} from '../../utils/index';
 
 const Main = ({
   offers,
+  sortingType,
   selectedCity,
   handlePlaceCardMouseOver,
   handleTitleClick,
-  handleCityNameClick
+  handleCityNameClick,
+  handleChangeSortingType
 }) => {
   const offersCities = offers.map((offer) => offer.city);
   const cities = getUniqueArray(getCities(offers)).slice(0, MAX_CITIES);
   const selectedCityDefault = selectedCity || cities[0];
-  const offersByCity = getOffersByCity(offers, selectedCityDefault);
+  const offersByCitySorted = getOffersByCityAndSorted(offers, selectedCityDefault, sortingType);
 
   return (
     <main className="page__main page__main--index">
@@ -40,33 +43,13 @@ const Main = ({
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{offersByCity.length} places to stay in {selectedCityDefault}</b>
-            <form className="places__sorting" action="#" method="get">
-              <span className="places__sorting-caption">Sort by</span>
-              <span className="places__sorting-type" tabIndex={0}>
-              Popular
-                <svg className="places__sorting-arrow" width={7} height={4}>
-                  <use xlinkHref="#icon-arrow-select" />
-                </svg>
-              </span>
-              <ul className="places__options places__options--custom places__options--opened">
-                <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-                <li className="places__option" tabIndex={0}>Price: low to high</li>
-                <li className="places__option" tabIndex={0}>Price: high to low</li>
-                <li className="places__option" tabIndex={0}>Top rated first</li>
-              </ul>
-              {/*
-                  <select className="places__sorting-type" id="places-sorting">
-                    <option className="places__option" value="popular" selected="">Popular</option>
-                    <option className="places__option" value="to-high">Price: low to high</option>
-                    <option className="places__option" value="to-low">Price: high to low</option>
-                    <option className="places__option" value="top-rated">Top rated first</option>
-                  </select>
-                */}
-            </form>
+            <b className="places__found">{offersByCitySorted.length} places to stay in {selectedCityDefault}</b>
+
+            <Sorting sortingType={sortingType} onSortChange={handleChangeSortingType} />
+
             <div className="cities__places-list places__list tabs__content">
               {
-                offersByCity.map((offer) =>
+                offersByCitySorted.map((offer) =>
                   <PlaceCard
                     key={offer.id}
                     offer={offer}
@@ -90,6 +73,7 @@ const Main = ({
 
 Main.propTypes = {
   selectedCity: string,
+  sortingType: string,
   offers: arrayOf(shape({
     id: number.isRequired,
     city: shape({
@@ -118,7 +102,8 @@ Main.propTypes = {
   }).isRequired),
   handlePlaceCardMouseOver: func,
   handleTitleClick: func,
-  handleCityNameClick: func
+  handleCityNameClick: func,
+  handleChangeSortingType: func
 };
 
 export default Main;
