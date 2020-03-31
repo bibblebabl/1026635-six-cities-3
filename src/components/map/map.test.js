@@ -3,11 +3,17 @@ import renderer from 'react-test-renderer';
 
 import Map from './map';
 
-import {offersLocations} from './mock';
+import {offersLocations, selectedCityElement} from './mock';
+
+const props = {
+  offersLocations,
+  selectedCityElement,
+  hoveredOfferId: 15
+};
 
 it(`<Map /> renders correctly`, () => {
   const component = renderer.create(
-      <Map offersLocations={offersLocations} />,
+      <Map {...props} />,
       {
         createNodeMock: () => document.createElement(`div`)
       })

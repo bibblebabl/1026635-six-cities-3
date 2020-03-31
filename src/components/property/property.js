@@ -6,13 +6,14 @@ import Reviews from '../reviews/reviews';
 import {PROPERTY_TYPES} from '../../data/map';
 import Map from '../map/map';
 import PlaceCard from '../place-card/place-card';
+import {getOffersLocations} from '../../utils';
 
 const Property = ({
   reviews,
   recommendedOffers,
   offer: {
     bedrooms,
-    // city,
+    city,
     description,
     facilities,
     host,
@@ -31,7 +32,7 @@ const Property = ({
   const fixedPropertyRating = rating;
   const propertyType = PROPERTY_TYPES[type];
 
-  const recommendedOffersLocation = recommendedOffers.map((offer) => offer.city);
+  const recommendedOffersLocation = getOffersLocations(recommendedOffers);
 
   return (
     <div className="page">
@@ -190,18 +191,22 @@ const Property = ({
               </section>
             </div>
           </div>
-          <Map className="property__map" offersCities={recommendedOffersLocation}/>
+          <Map
+            className="property__map"
+            offersLocations={recommendedOffersLocation}
+            selectedCityElement={city}
+          />
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
               {
-                recommendedOffers.map((offer) =>
+                recommendedOffers.map((offerElement) =>
                   <PlaceCard
                     cardType="near-places"
-                    key={offer.id}
-                    offer={offer}
+                    key={offerElement.id}
+                    offer={offerElement}
                     onMouseOver={() => {}}
                     onTitleClick={() => {}}
                   />

@@ -5,7 +5,7 @@ import {getLocationArray} from '../../utils/index';
 
 const ZOOM = 11;
 
-const ICONS = {
+const PinIcons = {
   pin: leaflet.icon({
     iconUrl: `img/pin.svg`,
     iconSize: [30, 45]
@@ -20,80 +20,83 @@ class Map extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.map = null;
     this.mapRef = createRef();
+    this.mapComponent = null;
+    this.pinsLayer = [];
 
-    this.icons = ICONS;
+    this.icons = PinIcons;
 
-    this.pins = [];
-
-    this.renderPins = this.renderPins.bind(this);
     this.renderMap = this.renderMap.bind(this);
+    this.renderPins = this.renderPins.bind(this);
+    this.updatePins = this.updatePins.bind(this);
+    this.updateCityView = this.updateCityView.bind(this);
   }
 
   componentDidMount() {
-    const {currentOfferIdLocation} = this.props;
-
-    this.renderMap(currentOfferIdLocation);
-  }
-
-  componentWillUnmount() {
-    this.map.remove();
+    this.renderMap();
+    this.renderPins();
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.hoveredOfferId !== prevProps.hoveredOfferId) {
-      this.updateMap();
+    if (prevProps.selectedCityElement.name !== this.props.selectedCityElement.name) {
+      this.updateCityView();
+    }
+
+    if (prevProps.hoveredOfferId !== this.props.hoveredOfferId) {
+      this.updatePins(this.props.hoveredOfferId);
     }
   }
 
-  updateMap() {
-    const {currentOfferIdLocation, hoveredOfferId} = this.props;
-    this.removePins();
-    this.map.remove();
-    this.renderMap(currentOfferIdLocation, hoveredOfferId);
+  componentWillUnmount() {
+    this.mapComponent.remove();
   }
 
-  renderMap(currentOfferIdLocation, hoveredOfferId) {
-    const {offersLocations} = this.props;
-    let cityCoordinates = getLocationArray(currentOfferIdLocation);
+  renderMap() {
+    const {selectedCityElement} = this.props;
+    let cityCoordinates = getLocationArray(selectedCityElement.location);
 
-    if (hoveredOfferId) {
-      const hovered = offersLocations.find((offer) => offer.id === hoveredOfferId);
-      cityCoordinates = getLocationArray(hovered.location);
-    }
-
-    this.map = leaflet.map(this.mapRef.current, {
+    this.mapComponent = leaflet.map(this.mapRef.current, {
       center: cityCoordinates,
       zoom: ZOOM,
       zoomControl: false,
       marker: true
     });
 
-    this.map.setView(cityCoordinates, ZOOM);
+    this.mapComponent.setView(cityCoordinates, ZOOM);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
-      .addTo(this.map);
-
-    this.renderPins(this.props.offersLocations);
+      .addTo(this.mapComponent);
   }
 
-  renderActivePin(currentOffer) {
-    this.pins.push(leaflet.marker([currentOffer.x, currentOffer.y], {icon: this.icons.pinActive}).addTo(this.map));
+  updatePins(activeOfferId) {
+    for (let pin of this.pinsLayer) {
+      this.mapComponent.removeLayer(pin);
+    }
+    this.pinsLayer = [];
+    this.renderPins(activeOfferId);
   }
 
-  renderPins(offersLocations) {
-    offersLocations.forEach(({location}) => {
-      this.pins.push(leaflet.marker([location.x, location.y], {icon: this.icons.pin}).addTo(this.map));
+
+  renderPins(activeOfferId) {
+    const {offersLocations} = this.props;
+    const {pin, pinActive} = this.icons;
+
+    offersLocations.forEach(({id, location}) => {
+      const icon = activeOfferId && activeOfferId === id ? pinActive : pin;
+      const pinElement = leaflet.marker([location.x, location.y], {icon}).addTo(this.mapComponent);
+      this.pinsLayer.push(pinElement);
     });
   }
 
-  removePins() {
-    this.pins = [];
+  updateCityView() {
+    const {selectedCityElement} = this.props;
+    const cityCoordinates = getLocationArray(selectedCityElement.location);
+    this.mapComponent.setView(cityCoordinates, this.zoom);
   }
+
 
   render() {
     const {className} = this.props;
@@ -105,6 +108,14 @@ class Map extends PureComponent {
 
 Map.propTypes = {
   className: string,
+  hoveredOfferId: number,
+  selectedCityElement: shape({
+    name: string.isRequired,
+    location: shape({
+      x: number.isRequired,
+      y: number.isRequired,
+    }).isRequired,
+  }),
   offersLocations: arrayOf(shape({
     "id": number.isRequired,
     "city": shape({
@@ -118,12 +129,7 @@ Map.propTypes = {
       x: number.isRequired,
       y: number.isRequired
     }).isRequired,
-  }).isRequired).isRequired,
-  currentOfferIdLocation: shape({
-    x: number.isRequired,
-    y: number.isRequired
-  }),
-  hoveredOfferId: number
+  }).isRequired).isRequired
 };
 
 

@@ -1,42 +1,86 @@
 export const offersLocations = [
   {
-    name: `Amsterdam`,
-    id: 12,
-    location: {
+    "id": 12,
+    "city": {
+      "name": `Amsterdam`,
+      "location": {
+        "x": 52.37454,
+        "y": 4.897976,
+        "zoom": 13
+      }
+    },
+    "location": {
       x: 52.3909553943508,
       y: 4.85309666406198
     }
   },
   {
-    name: `Cologne`,
-    id: 13,
-    location: {
+    "id": 13,
+    "city": {
+      "name": `Amsterdam`,
+      "location": {
+        "x": 52.37454,
+        "y": 4.897976,
+        "zoom": 13
+      }
+    },
+    "location": {
       x: 52.3909553943508,
       y: 4.85309666406198
     }
   },
   {
-    name: `Amsterdam`,
-    id: 14,
-    location: {
+    "id": 14,
+    "city": {
+      "name": `Amsterdam`,
+      "location": {
+        "x": 52.37454,
+        "y": 4.897976,
+        "zoom": 13
+      }
+    },
+    "location": {
       x: 52.369553943508,
       y: 4.85309666406198
     }
   },
   {
-    name: `Amsterdam`,
-    id: 15,
-    location: {
+    "id": 15,
+    "city": {
+      "name": `Amsterdam`,
+      "location": {
+        "x": 52.37454,
+        "y": 4.897976,
+        "zoom": 13
+      }
+    },
+    "location": {
       x: 52.3909553943508,
       y: 4.929309666406198
     }
   },
   {
-    name: `Amsterdam`,
-    id: 16,
-    location: {
+    "id": 16,
+    "city": {
+      "name": `Amsterdam`,
+      "location": {
+        "x": 52.37454,
+        "y": 4.897976,
+        "zoom": 13
+      }
+    },
+    "location": {
       x: 52.3809553943508,
       y: 4.939309666406198
     }
   },
 ];
+
+export const selectedCityElement = {
+  "name": `Amsterdam`,
+  "location": {
+    "x": 52.37454,
+    "y": 4.897976,
+    "zoom": 13
+  }
+};

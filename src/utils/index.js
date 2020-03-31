@@ -12,3 +12,9 @@ export const getOffersByCityAndSorted = (offers, city, sortingType) => {
 
   return offersSorted;
 };
+
+export const getOffersLocations = (offers) => offers.map((offer) => ({
+  id: offer.id,
+  city: offer.city,
+  location: offer.location,
+}));

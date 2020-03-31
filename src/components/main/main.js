@@ -7,13 +7,13 @@ import Map from '../map/map';
 import LocationsList from '../locations-list/locations-list';
 import Sorting from '../sorting/sorting';
 
-import {getCities, getOffersByCityAndSorted} from '../../utils/';
+import {getCities, getOffersByCityAndSorted, getOffersLocations} from '../../utils/';
 import {MAX_CITIES} from '../../data/constants';
 import Header from '../header/header';
 
 const Main = ({
   offers,
-  currentOfferId,
+  // currentOfferId,
   hoveredOfferId,
   sortingType,
   selectedCity,
@@ -22,17 +22,11 @@ const Main = ({
   handleCityNameClick,
   handleChangeSortingType,
 }) => {
-  const currentOfferElement = currentOfferId ? offers.find((offer) => offer.id === currentOfferId) : offers[0];
-  const selectedCityDefault = selectedCity || offers[0].city.name;
-
-  const offersLocations = offers.map((offer) => ({
-    city: offer.city,
-    location: offer.location,
-    id: offer.id
-  }));
-
-  const cities = getCities(offers).slice(0, MAX_CITIES);
-  const offersByCitySorted = getOffersByCityAndSorted(offers, selectedCityDefault, sortingType);
+  const offersLocations = getOffersLocations(offers);
+  const cities = getCities(offers);
+  const selectedCityName = selectedCity || offers[0].city.name;
+  const selectedCityElement = offers.find((offer) => offer.city.name === selectedCityName).city;
+  const offersByCitySorted = getOffersByCityAndSorted(offers, selectedCityName, sortingType);
 
   return (
     <div className="page page--gray page--main">
@@ -45,9 +39,9 @@ const Main = ({
           <section className="locations container">
 
             <LocationsList
-              cities={cities}
+              cities={cities.slice(0, MAX_CITIES)}
               onCityNameClick={handleCityNameClick}
-              selectedCity={selectedCityDefault}
+              selectedCity={selectedCityName}
             />
 
           </section>
@@ -56,7 +50,7 @@ const Main = ({
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              {selectedCityDefault && <b className="places__found">{offersByCitySorted.length} places to stay in {selectedCityDefault}</b>}
+              {selectedCityName && <b className="places__found">{offersByCitySorted.length} places to stay in {selectedCityName}</b>}
 
               <Sorting sortingType={sortingType} onSortChange={handleChangeSortingType} />
 
@@ -76,10 +70,9 @@ const Main = ({
             <div className="cities__right-section">
               <Map
                 className='cities__map'
-                cities={cities}
-                currentOfferIdLocation={currentOfferElement.location}
-                hoveredOfferId={hoveredOfferId}
+                selectedCityElement={selectedCityElement}
                 offersLocations={offersLocations}
+                hoveredOfferId={hoveredOfferId}
               />
             </div>
           </div>
@@ -92,7 +85,7 @@ const Main = ({
 Main.propTypes = {
   selectedCity: string,
   hoveredOfferId: number,
-  currentOfferId: number,
+  // currentOfferId: number,
   sortingType: string,
   offers: arrayOf(shape({
     "id": number.isRequired,

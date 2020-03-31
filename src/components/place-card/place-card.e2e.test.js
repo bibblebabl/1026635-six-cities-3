@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 
 import offers from '../../mocks/tests/offers';
 
-const offer = offers[0];
+const [offer] = offers;
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -14,10 +14,7 @@ it(`<PlaceCard /> mouse over on card should pass to the callback data-object of 
   const onMouseOver = jest.fn();
   const onTitleClick = jest.fn();
 
-  const onMouseOverData = {
-    id: offer.id,
-    title: offer.title
-  };
+  const onMouseOverData = offer.id;
 
   const component = shallow(
       <PlaceCard
@@ -33,5 +30,5 @@ it(`<PlaceCard /> mouse over on card should pass to the callback data-object of 
   expect(onMouseOver).toHaveBeenCalledTimes(1);
   expect(onTitleClick).toHaveBeenCalledTimes(1);
 
-  expect(onMouseOver.mock.calls[0][0]).toMatchObject(onMouseOverData);
+  expect(onMouseOver.mock.calls[0][0]).toEqual(onMouseOverData);
 });
