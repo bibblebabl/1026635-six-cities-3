@@ -3,11 +3,11 @@ import renderer from 'react-test-renderer';
 
 import Map from './map';
 
-import {offersCities} from './mock';
+import {offersLocations} from './mock';
 
 it(`<Map /> renders correctly`, () => {
   const component = renderer.create(
-      <Map offersCities={offersCities} />,
+      <Map offersLocations={offersLocations} />,
       {
         createNodeMock: () => document.createElement(`div`)
       })

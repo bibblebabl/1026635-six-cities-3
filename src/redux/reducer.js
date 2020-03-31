@@ -4,7 +4,8 @@ import {ActionTypes} from './actions';
 
 export const initialState = {
   selectedCity: ``,
-  currentOffer: null,
+  currentOfferId: null,
+  hoveredOfferId: null,
   sortingType: `Popular`,
   offers,
   reviews,
@@ -15,7 +16,13 @@ const reducer = (state = initialState, {type, payload}) => {
     case ActionTypes.SET_CURRENT_OFFER:
       return {
         ...state,
-        currentOffer: payload.id
+        currentOfferId: payload.id
+      };
+
+    case ActionTypes.SET_HOVERED_OFFER:
+      return {
+        ...state,
+        hoveredOfferId: payload.id
       };
 
     case ActionTypes.SET_SELECTED_CITY:

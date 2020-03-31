@@ -11,7 +11,7 @@ import reviews from '../../mocks/tests/reviews';
 
 export const initialState = {
   selectedCity: `Amsterdam`,
-  currentOffer: 1,
+  currentOfferId: 1,
   offers,
   reviews,
 };

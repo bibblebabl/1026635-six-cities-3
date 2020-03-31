@@ -14,14 +14,15 @@ import {MAX_RECOMMENDATIONS} from '../../data/constants';
 
 class App extends PureComponent {
   renderApp() {
-    const {currentOffer, setSelectedCity, setSortingType, setCurrentOffer} = this.props;
+    const {currentOfferId, setSelectedCity, sethoveredOfferId, setSortingType, setcurrentOfferId} = this.props;
 
-    if (!currentOffer) {
+    if (!currentOfferId) {
       return (
         <Main
           {...this.props}
-          handlePlaceCardMouseOver={() => {}}
-          handleTitleClick={setCurrentOffer}
+          currentOfferId={currentOfferId}
+          handlePlaceCardMouseOver={sethoveredOfferId}
+          handleTitleClick={setcurrentOfferId}
           handleCityNameClick={setSelectedCity}
           handleChangeSortingType={setSortingType}
         />
@@ -29,7 +30,7 @@ class App extends PureComponent {
     }
 
     const {offers, reviews} = this.props;
-    const offer = offers.find((el) => el.id === currentOffer);
+    const offer = offers.find((el) => el.id === currentOfferId);
     const recommendedOffers = [...offers].splice(0, MAX_RECOMMENDATIONS);
 
     if (offer) {
@@ -64,7 +65,8 @@ class App extends PureComponent {
 
 App.propTypes = {
   selectedCity: string,
-  currentOffer: number,
+  currentOfferId: number,
+  hoveredOfferId: number,
   offers: arrayOf(shape({
     id: number.isRequired,
     city: shape({
@@ -103,21 +105,24 @@ App.propTypes = {
       name: string.isRequired
     }).isRequired
   }).isRequired).isRequired,
-  setCurrentOffer: func,
+  setcurrentOfferId: func,
   setSelectedCity: func,
   setSortingType: func,
+  sethoveredOfferId: func,
 };
 
 const mapStateToProps = (state) => ({
   offers: selectors.getOffersSelector(state),
   reviews: selectors.getReviewsSelector(state),
   selectedCity: selectors.getSelectedCitySelector(state),
-  currentOffer: selectors.getCurrentOfferSelector(state),
+  currentOfferId: selectors.getcurrentOfferIdSelector(state),
+  hoveredOfferId: selectors.gethoveredOfferIdSelector(state),
   sortingType: selectors.getSortingTypeSelector(state)
 });
 
 const mapDispatchToProps = {
-  setCurrentOffer: ActionCreators.setCurrentOffer,
+  setcurrentOfferId: ActionCreators.setcurrentOfferId,
+  sethoveredOfferId: ActionCreators.sethoveredOfferId,
   setSelectedCity: ActionCreators.setSelectedCity,
   setSortingType: ActionCreators.setSortingType
 };

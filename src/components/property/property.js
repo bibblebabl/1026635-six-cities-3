@@ -190,11 +190,7 @@ const Property = ({
               </section>
             </div>
           </div>
-          <section className="property__map map">
-
-            <Map offersCities={recommendedOffersLocation}/>
-
-          </section>
+          <Map className="property__map" offersCities={recommendedOffersLocation}/>
         </section>
         <div className="container">
           <section className="near-places places">
