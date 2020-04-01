@@ -5,7 +5,7 @@ import PlaceCard from './place-card';
 
 import offers from '../../mocks/tests/offers';
 
-const offer = offers[0];
+const [offer] = offers;
 
 it(`<PlaceCard /> renders correctly`, () => {
   const component = renderer.create(

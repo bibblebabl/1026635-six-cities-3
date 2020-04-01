@@ -17,7 +17,7 @@ const PlaceCard = ({
   return (
     <article
       className={`${articleTitle} place-card`}
-      onMouseOver={() => onMouseOver({id, title})}
+      onMouseOver={() => onMouseOver(id)}
     >
       {
         isPremium && (

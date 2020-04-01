@@ -11,27 +11,27 @@ it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual(initialState);
 });
 
-it(`Reducer should change currentOffer ID`, () => {
+it(`Reducer should change currentOfferId ID`, () => {
   expect(reducer({
-    currentOffer: null,
+    currentOfferId: null,
   }, {
     type: ActionTypes.SET_CURRENT_OFFER,
     payload: {
       id: 1
     },
   })).toEqual({
-    currentOffer: 1
+    currentOfferId: 1
   });
 
   expect(reducer({
-    currentOffer: 1,
+    currentOfferId: 1,
   }, {
     type: ActionTypes.SET_CURRENT_OFFER,
     payload: {
       id: 0
     },
   })).toEqual({
-    currentOffer: 0,
+    currentOfferId: 0,
   });
 });
 
@@ -48,11 +48,24 @@ it(`Reducer should set City Name string`, () => {
   });
 });
 
+it(`Reducer should set Sorting Type string`, () => {
+  expect(reducer({
+    sortingType: `Popular`
+  }, {
+    type: ActionTypes.SET_SORTING_TYPE,
+    payload: {
+      type: `Some Sorting`
+    },
+  })).toEqual({
+    sortingType: `Some Sorting`
+  });
+});
+
 describe(`Action Creators work correctly`, () => {
 
-  it(`setCurrentOffer Action Creator for setting current offer returns correct action`, () => {
+  it(`setcurrentOfferId Action Creator for setting current offer returns correct action`, () => {
     const dispatch = jest.fn();
-    const action = ActionCreators.setCurrentOffer(1)(dispatch);
+    const action = ActionCreators.setcurrentOfferId(1)(dispatch);
 
     expect(action).toEqual(dispatch({
       type: ActionTypes.SET_CURRENT_OFFER,

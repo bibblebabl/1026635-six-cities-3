@@ -4,41 +4,57 @@ exports[`<LocationsList /> renders correctly 1`] = `
 <ul
   className="locations__list tabs__list"
 >
-  <a
-    className="locations__item-link tabs__item "
-    href="#"
-    onClick={[Function]}
+  <li
+    className="locations__item"
   >
-    <span>
-      Cologne
-    </span>
-  </a>
-  <a
-    className="locations__item-link tabs__item "
-    href="#"
-    onClick={[Function]}
+    <a
+      className="locations__item-link tabs__item "
+      href="#"
+      onClick={[Function]}
+    >
+      <span>
+        Cologne
+      </span>
+    </a>
+  </li>
+  <li
+    className="locations__item"
   >
-    <span>
-      Amsterdam
-    </span>
-  </a>
-  <a
-    className="locations__item-link tabs__item "
-    href="#"
-    onClick={[Function]}
+    <a
+      className="locations__item-link tabs__item "
+      href="#"
+      onClick={[Function]}
+    >
+      <span>
+        Amsterdam
+      </span>
+    </a>
+  </li>
+  <li
+    className="locations__item"
   >
-    <span>
-      Paris
-    </span>
-  </a>
-  <a
-    className="locations__item-link tabs__item "
-    href="#"
-    onClick={[Function]}
+    <a
+      className="locations__item-link tabs__item "
+      href="#"
+      onClick={[Function]}
+    >
+      <span>
+        Paris
+      </span>
+    </a>
+  </li>
+  <li
+    className="locations__item"
   >
-    <span>
-      Hamburg
-    </span>
-  </a>
+    <a
+      className="locations__item-link tabs__item "
+      href="#"
+      onClick={[Function]}
+    >
+      <span>
+        Hamburg
+      </span>
+    </a>
+  </li>
 </ul>
 `;

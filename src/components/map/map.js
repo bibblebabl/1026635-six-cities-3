@@ -1,61 +1,133 @@
-import React, {Component, createRef} from 'react';
+import React, {PureComponent, createRef} from 'react';
 import leaflet from 'leaflet';
-import {PropTypes} from 'prop-types';
+import {number, arrayOf, shape, string} from 'prop-types';
+import {getLocationArray} from '../../utils/index';
 
-const CITY_COORDINATES = [52.38333, 4.9];
+const ZOOM = 11;
 
-const ZOOM = 10;
+const PinIcons = {
+  pin: leaflet.icon({
+    iconUrl: `img/pin.svg`,
+    iconSize: [30, 45]
+  }),
+  pinActive: leaflet.icon({
+    iconUrl: `img/pin-active.svg`,
+    iconSize: [30, 45]
+  })
+};
 
-const ICON = leaflet.icon({
-  iconUrl: `img/pin.svg`,
-  iconSize: [30, 30]
-});
-
-class Map extends Component {
+class Map extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.map = createRef();
+    this.mapRef = createRef();
+    this.mapComponent = null;
+    this.pinsLayer = [];
+
+    this.icons = PinIcons;
+
+    this.renderMap = this.renderMap.bind(this);
+    this.renderPins = this.renderPins.bind(this);
+    this.updatePins = this.updatePins.bind(this);
+    this.updateCityView = this.updateCityView.bind(this);
   }
 
   componentDidMount() {
-    this.map = leaflet.map(this.map.current, {
-      center: CITY_COORDINATES,
+    this.renderMap();
+    this.renderPins();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedCityElement.name !== this.props.selectedCityElement.name) {
+      this.updateCityView();
+    }
+
+    if (prevProps.hoveredOfferId !== this.props.hoveredOfferId) {
+      this.updatePins(this.props.hoveredOfferId);
+    }
+  }
+
+  componentWillUnmount() {
+    this.mapComponent.remove();
+  }
+
+  renderMap() {
+    const {selectedCityElement} = this.props;
+    let cityCoordinates = getLocationArray(selectedCityElement.location);
+
+    this.mapComponent = leaflet.map(this.mapRef.current, {
+      center: cityCoordinates,
       zoom: ZOOM,
       zoomControl: false,
       marker: true
     });
 
-    this.map.setView(CITY_COORDINATES, ZOOM);
+    this.mapComponent.setView(cityCoordinates, ZOOM);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
-      .addTo(this.map);
-
-    this.addOffersIcons(this.props.offersCities);
+      .addTo(this.mapComponent);
   }
 
-  addOffersIcons(offersCities) {
-    offersCities.forEach(({location}) => {
-      leaflet.marker([location.x, location.y], {ICON}).addTo(this.map);
+  updatePins(activeOfferId) {
+    for (let pin of this.pinsLayer) {
+      this.mapComponent.removeLayer(pin);
+    }
+    this.pinsLayer = [];
+    this.renderPins(activeOfferId);
+  }
+
+
+  renderPins(activeOfferId) {
+    const {offersLocations} = this.props;
+    const {pin, pinActive} = this.icons;
+
+    offersLocations.forEach(({id, location}) => {
+      const icon = activeOfferId && activeOfferId === id ? pinActive : pin;
+      const pinElement = leaflet.marker([location.x, location.y], {icon}).addTo(this.mapComponent);
+      this.pinsLayer.push(pinElement);
     });
   }
 
+  updateCityView() {
+    const {selectedCityElement} = this.props;
+    const cityCoordinates = getLocationArray(selectedCityElement.location);
+    this.mapComponent.setView(cityCoordinates, this.zoom);
+  }
+
+
   render() {
+    const {className} = this.props;
     return (
-      <div id="map" style={{height: `100%`}} ref={this.map}></div>
+      <section id="map" className={`${className} map`} style={{height: `100%`}} ref={this.mapRef}></section>
     );
   }
 }
 
 Map.propTypes = {
-  offersCities: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    location: PropTypes.shape({
-      x: PropTypes.number.isRequired,
-      y: PropTypes.number.isRequired
+  className: string,
+  hoveredOfferId: number,
+  selectedCityElement: shape({
+    name: string.isRequired,
+    location: shape({
+      x: number.isRequired,
+      y: number.isRequired,
+    }).isRequired,
+  }),
+  offersLocations: arrayOf(shape({
+    "id": number.isRequired,
+    "city": shape({
+      name: string.isRequired,
+      location: shape({
+        x: number.isRequired,
+        y: number.isRequired,
+      }).isRequired,
+    }).isRequired,
+    "location": shape({
+      x: number.isRequired,
+      y: number.isRequired
     }).isRequired,
   }).isRequired).isRequired
 };

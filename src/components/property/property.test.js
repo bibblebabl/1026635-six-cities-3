@@ -6,14 +6,19 @@ import Property from './property';
 import offers from '../../mocks/tests/offers';
 import reviews from '../../mocks/tests/reviews';
 
-const offer = offers[0];
+const [offer] = offers;
 
 it(`<Property /> renders correctly`, () => {
+  const handlePlaceCardMouseOver = jest.fn();
+  const handleTitleClick = jest.fn();
+
   const component = renderer.create(
       <Property
         offer={offer}
         reviews={reviews}
         recommendedOffers={offers}
+        handlePlaceCardMouseOver={handlePlaceCardMouseOver}
+        handleTitleClick={handleTitleClick}
       />,
       {
         createNodeMock: () => document.createElement(`div`)
@@ -21,3 +26,4 @@ it(`<Property /> renders correctly`, () => {
   .toJSON();
   expect(component).toMatchSnapshot();
 });
+

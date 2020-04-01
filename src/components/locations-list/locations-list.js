@@ -10,14 +10,15 @@ const LocationsList = ({
     <ul className="locations__list tabs__list">
       {
         cities.map((city, index) => (
-          <a
-            key={`${name}-${index}`}
-            href="#"
-            className={`locations__item-link tabs__item ${selectedCity === city ? `tabs__item--active` : ``}`}
-            onClick={() => onCityNameClick(city)}
-          >
-            <span>{city}</span>
-          </a>
+          <li key={`${city}-${index}`} className="locations__item">
+            <a
+              href="#"
+              className={`locations__item-link tabs__item ${selectedCity === city ? `tabs__item--active` : ``}`}
+              onClick={() => onCityNameClick(city)}
+            >
+              <span>{city}</span>
+            </a>
+          </li>
         ))
       }
     </ul>
