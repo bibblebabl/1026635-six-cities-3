@@ -13,6 +13,8 @@ export const getOffersByCityAndSorted = (offers, city, sortingType) => {
   return offersSorted;
 };
 
+export const getCurrentCity = (offers, selectedCityName) => offers.find((offer) => offer.city.name === selectedCityName).city;
+
 export const getOffersLocations = (offers) => offers.map((offer) => ({
   id: offer.id,
   city: offer.city,

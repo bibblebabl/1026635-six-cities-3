@@ -6,6 +6,8 @@ const LocationsList = ({
   selectedCity,
   onCityNameClick
 }) => {
+  const selectedCityName = selectedCity || cities[0];
+
   return (
     <ul className="locations__list tabs__list">
       {
@@ -13,7 +15,7 @@ const LocationsList = ({
           <li key={`${city}-${index}`} className="locations__item">
             <a
               href="#"
-              className={`locations__item-link tabs__item ${selectedCity === city ? `tabs__item--active` : ``}`}
+              className={`locations__item-link tabs__item ${selectedCityName === city ? `tabs__item--active` : ``}`}
               onClick={() => onCityNameClick(city)}
             >
               <span>{city}</span>
