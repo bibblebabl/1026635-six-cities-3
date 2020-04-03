@@ -10,9 +10,11 @@ it(`<Main /> renders correctly`, () => {
   const props = {
     offers,
     selectedCity: ``,
+    sortingType: `Popular`,
     handlePlaceCardMouseOver: jest.fn(),
     handleTitleClick: jest.fn(),
-    handleCityNameClick: jest.fn()
+    handleCityNameClick: jest.fn(),
+    handleChangeSortingType: jest.fn(),
   };
 
 

@@ -10,6 +10,7 @@ import Sorting from '../sorting/sorting';
 import {getCities, getOffersByCityAndSorted, getOffersLocations} from '../../utils/';
 import {MAX_CITIES} from '../../data/constants';
 import Header from '../header/header';
+import withSortingSelect from '../../hocs/with-sorting-select/with-sorting-select';
 
 const Main = ({
   offers,
@@ -27,6 +28,8 @@ const Main = ({
   const selectedCityName = selectedCity || offers[0].city.name;
   const selectedCityElement = offers.find((offer) => offer.city.name === selectedCityName).city;
   const offersByCitySorted = getOffersByCityAndSorted(offers, selectedCityName, sortingType);
+
+  const SortingWithSelect = withSortingSelect(Sorting);
 
   return (
     <div className="page page--gray page--main">
@@ -52,7 +55,7 @@ const Main = ({
               <h2 className="visually-hidden">Places</h2>
               {selectedCityName && <b className="places__found">{offersByCitySorted.length} places to stay in {selectedCityName}</b>}
 
-              <Sorting sortingType={sortingType} onSortChange={handleChangeSortingType} />
+              <SortingWithSelect sortingType={sortingType} onSortChange={handleChangeSortingType} />
 
               <div className="cities__places-list places__list tabs__content">
                 {

@@ -13,10 +13,10 @@ exports[`<Sorting /> renders correctly 1`] = `
   </span>
   <span
     className="places__sorting-type"
-    onClick={[Function]}
+    onClick={[MockFunction]}
     tabIndex={0}
   >
-    Popular
+    someSort1
     <svg
       className="places__sorting-arrow"
       height={4}
@@ -35,28 +35,28 @@ exports[`<Sorting /> renders correctly 1`] = `
       onClick={[Function]}
       tabIndex={0}
     >
-      Popular
+      someSort1
     </li>
     <li
       className="places__option "
       onClick={[Function]}
       tabIndex={0}
     >
-      Price: low to high
+      someSort2
     </li>
     <li
       className="places__option "
       onClick={[Function]}
       tabIndex={0}
     >
-      Price: high to low
+      someSort3
     </li>
     <li
       className="places__option "
       onClick={[Function]}
       tabIndex={0}
     >
-      Top rated first
+      someSort4
     </li>
   </ul>
 </form>
