@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 
 import Places from './places';
 
-import offers from '../../mocks/offers';
+import offers from '../../mocks/tests/offers';
 
 const props = {
   offers,

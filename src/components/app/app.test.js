@@ -10,10 +10,14 @@ import offers from '../../mocks/tests/offers';
 import reviews from '../../mocks/tests/reviews';
 
 export const initialState = {
-  selectedCity: `Amsterdam`,
-  currentOfferId: 1,
-  offers,
-  reviews,
+  APP: {
+    selectedCity: `Amsterdam`,
+    currentOfferId: 1,
+  },
+  DATA: {
+    offers,
+    reviews
+  }
 };
 
 const mockStore = configureStore([thunk]);
