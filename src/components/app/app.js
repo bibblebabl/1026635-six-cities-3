@@ -15,12 +15,13 @@ import {MAX_RECOMMENDATIONS} from '../../data/constants';
 
 class App extends PureComponent {
   renderApp() {
-    const {currentOfferId, setSelectedCity, sethoveredOfferId, setSortingType, setcurrentOfferId} = this.props;
+    const {currentOfferId, cities, setSelectedCity, sethoveredOfferId, setSortingType, setcurrentOfferId} = this.props;
 
     if (!currentOfferId) {
       return (
         <Main
           {...this.props}
+          cities={cities}
           currentOfferId={currentOfferId}
           handlePlaceCardMouseOver={sethoveredOfferId}
           handleTitleClick={setcurrentOfferId}
@@ -65,9 +66,16 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  selectedCity: string,
+  selectedCity: shape({
+    name: string.isRequired,
+    location: shape({
+      x: number.isRequired,
+      y: number.isRequired,
+    }).isRequired,
+  }),
   currentOfferId: number,
   hoveredOfferId: number,
+  cities: arrayOf(string.isRequired),
   offers: arrayOf(shape({
     id: number.isRequired,
     city: shape({
@@ -113,7 +121,8 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  offers: DataSelectors.getOffersSelector(state),
+  cities: DataSelectors.getCitiesSelector(state),
+  offers: DataSelectors.getOffersByCityAndSortedSelector(state),
   reviews: DataSelectors.getReviewsSelector(state),
   selectedCity: AppSelectors.getSelectedCitySelector(state),
   currentOfferId: AppSelectors.getcurrentOfferIdSelector(state),

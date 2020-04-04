@@ -1,7 +1,14 @@
 import {ActionTypes} from './actions';
 
 export const initialState = {
-  selectedCity: ``,
+  selectedCity: {
+    "name": `Cologne`,
+    "location": {
+      "x": 50.938361,
+      "y": 6.959974,
+      "zoom": 13
+    }
+  },
   currentOfferId: null,
   hoveredOfferId: null,
   sortingType: `Popular`,

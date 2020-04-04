@@ -6,7 +6,7 @@ import PlaceCard from '../place-card/place-card';
 import Map from '../map/map';
 import Sorting from '../sorting/sorting';
 
-import {getOffersByCityAndSorted, getOffersLocations, getCurrentCity} from '../../utils/';
+import {getOffersLocations} from '../../utils/';
 import withSortingSelect from '../../hocs/with-sorting-select/with-sorting-select';
 
 const SortingWithSelect = withSortingSelect(Sorting);
@@ -21,21 +21,18 @@ const Places = ({
   handleTitleClick
 }) => {
   const offersLocations = getOffersLocations(offers);
-  const selectedCityName = selectedCity || offers[0].city.name;
-  const selectedCityElement = getCurrentCity(offers, selectedCityName);
-  const offersByCitySorted = getOffersByCityAndSorted(offers, selectedCityName, sortingType);
 
   return (
     <div className="cities__places-container container">
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
-        {selectedCityName && <b className="places__found">{offersByCitySorted.length} places to stay in {selectedCityName}</b>}
+        {selectedCity && <b className="places__found">{offers.length} places to stay in {selectedCity.name}</b>}
 
         <SortingWithSelect sortingType={sortingType} onSortChange={handleChangeSortingType} />
 
         <div className="cities__places-list places__list tabs__content">
           {
-            offersByCitySorted.map((offer) =>
+            offers.map((offer) =>
               <PlaceCard
                 key={offer.id}
                 offer={offer}
@@ -49,7 +46,7 @@ const Places = ({
       <div className="cities__right-section">
         <Map
           className='cities__map'
-          selectedCityElement={selectedCityElement}
+          selectedCity={selectedCity}
           offersLocations={offersLocations}
           hoveredOfferId={hoveredOfferId}
         />
@@ -59,7 +56,13 @@ const Places = ({
 };
 
 Places.propTypes = {
-  selectedCity: string,
+  selectedCity: shape({
+    name: string.isRequired,
+    location: shape({
+      x: number.isRequired,
+      y: number.isRequired,
+    }).isRequired,
+  }),
   hoveredOfferId: number,
   sortingType: string,
   offers: arrayOf(shape({

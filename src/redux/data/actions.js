@@ -1,4 +1,5 @@
 import ModelOffer from "../../models/offer";
+import {ActionCreators as AppActionCreators} from '../app/actions';
 
 export const ActionTypes = {
   LOAD_OFFERS: `LOAD_OFFERS`,
@@ -20,7 +21,9 @@ export const Operations = {
     return api.get(`/hotels`)
       .then((response) => {
         const offersParsed = ModelOffer.parseOffers(response.data);
+        const firstCity = offersParsed[0].city;
         dispatch(ActionCreators.loadOffers(offersParsed));
+        dispatch(AppActionCreators.setSelectedCity(firstCity));
       });
   },
 };

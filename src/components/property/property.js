@@ -194,7 +194,7 @@ const Property = ({
           <Map
             className="property__map"
             offersLocations={recommendedOffersLocation}
-            selectedCityElement={city}
+            selectedCity={city}
           />
         </section>
         <div className="container">
