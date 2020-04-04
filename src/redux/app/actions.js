@@ -22,11 +22,11 @@ export const ActionCreators = {
       }
     });
   },
-  setSelectedCity: (name) => (dispatch) => {
+  setSelectedCity: (city) => (dispatch) => {
     dispatch({
       type: ActionTypes.SET_SELECTED_CITY,
       payload: {
-        name
+        city
       }
     });
   },

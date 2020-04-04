@@ -9,7 +9,15 @@ it(`<Main /> renders correctly`, () => {
 
   const props = {
     offers,
-    selectedCity: ``,
+    cities: [`Amsterdam`, `Hamburg`, `Brussels`, `Cologne`],
+    selectedCity: {
+      "name": `Amsterdam`,
+      "location": {
+        "x": 52.37454,
+        "y": 4.897976,
+        "zoom": 13
+      }
+    },
     sortingType: `Popular`,
     handlePlaceCardMouseOver: jest.fn(),
     handleTitleClick: jest.fn(),

@@ -37,10 +37,24 @@ it(`Reducer should set City Name string`, () => {
   }, {
     type: ActionTypes.SET_SELECTED_CITY,
     payload: {
-      name: `City Name`
+      city: {
+        "name": `Cologne`,
+        "location": {
+          "x": 50.938361,
+          "y": 6.959974,
+          "zoom": 13
+        }
+      },
     },
   })).toEqual({
-    selectedCity: `City Name`
+    selectedCity: {
+      "name": `Cologne`,
+      "location": {
+        "x": 50.938361,
+        "y": 6.959974,
+        "zoom": 13
+      }
+    },
   });
 });
 

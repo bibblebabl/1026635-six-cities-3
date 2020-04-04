@@ -1,6 +1,6 @@
 import {createSelector} from 'reselect';
 import NameSpaces from '../name-spaces';
-import {getCities, getCurrentCity, getOffersByCityAndSorted} from '../../utils';
+import {getCities, getOffersByCityAndSorted} from '../../utils';
 import {getSelectedCitySelector, getSortingTypeSelector} from '../app/selectors';
 
 export const getSelector = (state) => state[NameSpaces.DATA];

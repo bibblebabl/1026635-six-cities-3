@@ -4,7 +4,6 @@ import {arrayOf, bool, func, number, shape, string} from 'prop-types';
 // Components
 import LocationsList from '../locations-list/locations-list';
 
-import {getCities} from '../../utils/';
 import {MAX_CITIES} from '../../data/constants';
 import Header from '../header/header';
 

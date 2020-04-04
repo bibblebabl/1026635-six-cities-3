@@ -31,7 +31,7 @@ const reducer = (state = initialState, {type, payload}) => {
     case ActionTypes.SET_SELECTED_CITY:
       return {
         ...state,
-        selectedCity: payload.name
+        selectedCity: payload.city
       };
 
     case ActionTypes.SET_SORTING_TYPE:

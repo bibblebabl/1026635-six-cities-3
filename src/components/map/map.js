@@ -45,8 +45,6 @@ class Map extends PureComponent {
     if (prevProps.hoveredOfferId !== this.props.hoveredOfferId) {
       this.updatePins(this.props.hoveredOfferId);
     }
-
-    console.log(this.props);
   }
 
   componentWillUnmount() {
