@@ -1,11 +1,7 @@
-// import configureMockStore from 'redux-mock-store';
-// import thunk from 'redux-thunk';
 
-import reducer, {initialState} from "./reducer";
+
+import reducer, {initialState} from "./app";
 import {ActionTypes, ActionCreators} from "./actions";
-
-// const middlewares = [thunk];
-// const mockStore = configureMockStore(middlewares);
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual(initialState);
@@ -62,7 +58,6 @@ it(`Reducer should set Sorting Type string`, () => {
 });
 
 describe(`Action Creators work correctly`, () => {
-
   it(`setcurrentOfferId Action Creator for setting current offer returns correct action`, () => {
     const dispatch = jest.fn();
     const action = ActionCreators.setcurrentOfferId(1)(dispatch);

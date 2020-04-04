@@ -248,7 +248,7 @@ Property.propTypes = {
       name: string.isRequired,
       avatar: string.isRequired,
     }).isRequired,
-  }).isRequired,
+  }),
   reviews: arrayOf(shape({
     comment: string.isRequired,
     date: string.isRequired,
@@ -260,7 +260,7 @@ Property.propTypes = {
       isPro: bool.isRequired,
       name: string.isRequired
     }).isRequired
-  }).isRequired).isRequired,
+  })),
   recommendedOffers: array,
   handlePlaceCardMouseOver: func,
   handleTitleClick: func,

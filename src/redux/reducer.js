@@ -1,47 +1,14 @@
-import offers from "../mocks/offers";
-import reviews from "../mocks/reviews";
-import {ActionTypes} from './actions';
+import {combineReducers} from "redux";
 
-export const initialState = {
-  selectedCity: ``,
-  currentOfferId: null,
-  hoveredOfferId: null,
-  sortingType: `Popular`,
-  offers,
-  reviews,
-};
+// reducers
+import dataReducer from "./data/data";
+import userReducer from "./user/user";
+import appReducer from "./app/app";
 
-const reducer = (state = initialState, {type, payload}) => {
-  switch (type) {
-    case ActionTypes.SET_CURRENT_OFFER:
-      return {
-        ...state,
-        currentOfferId: payload.id
-      };
+import NameSpaces from "./name-spaces";
 
-    case ActionTypes.SET_HOVERED_OFFER:
-      return {
-        ...state,
-        hoveredOfferId: payload.id
-      };
-
-    case ActionTypes.SET_SELECTED_CITY:
-      return {
-        ...state,
-        selectedCity: payload.name
-      };
-
-    case ActionTypes.SET_SORTING_TYPE:
-      return {
-        ...state,
-        sortingType: payload.type
-      };
-  }
-
-  return state;
-};
-
-
-export default reducer;
-
-
+export default combineReducers({
+  [NameSpaces.DATA]: dataReducer,
+  [NameSpaces.USER]: userReducer,
+  [NameSpaces.APP]: appReducer
+});
