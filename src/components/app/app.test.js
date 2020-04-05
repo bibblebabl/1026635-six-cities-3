@@ -24,6 +24,10 @@ export const initialState = {
   DATA: {
     offers,
     reviews
+  },
+  USER: {
+    authorizationStatus: `NO_AUTH`,
+    user: null
   }
 };
 
@@ -33,7 +37,7 @@ const store = mockStore(initialState);
 it(`<App /> renders correctly`, () => {
   const component = renderer.create(
       <Provider store={store}>
-        <App offers={offers} reviews={reviews} />
+        <App />
       </Provider>,
       {
         createNodeMock: () => document.createElement(`div`)

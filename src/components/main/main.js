@@ -1,5 +1,5 @@
 import React from 'react';
-import {arrayOf, bool, func, number, shape, string} from 'prop-types';
+import {arrayOf, func, number, shape, string} from 'prop-types';
 
 // Components
 import LocationsList from '../locations-list/locations-list';
@@ -9,10 +9,12 @@ import Header from '../header/header';
 
 import Places from '../places/places';
 import PlacesEmpty from '../places-empty/places-empty';
+import {userPropType, offerPropType} from '../../prop-types/prop-types';
 
 const Main = ({
   offers,
   // currentOfferId,
+  user,
   cities,
   hoveredOfferId,
   sortingType,
@@ -25,7 +27,7 @@ const Main = ({
   return (
     <div className="page page--gray page--main">
 
-      <Header/>
+      <Header user={user} />
 
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
@@ -71,40 +73,11 @@ Main.propTypes = {
       y: number.isRequired,
     }).isRequired,
   }),
+  user: userPropType,
   hoveredOfferId: number,
   sortingType: string,
   cities: arrayOf(string.isRequired),
-  offers: arrayOf(shape({
-    "id": number.isRequired,
-    "city": shape({
-      name: string.isRequired,
-      location: shape({
-        x: number.isRequired,
-        y: number.isRequired,
-      }).isRequired,
-    }).isRequired,
-    "title": string.isRequired,
-    "image": string.isRequired,
-    "description": string.isRequired,
-    "images": arrayOf(string.isRequired).isRequired,
-    "facilities": arrayOf(string.isRequired).isRequired,
-    "price": number.isRequired,
-    "rating": number.isRequired,
-    "type": string.isRequired,
-    "isFavorite": bool.isRequired,
-    "isPremium": bool.isRequired,
-    "bedrooms": number.isRequired,
-    "maxAdults": number.isRequired,
-    "host": shape({
-      name: string.isRequired,
-      avatar: string.isRequired,
-    }).isRequired,
-    "location": shape({
-      x: number.isRequired,
-      y: number.isRequired,
-      zoom: number,
-    }).isRequired,
-  }).isRequired),
+  offers: arrayOf(offerPropType).isRequired,
   handlePlaceCardMouseOver: func,
   handleTitleClick: func,
   handleCityNameClick: func,
