@@ -1,6 +1,10 @@
 import React from 'react';
 
-const Header = () => {
+import {userPropType} from '../../prop-types/prop-types';
+
+const Header = ({
+  user
+}) => {
   return (
     <header className="header">
       <div className="container">
@@ -16,7 +20,7 @@ const Header = () => {
                 <a className="header__nav-link header__nav-link--profile" href="#">
                   <div className="header__avatar-wrapper user__avatar-wrapper">
                   </div>
-                  <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                  <span className="header__user-name user__name">{user ? user.email : `Sign In`}</span>
                 </a>
               </li>
             </ul>
@@ -25,6 +29,10 @@ const Header = () => {
       </div>
     </header>
   );
+};
+
+Header.propTypes = {
+  user: userPropType
 };
 
 export default Header;

@@ -18,6 +18,7 @@ it(`<Main /> renders correctly`, () => {
         "zoom": 13
       }
     },
+    user: null,
     sortingType: `Popular`,
     handlePlaceCardMouseOver: jest.fn(),
     handleTitleClick: jest.fn(),
@@ -27,7 +28,9 @@ it(`<Main /> renders correctly`, () => {
 
 
   const component = renderer.create(
-      <Main {...props} />,
+      <Main
+        {...props}
+      />,
       {
         createNodeMock: () => document.createElement(`div`)
       })

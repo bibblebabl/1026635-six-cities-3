@@ -1,14 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {array, arrayOf, func} from 'prop-types';
 
 import Reviews from '../reviews/reviews';
-
-import {PROPERTY_TYPES} from '../../data/map';
-import Map from '../map/map';
+import Header from '../header/header';
 import PlaceCard from '../place-card/place-card';
+
+import Map from '../map/map';
 import {getOffersLocations} from '../../utils';
 
+import {PROPERTY_TYPES} from '../../data/map';
+
+import {userPropType, reviewPropType, offerPropType} from '../../prop-types/prop-types';
+
 const Property = ({
+  user,
   reviews,
   recommendedOffers,
   offer: {
@@ -36,28 +41,7 @@ const Property = ({
 
   return (
     <div className="page">
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <a className="header__logo-link" href="main.html">
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width={81} height={41} />
-              </a>
-            </div>
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile" href="#">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <Header user={user} />
       <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">
@@ -220,47 +204,10 @@ const Property = ({
   );
 };
 
-const {array, arrayOf, bool, func, number, shape, string} = PropTypes;
-
 Property.propTypes = {
-  offer: shape({
-    id: number.isRequired,
-    city: shape({
-      name: string.isRequired,
-      location: shape({
-        x: number.isRequired,
-        y: number.isRequired,
-      }).isRequired,
-    }).isRequired,
-    title: string.isRequired,
-    image: string.isRequired,
-    description: string.isRequired,
-    images: arrayOf(string.isRequired).isRequired,
-    facilities: arrayOf(string.isRequired).isRequired,
-    price: number.isRequired,
-    rating: number.isRequired,
-    type: string.isRequired,
-    isFavorite: bool.isRequired,
-    isPremium: bool.isRequired,
-    bedrooms: number.isRequired,
-    maxAdults: number.isRequired,
-    host: shape({
-      name: string.isRequired,
-      avatar: string.isRequired,
-    }).isRequired,
-  }),
-  reviews: arrayOf(shape({
-    comment: string.isRequired,
-    date: string.isRequired,
-    id: number.isRequired,
-    rating: number.isRequired,
-    user: shape({
-      avatarUrl: string.isRequired,
-      id: number.isRequired,
-      isPro: bool.isRequired,
-      name: string.isRequired
-    }).isRequired
-  })),
+  offer: offerPropType,
+  reviews: arrayOf(reviewPropType),
+  user: userPropType,
   recommendedOffers: array,
   handlePlaceCardMouseOver: func,
   handleTitleClick: func,

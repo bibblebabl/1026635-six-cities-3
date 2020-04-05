@@ -7,7 +7,7 @@ import {createAPI} from '../api/api';
 import {ActionCreators as UserActionCreators, AuthorizationStatus} from '../redux/user/actions';
 
 const onUnauthorized = () => {
-  store.dispatch(UserActionCreators.requireAuthorization(AuthorizationStatus.NO_AUTH));
+  store.dispatch(UserActionCreators.setAuthStatus(AuthorizationStatus.NO_AUTH));
 };
 
 const api = createAPI(onUnauthorized);
