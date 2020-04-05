@@ -4,7 +4,6 @@ import {arrayOf, bool, func, number, shape, string} from 'prop-types';
 // Components
 import LocationsList from '../locations-list/locations-list';
 
-import {getCities} from '../../utils/';
 import {MAX_CITIES} from '../../data/constants';
 import Header from '../header/header';
 
@@ -14,6 +13,7 @@ import PlacesEmpty from '../places-empty/places-empty';
 const Main = ({
   offers,
   // currentOfferId,
+  cities,
   hoveredOfferId,
   sortingType,
   selectedCity,
@@ -22,8 +22,6 @@ const Main = ({
   handleCityNameClick,
   handleChangeSortingType,
 }) => {
-  const cities = getCities(offers);
-
   return (
     <div className="page page--gray page--main">
 
@@ -66,9 +64,16 @@ const Main = ({
 };
 
 Main.propTypes = {
-  selectedCity: string,
+  selectedCity: shape({
+    name: string.isRequired,
+    location: shape({
+      x: number.isRequired,
+      y: number.isRequired,
+    }).isRequired,
+  }),
   hoveredOfferId: number,
   sortingType: string,
+  cities: arrayOf(string.isRequired),
   offers: arrayOf(shape({
     "id": number.isRequired,
     "city": shape({

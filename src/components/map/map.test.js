@@ -3,11 +3,18 @@ import renderer from 'react-test-renderer';
 
 import Map from './map';
 
-import {offersLocations, selectedCityElement} from './mock';
+import {offersLocations} from './mock';
 
 const props = {
   offersLocations,
-  selectedCityElement,
+  selectedCity: {
+    "name": `Amsterdam`,
+    "location": {
+      "x": 52.37454,
+      "y": 4.897976,
+      "zoom": 13
+    }
+  },
   hoveredOfferId: 15
 };
 

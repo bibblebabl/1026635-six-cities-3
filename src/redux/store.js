@@ -1,15 +1,22 @@
 import {createStore, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
 
-import thunk from 'redux-thunk';
 import reducer from './reducer';
+import {createAPI} from '../api/api';
+import {ActionCreators as UserActionCreators, AuthorizationStatus} from '../redux/user/actions';
 
-const middlewares = [thunk];
+const onUnauthorized = () => {
+  store.dispatch(UserActionCreators.requireAuthorization(AuthorizationStatus.NO_AUTH));
+};
 
+const api = createAPI(onUnauthorized);
+const middlewares = [thunk.withExtraArgument(api)];
 
-const store = createStore(reducer, composeWithDevTools(
-    applyMiddleware(...middlewares),
-));
+const store = createStore(
+    reducer,
+    composeWithDevTools(applyMiddleware(...middlewares))
+);
 
 export default store;
 

@@ -3,17 +3,18 @@ import renderer from 'react-test-renderer';
 
 import LocationsList from './locations-list';
 
-import {getUniqueArray, getCities} from '../../utils';
-
-import offers from '../../mocks/tests/offers';
-
-const MAX_CITIES = 4;
-
-const cities = getUniqueArray(getCities(offers)).slice(0, MAX_CITIES);
+const cities = [`Amsterdam`, `Hamburg`, `Brussels`, `Cologne`];
 
 const props = {
   cities,
-  selectedCity: ``,
+  selectedCity: {
+    "name": `Amsterdam`,
+    "location": {
+      "x": 52.37454,
+      "y": 4.897976,
+      "zoom": 13
+    }
+  },
   onCityNameClick: jest.fn()
 };
 

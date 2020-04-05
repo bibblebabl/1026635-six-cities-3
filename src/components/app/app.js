@@ -8,18 +8,20 @@ import Main from '../main/main';
 import Property from '../property/property';
 
 // Redux
-import * as selectors from '../../redux/selectors';
-import {ActionCreators} from '../../redux/actions';
+import * as DataSelectors from '../../redux/data/selectors';
+import * as AppSelectors from '../../redux/app/selectors';
+import {ActionCreators as AppActionCreators} from '../../redux/app/actions';
 import {MAX_RECOMMENDATIONS} from '../../data/constants';
 
 class App extends PureComponent {
   renderApp() {
-    const {currentOfferId, setSelectedCity, sethoveredOfferId, setSortingType, setcurrentOfferId} = this.props;
+    const {currentOfferId, cities, setSelectedCity, sethoveredOfferId, setSortingType, setcurrentOfferId} = this.props;
 
     if (!currentOfferId) {
       return (
         <Main
           {...this.props}
+          cities={cities}
           currentOfferId={currentOfferId}
           handlePlaceCardMouseOver={sethoveredOfferId}
           handleTitleClick={setcurrentOfferId}
@@ -30,10 +32,11 @@ class App extends PureComponent {
     }
 
     const {offers, reviews} = this.props;
+
     const offer = offers.find((el) => el.id === currentOfferId);
-    const recommendedOffers = [...offers].splice(0, MAX_RECOMMENDATIONS);
 
     if (offer) {
+      const recommendedOffers = [...offers].splice(0, MAX_RECOMMENDATIONS);
       return <Property offer={offer} reviews={reviews} recommendedOffers={recommendedOffers} />;
     }
 
@@ -41,22 +44,21 @@ class App extends PureComponent {
   }
 
   render() {
-    const {offers, reviews} = this.props;
-    const recommendedOffers = [...offers].splice(0, MAX_RECOMMENDATIONS);
-
+    // const {offers, reviews} = this.props;
+    // const recommendedOffers = [...offers].splice(0, MAX_RECOMMENDATIONS);
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
             {this.renderApp()}
           </Route>
-          <Route exact path="/dev-offer">
+          {/* <Route exact path="/dev-offer">
             <Property
               offer={offers[0]}
               reviews={reviews}
               recommendedOffers={recommendedOffers}
             />
-          </Route>
+          </Route> */}
         </Switch>
       </BrowserRouter>
     );
@@ -64,9 +66,16 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  selectedCity: string,
+  selectedCity: shape({
+    name: string.isRequired,
+    location: shape({
+      x: number.isRequired,
+      y: number.isRequired,
+    }).isRequired,
+  }),
   currentOfferId: number,
   hoveredOfferId: number,
+  cities: arrayOf(string.isRequired),
   offers: arrayOf(shape({
     id: number.isRequired,
     city: shape({
@@ -92,7 +101,7 @@ App.propTypes = {
       name: string.isRequired,
       avatar: string.isRequired,
     }).isRequired,
-  }).isRequired),
+  })),
   reviews: arrayOf(shape({
     comment: string.isRequired,
     date: string.isRequired,
@@ -104,7 +113,7 @@ App.propTypes = {
       isPro: bool.isRequired,
       name: string.isRequired
     }).isRequired
-  }).isRequired).isRequired,
+  })),
   setcurrentOfferId: func,
   setSelectedCity: func,
   setSortingType: func,
@@ -112,19 +121,20 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  offers: selectors.getOffersSelector(state),
-  reviews: selectors.getReviewsSelector(state),
-  selectedCity: selectors.getSelectedCitySelector(state),
-  currentOfferId: selectors.getcurrentOfferIdSelector(state),
-  hoveredOfferId: selectors.gethoveredOfferIdSelector(state),
-  sortingType: selectors.getSortingTypeSelector(state)
+  cities: DataSelectors.getCitiesSelector(state),
+  offers: DataSelectors.getOffersByCityAndSortedSelector(state),
+  reviews: DataSelectors.getReviewsSelector(state),
+  selectedCity: AppSelectors.getSelectedCitySelector(state),
+  currentOfferId: AppSelectors.getcurrentOfferIdSelector(state),
+  hoveredOfferId: AppSelectors.gethoveredOfferIdSelector(state),
+  sortingType: AppSelectors.getSortingTypeSelector(state)
 });
 
 const mapDispatchToProps = {
-  setcurrentOfferId: ActionCreators.setcurrentOfferId,
-  sethoveredOfferId: ActionCreators.sethoveredOfferId,
-  setSelectedCity: ActionCreators.setSelectedCity,
-  setSortingType: ActionCreators.setSortingType
+  setcurrentOfferId: AppActionCreators.setcurrentOfferId,
+  sethoveredOfferId: AppActionCreators.sethoveredOfferId,
+  setSelectedCity: AppActionCreators.setSelectedCity,
+  setSortingType: AppActionCreators.setSortingType
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

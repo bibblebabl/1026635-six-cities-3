@@ -38,7 +38,7 @@ class Map extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.selectedCityElement.name !== this.props.selectedCityElement.name) {
+    if (prevProps.selectedCity.name !== this.props.selectedCity.name) {
       this.updateCityView();
     }
 
@@ -52,8 +52,8 @@ class Map extends PureComponent {
   }
 
   renderMap() {
-    const {selectedCityElement} = this.props;
-    let cityCoordinates = getLocationArray(selectedCityElement.location);
+    const {selectedCity} = this.props;
+    let cityCoordinates = getLocationArray(selectedCity.location);
 
     this.mapComponent = leaflet.map(this.mapRef.current, {
       center: cityCoordinates,
@@ -92,8 +92,8 @@ class Map extends PureComponent {
   }
 
   updateCityView() {
-    const {selectedCityElement} = this.props;
-    const cityCoordinates = getLocationArray(selectedCityElement.location);
+    const {selectedCity} = this.props;
+    const cityCoordinates = getLocationArray(selectedCity.location);
     this.mapComponent.setView(cityCoordinates, this.zoom);
   }
 
@@ -109,7 +109,7 @@ class Map extends PureComponent {
 Map.propTypes = {
   className: string,
   hoveredOfferId: number,
-  selectedCityElement: shape({
+  selectedCity: shape({
     name: string.isRequired,
     location: shape({
       x: number.isRequired,

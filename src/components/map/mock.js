@@ -75,12 +75,3 @@ export const offersLocations = [
     }
   },
 ];
-
-export const selectedCityElement = {
-  "name": `Amsterdam`,
-  "location": {
-    "x": 52.37454,
-    "y": 4.897976,
-    "zoom": 13
-  }
-};
