@@ -1,7 +1,7 @@
 import React from 'react';
 import {sortOptions} from '../../data/constants';
 
-export default (Component) => {
+const withSortingSelect = (Component) => {
   return class WithSortingSelect extends React.PureComponent {
     constructor(props) {
       super(props);
@@ -30,4 +30,6 @@ export default (Component) => {
     }
   };
 };
+
+export default withSortingSelect;
 

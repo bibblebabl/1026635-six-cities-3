@@ -17,7 +17,8 @@ import * as UserSelectors from '../../redux/user/selectors';
 
 // ActionCreators
 import {ActionCreators as AppActionCreators} from '../../redux/app/actions';
-import {Operations as UseOperations} from '../../redux/user/actions';
+import {Operations as UserOperations} from '../../redux/user/actions';
+import {Operations as DataOperations, ActionCreators as DataActionCreators} from '../../redux/data/actions';
 
 import UserPropType from '../../prop-types/user';
 import OfferPropType from '../../prop-types/offer';
@@ -27,7 +28,16 @@ import {MAX_RECOMMENDATIONS} from '../../data/constants';
 
 class App extends PureComponent {
   renderApp() {
-    const {currentOfferId, cities, user, setSelectedCity, sethoveredOfferId, setSortingType, setcurrentOfferId} = this.props;
+    const {
+      currentOfferId,
+      cities,
+      user,
+      setSelectedCity,
+      sethoveredOfferId,
+      setSortingType,
+      submitReview,
+      handlePlaceTitleClick,
+    } = this.props;
 
     if (!currentOfferId) {
       return (
@@ -37,7 +47,7 @@ class App extends PureComponent {
           user={user}
           currentOfferId={currentOfferId}
           handlePlaceCardMouseOver={sethoveredOfferId}
-          handleTitleClick={setcurrentOfferId}
+          handleTitleClick={handlePlaceTitleClick}
           handleCityNameClick={setSelectedCity}
           handleChangeSortingType={setSortingType}
         />
@@ -50,7 +60,16 @@ class App extends PureComponent {
 
     if (offer) {
       const recommendedOffers = [...offers].splice(0, MAX_RECOMMENDATIONS);
-      return <Property offer={offer} reviews={reviews} recommendedOffers={recommendedOffers} />;
+      return (
+        <Property
+          user={user}
+          offer={offer}
+          reviews={reviews}
+          recommendedOffers={recommendedOffers}
+          handleTitleClick={handlePlaceTitleClick}
+          handleReviewSubmit={submitReview}
+        />
+      );
     }
 
     return null;
@@ -96,7 +115,8 @@ App.propTypes = {
   offers: arrayOf(OfferPropType),
   reviews: array,
   user: UserPropType,
-  setcurrentOfferId: func.isRequired,
+  handlePlaceTitleClick: func.isRequired,
+  submitReview: func.isRequired,
   setSelectedCity: func.isRequired,
   setSortingType: func.isRequired,
   sethoveredOfferId: func.isRequired,
@@ -114,13 +134,20 @@ const mapStateToProps = (state) => ({
   sortingType: AppSelectors.getSortingTypeSelector(state)
 });
 
-const mapDispatchToProps = {
-  setcurrentOfferId: AppActionCreators.setcurrentOfferId,
-  sethoveredOfferId: AppActionCreators.sethoveredOfferId,
-  setSelectedCity: AppActionCreators.setSelectedCity,
-  setSortingType: AppActionCreators.setSortingType,
-  login: UseOperations.login
-};
+const mapDispatchToProps = (dispatch) => ({
+  handlePlaceTitleClick: (id) => {
+    dispatch(DataOperations.loadReviews(id));
+    dispatch(AppActionCreators.setCurrentOfferId(id));
+  },
+  submitReview: (id, review) => {
+    dispatch(DataOperations.submitReview(id, review));
+  },
+  sethoveredOfferId: () => dispatch(AppActionCreators.sethoveredOfferId),
+  setSelectedCity: () => dispatch(AppActionCreators.setSelectedCity),
+  setSortingType: () => dispatch(AppActionCreators.setSortingType),
+  loadOfferReviews: () => dispatch(DataActionCreators.loadReviews),
+  login: () => dispatch(UserOperations.login)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 
