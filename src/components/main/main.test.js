@@ -4,6 +4,8 @@ import renderer from 'react-test-renderer';
 import Main from './main';
 
 import offers from '../../mocks/tests/offers';
+import {Router} from 'react-router-dom';
+import history from '../../history/history';
 
 it(`<Main /> renders correctly`, () => {
 
@@ -28,9 +30,11 @@ it(`<Main /> renders correctly`, () => {
 
 
   const component = renderer.create(
-      <Main
-        {...props}
-      />,
+      <Router history={history}>
+        <Main
+          {...props}
+        />
+      </Router>,
       {
         createNodeMock: () => document.createElement(`div`)
       })

@@ -73,19 +73,17 @@ it(`Reducer should set Sorting Type string`, () => {
 
 describe(`Action Creators work correctly`, () => {
   it(`setCurrentOfferId Action Creator for setting current offer returns correct action`, () => {
-    const dispatch = jest.fn();
-    const action = ActionCreators.setCurrentOfferId(1)(dispatch);
+    const action = ActionCreators.setCurrentOfferId(1);
 
-    expect(action).toEqual(dispatch({
+    expect(action).toEqual({
       type: ActionTypes.SET_CURRENT_OFFER,
       payload: {
         id: 1
       },
-    }));
+    });
   });
 
   it(`setSelectedCity Action Creator for setting selected city returns correct action`, () => {
-    const dispatch = jest.fn();
     const mockCity = {
       "name": `Amsterdam`,
       "location": {
@@ -94,13 +92,13 @@ describe(`Action Creators work correctly`, () => {
         "zoom": 13
       }
     };
-    const action = ActionCreators.setSelectedCity(mockCity)(dispatch);
+    const action = ActionCreators.setSelectedCity(mockCity);
 
-    expect(action).toEqual(dispatch({
+    expect(action).toEqual({
       type: ActionTypes.SET_SELECTED_CITY,
       payload: {
         city: mockCity
       },
-    }));
+    });
   });
 });
