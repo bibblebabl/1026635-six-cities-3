@@ -18,7 +18,7 @@ exports[`<SignIn /> renders correctly 1`] = `
         >
           <a
             className="header__logo-link"
-            href="main.html"
+            href="/"
           >
             <img
               alt="6 cities logo"

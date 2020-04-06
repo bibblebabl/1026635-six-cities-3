@@ -4,6 +4,7 @@ import reducer, {initialState} from "./user";
 import {Operations, AuthorizationStatus, ActionTypes} from './actions';
 
 import {createAPI} from '../../api/api';
+import ModelUser from '../../models/user';
 
 const api = createAPI(Function);
 
@@ -52,20 +53,34 @@ describe(`user reducer works correctly`, () => {
 });
 
 
-describe(`Operations works correctly`, () => {
-  it(`checkAuth operation works correctly`, () => {
+describe(`Operations should`, () => {
+  it(`checkAuth operation should works correctly`, () => {
     const dispatch = jest.fn();
     const apiMock = new MockAdapter(api);
     const checkAuth = Operations.checkAuth();
 
+    const mockUser = {
+      'avatar_url': `img/1.png`,
+      'email': `Oliver.conner@gmail.com`,
+      'id': 1,
+      'is_pro': false,
+      'name': `Oliver.conner`
+    };
+
     apiMock
       .onGet(`/login`)
-      .reply(200, user);
+      .reply(200, mockUser);
 
     return checkAuth(dispatch, Function, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionTypes.SET_USER,
+          payload: {
+            user: ModelUser.parseUser(mockUser)
+          }
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: ActionTypes.SET_AUTH_STATUS,
           payload: {
             status: AuthorizationStatus.AUTH

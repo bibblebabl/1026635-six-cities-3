@@ -21,7 +21,7 @@ export const ActionCreators = {
   },
   setUser: (user) => {
     return {
-      type: ActionTypes.SET_AUTH_STATUS,
+      type: ActionTypes.SET_USER,
       payload: {
         user
       },
@@ -29,22 +29,30 @@ export const ActionCreators = {
   }
 };
 
+
 export const Operations = {
   checkAuth: () => (dispatch, getState, api) => {
-    return api.get(`/login`)
-      .then(() => {
-        dispatch(ActionCreators.setAuthStatus(AuthorizationStatus.AUTH));
-      })
-      .catch((err) => {
-        throw err;
-      });
+    return api.get(`login`)
+    .then((response) => {
+      if (response.status === 200) {
+        const user = ModelUser.parseUser(response.data);
+        dispatch(ActionCreators.setUser(user));
+      }
+      dispatch(ActionCreators.setAuthStatus(AuthorizationStatus.AUTH));
+    })
+    .catch((err) => {
+      throw err;
+    });
   },
   login: (authData) => (dispatch, getState, api) => {
     return api.post(`/login`, {
       email: authData.email,
       password: authData.password
     })
-    .then((response) => dispatch(ActionCreators.setUser(ModelUser.parseUser(response.data))))
+    .then((response) => {
+      const user = ModelUser.parseUser(response.data);
+      dispatch(ActionCreators.setUser(user));
+    })
     .then(() => dispatch(ActionCreators.setAuthStatus(AuthorizationStatus.AUTH)));
   }
 };

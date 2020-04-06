@@ -18,6 +18,7 @@ exports[`<Main /> renders correctly 1`] = `
         >
           <a
             className="header__logo-link header__logo-link--active"
+            href="/"
           >
             <img
               alt="6 cities logo"

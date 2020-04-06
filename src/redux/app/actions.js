@@ -6,7 +6,7 @@ export const ActionTypes = {
 };
 
 export const ActionCreators = {
-  setcurrentOfferId: (id) => (dispatch) => {
+  setCurrentOfferId: (id) => (dispatch) => {
     dispatch({
       type: ActionTypes.SET_CURRENT_OFFER,
       payload: {
@@ -30,7 +30,7 @@ export const ActionCreators = {
       }
     });
   },
-  setSortingType: (type) => (dispatch)=> {
+  setSortingType: (type) => (dispatch) => {
     dispatch({
       type: ActionTypes.SET_SORTING_TYPE,
       payload: {
@@ -39,3 +39,4 @@ export const ActionCreators = {
     });
   }
 };
+
