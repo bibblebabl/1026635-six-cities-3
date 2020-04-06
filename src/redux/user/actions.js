@@ -38,7 +38,7 @@ export const Operations = {
         const user = ModelUser.parseUser(response.data);
         dispatch(ActionCreators.setUser(user));
       }
-      dispatch(ActionCreators.requireAuthorization(AuthorizationStatus.AUTH));
+      dispatch(ActionCreators.setAuthStatus(AuthorizationStatus.AUTH));
     })
     .catch((err) => {
       throw err;
@@ -51,7 +51,6 @@ export const Operations = {
     })
     .then((response) => {
       const user = ModelUser.parseUser(response.data);
-      console.log(user);
       dispatch(ActionCreators.setUser(user));
     })
     .then(() => dispatch(ActionCreators.setAuthStatus(AuthorizationStatus.AUTH)));

@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import {number, bool, func, string} from 'prop-types';
+import {bool, func, string} from 'prop-types';
 
 const ratingValues = [
   {
