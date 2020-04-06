@@ -8,6 +8,8 @@ import App from './app';
 
 import offers from '../../mocks/tests/offers';
 import reviews from '../../mocks/tests/reviews';
+import {Router} from 'react-router-dom';
+import history from '../../history/history';
 
 export const initialState = {
   APP: {
@@ -37,7 +39,9 @@ const store = mockStore(initialState);
 it(`<App /> renders correctly`, () => {
   const component = renderer.create(
       <Provider store={store}>
-        <App />
+        <Router history={history}>
+          <App />
+        </Router>
       </Provider>,
       {
         createNodeMock: () => document.createElement(`div`)

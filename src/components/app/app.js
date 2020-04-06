@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {Switch, Route, Redirect} from 'react-router-dom';
 import {arrayOf, func, number, shape, string, array, bool} from 'prop-types';
 
 // Components
@@ -9,7 +9,6 @@ import Property from '../property/property';
 import SignIn from '../sign-in/sign-in';
 
 // Redux
-
 // selectors
 import * as DataSelectors from '../../redux/data/selectors';
 import * as AppSelectors from '../../redux/app/selectors';
@@ -24,6 +23,7 @@ import UserPropType from '../../prop-types/user';
 import OfferPropType from '../../prop-types/offer';
 
 import {MAX_RECOMMENDATIONS} from '../../data/constants';
+import Routes from '../../history/routes';
 
 
 class App extends PureComponent {
@@ -37,16 +37,7 @@ class App extends PureComponent {
       setSortingType,
       submitReview,
       handlePlaceTitleClick,
-      isAuth,
-      login
     } = this.props;
-
-
-    if (!isAuth) {
-      return (
-        <SignIn onSubmit={login}/>
-      );
-    }
 
 
     if (!currentOfferId) {
@@ -86,26 +77,27 @@ class App extends PureComponent {
   }
 
   render() {
-    const {offers, reviews, login} = this.props;
+    const {isAuth, offers, reviews, login} = this.props;
     const recommendedOffers = [...offers].splice(0, MAX_RECOMMENDATIONS);
     return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            {this.renderApp()}
-          </Route>
-          <Route exact path="/dev-offer">
-            <Property
-              offer={offers[0]}
-              reviews={reviews}
-              recommendedOffers={recommendedOffers}
-            />
-          </Route>
-          <Route exact path='/login'>
-            <SignIn onSubmit={login} />
-          </Route>
-        </Switch>
-      </BrowserRouter>
+      <Switch>
+        <Route exact path={Routes.MAIN}>
+          {this.renderApp()}
+        </Route>
+        <Route exact path='/login'>
+          {!isAuth
+            ? <SignIn onSubmit={login} />
+            : <Redirect to={Routes.MAIN} />
+          }
+        </Route>
+        <Route exact path="/dev-offer">
+          <Property
+            offer={offers[0]}
+            reviews={reviews}
+            recommendedOffers={recommendedOffers}
+          />
+        </Route>
+      </Switch>
     );
   }
 }
@@ -121,7 +113,13 @@ App.propTypes = {
   isAuth: bool,
   currentOfferId: number,
   hoveredOfferId: number,
-  cities: arrayOf(string.isRequired),
+  cities: arrayOf(shape({
+    name: string.isRequired,
+    location: shape({
+      x: number.isRequired,
+      y: number.isRequired,
+    }).isRequired,
+  })),
   offers: arrayOf(OfferPropType),
   reviews: array,
   user: UserPropType,
@@ -153,21 +151,10 @@ const mapDispatchToProps = (dispatch) => ({
   submitReview: (id, review) => {
     dispatch(DataOperations.submitReview(id, review));
   },
-  sethoveredOfferId() {
-    dispatch(AppActionCreators.sethoveredOfferId);
-  },
-  setSelectedCity() {
-    dispatch(AppActionCreators.setSelectedCity);
-  },
-  setSortingType() {
-    dispatch(AppActionCreators.setSortingType);
-  },
-  loadOfferReviews() {
-    dispatch(DataActionCreators.loadReviews);
-  },
-  login(authData) {
-    dispatch(UserOperations.login(authData));
-  }
+  sethoveredOfferId: (id) => dispatch(AppActionCreators.sethoveredOfferId(id)),
+  setSelectedCity: (city) => dispatch(AppActionCreators.setSelectedCity(city)),
+  setSortingType: (type) => dispatch(AppActionCreators.setSortingType(type)),
+  login: (authData) => dispatch(UserOperations.login(authData))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

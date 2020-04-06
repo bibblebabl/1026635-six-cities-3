@@ -78,13 +78,11 @@ exports[`<Main /> renders correctly 1`] = `
             className="locations__item"
           >
             <a
-              className="locations__item-link tabs__item tabs__item--active"
+              className="locations__item-link tabs__item "
               href="#"
               onClick={[Function]}
             >
-              <span>
-                Amsterdam
-              </span>
+              <span />
             </a>
           </li>
           <li
@@ -95,9 +93,7 @@ exports[`<Main /> renders correctly 1`] = `
               href="#"
               onClick={[Function]}
             >
-              <span>
-                Hamburg
-              </span>
+              <span />
             </a>
           </li>
           <li
@@ -108,9 +104,7 @@ exports[`<Main /> renders correctly 1`] = `
               href="#"
               onClick={[Function]}
             >
-              <span>
-                Brussels
-              </span>
+              <span />
             </a>
           </li>
           <li
@@ -121,9 +115,7 @@ exports[`<Main /> renders correctly 1`] = `
               href="#"
               onClick={[Function]}
             >
-              <span>
-                Cologne
-              </span>
+              <span />
             </a>
           </li>
         </ul>

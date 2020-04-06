@@ -76,7 +76,13 @@ Main.propTypes = {
   user: userPropType,
   hoveredOfferId: number,
   sortingType: string,
-  cities: arrayOf(string.isRequired),
+  cities: arrayOf(shape({
+    name: string.isRequired,
+    location: shape({
+      x: number.isRequired,
+      y: number.isRequired,
+    }).isRequired,
+  })),
   offers: arrayOf(offerPropType).isRequired,
   handlePlaceCardMouseOver: func,
   handleTitleClick: func,

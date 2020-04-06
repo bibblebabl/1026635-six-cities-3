@@ -10,38 +10,30 @@ export const ActionTypes = {
 };
 
 export const ActionCreators = {
-  loadOffers: (offers) => {
-    return {
-      type: ActionTypes.LOAD_OFFERS,
-      payload: {
-        offers
-      }
-    };
-  },
-  loadNearbyOffers: (offers) => {
-    return {
-      type: ActionTypes.LOAD_OFFERS_NEARBY,
-      payload: {
-        offers
-      }
-    };
-  },
-  loadReviews: (reviews) => {
-    return {
-      type: ActionTypes.LOAD_REVIEWS,
-      payload: {
-        reviews
-      }
-    };
-  },
-  setReviewSubmitingStatus: (status) => {
-    return {
-      type: ActionTypes.SET_REVIEW_SUBMITING_STATUS,
-      payload: {
-        status
-      }
-    };
-  },
+  loadOffers: (offers) => ({
+    type: ActionTypes.LOAD_OFFERS,
+    payload: {
+      offers
+    }
+  }),
+  loadNearbyOffers: (offers) => ({
+    type: ActionTypes.LOAD_OFFERS_NEARBY,
+    payload: {
+      offers
+    }
+  }),
+  loadReviews: (reviews) => ({
+    type: ActionTypes.LOAD_REVIEWS,
+    payload: {
+      reviews
+    }
+  }),
+  setReviewSubmitingStatus: (status) => ({
+    type: ActionTypes.SET_REVIEW_SUBMITING_STATUS,
+    payload: {
+      status
+    }
+  }),
 };
 
 export const Operations = {
