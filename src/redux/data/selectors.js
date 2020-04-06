@@ -7,10 +7,14 @@ export const getSelector = (state) => state[NameSpaces.DATA];
 
 export const getOffersSelector = createSelector(getSelector, (state) => state.offers);
 export const getReviewsSelector = createSelector(getSelector, (state) => state.reviews);
+export const getFavoriteOffersSelector = createSelector(getSelector, (state) => state.favoriteOffers);
+
 export const getCitiesSelector = createSelector(getOffersSelector, (offers) => getCities(offers));
 
-export const getOffersByCityAndSortedSelector = createSelector(getOffersSelector, getSelectedCitySelector, getSortingTypeSelector, (offers, city, sortingType) => {
-  return getOffersByCityAndSorted(offers, city.name, sortingType);
-});
+export const getOffersByCityAndSortedSelector = createSelector(
+    getOffersSelector,
+    getSelectedCitySelector,
+    getSortingTypeSelector,
+    (offers, city, sortingType) => getOffersByCityAndSorted(offers, city.name, sortingType));
 
 

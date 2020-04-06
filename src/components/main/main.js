@@ -23,6 +23,7 @@ const Main = ({
   handleTitleClick,
   handleCityNameClick,
   handleChangeSortingType,
+  handleFavoriteOfferStatus
 }) => {
   return (
     <div className="page page--gray page--main">
@@ -54,6 +55,7 @@ const Main = ({
                 handleChangeSortingType={handleChangeSortingType}
                 handlePlaceCardMouseOver={handlePlaceCardMouseOver}
                 handleTitleClick={handleTitleClick}
+                handleFavoriteOfferStatus={handleFavoriteOfferStatus}
               />
 
               : <PlacesEmpty />
@@ -87,7 +89,8 @@ Main.propTypes = {
   handlePlaceCardMouseOver: func,
   handleTitleClick: func,
   handleCityNameClick: func,
-  handleChangeSortingType: func
+  handleChangeSortingType: func,
+  handleFavoriteOfferStatus: func
 };
 
 export default Main;

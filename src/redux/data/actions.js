@@ -4,9 +4,11 @@ import ModelReview from "../../models/review";
 
 export const ActionTypes = {
   LOAD_OFFERS: `LOAD_OFFERS`,
-  LOAD_OFFERS_NEARBY: `LOAD_OFFERS_NEARBY`,
+  LOAD_NEARBY_OFFERS: `LOAD_NEARBY_OFFERS`,
+  LOAD_FAVORITE_OFFERS: `LOAD_FAVORITE_OFFERS`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
   SET_REVIEW_SUBMITING_STATUS: `SET_REVIEW_SUBMITING_STATUS`,
+  SET_FAVORITE_OFFER_STATUS: `SET_FAVORITE_OFFER_STATUS`,
 };
 
 export const ActionCreators = {
@@ -17,7 +19,13 @@ export const ActionCreators = {
     }
   }),
   loadNearbyOffers: (offers) => ({
-    type: ActionTypes.LOAD_OFFERS_NEARBY,
+    type: ActionTypes.LOAD_NEARBY_OFFERS,
+    payload: {
+      offers
+    }
+  }),
+  loadFavoriteOffers: (offers) => ({
+    type: ActionTypes.LOAD_FAVORITE_OFFERS,
     payload: {
       offers
     }
@@ -34,6 +42,12 @@ export const ActionCreators = {
       status
     }
   }),
+  setFavoriteOfferStatus: (status) => ({
+    type: ActionTypes.SET_FAVORITE_OFFER_STATUS,
+    payload: {
+      status
+    }
+  })
 };
 
 export const Operations = {
@@ -44,13 +58,14 @@ export const Operations = {
         const firstCity = offersParsed[0].city;
         dispatch(ActionCreators.loadOffers(offersParsed));
         dispatch(AppActionCreators.setSelectedCity(firstCity));
+        return offersParsed;
       });
   },
   loadNearbyOffers: (offerId) => (dispatch, getState, api) => {
     return api.get(`/hotels/${offerId}/nearby`)
       .then((response) => {
         const offersParsed = ModelOffer.parseOffers(response.data);
-        dispatch(ActionCreators.loadOffers(offersParsed));
+        dispatch(ActionCreators.loadNearbyOffers(offersParsed));
       });
   },
   loadReviews: (offerId) => (dispatch, getState, api) => {
@@ -69,5 +84,21 @@ export const Operations = {
           dispatch(ActionCreators.loadReviews(reviews));
           dispatch(ActionCreators.setReviewSubmitingStatus(false));
         });
-  }
+  },
+  loadFavoritesOffers: () => (dispatch, getState, api) => {
+    return api.get(`/favorite`)
+      .then((response) => {
+        const favoriteOffers = ModelOffer.parseOffers(response.data);
+        dispatch(ActionCreators.loadFavoriteOffers(favoriteOffers));
+      });
+  },
+  setFavoriteOfferStatus: (offerId, status) => (dispatch, getState, api) => {
+    return api.post(`/favorite/${offerId}/${Number(!status)}`)
+      .then((response) => {
+        const offer = ModelOffer.parseOffer(response.data);
+        dispatch(ActionCreators.setFavoriteOfferStatus(offer));
+        dispatch(Operations.loadFavoritesOffers());
+        dispatch(Operations.loadOffers());
+      });
+  },
 };

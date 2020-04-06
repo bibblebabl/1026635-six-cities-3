@@ -17,13 +17,14 @@ import * as UserSelectors from '../../redux/user/selectors';
 // ActionCreators
 import {ActionCreators as AppActionCreators} from '../../redux/app/actions';
 import {Operations as UserOperations} from '../../redux/user/actions';
-import {Operations as DataOperations, ActionCreators as DataActionCreators} from '../../redux/data/actions';
+import {Operations as DataOperations} from '../../redux/data/actions';
 
 import UserPropType from '../../prop-types/user';
 import OfferPropType from '../../prop-types/offer';
 
 import {MAX_RECOMMENDATIONS} from '../../data/constants';
 import Routes from '../../history/routes';
+import Favorites from '../favorites/favorites';
 
 
 class App extends PureComponent {
@@ -37,6 +38,7 @@ class App extends PureComponent {
       setSortingType,
       submitReview,
       handlePlaceTitleClick,
+      setFavoriteOfferStatus
     } = this.props;
 
 
@@ -51,6 +53,7 @@ class App extends PureComponent {
           handleTitleClick={handlePlaceTitleClick}
           handleCityNameClick={setSelectedCity}
           handleChangeSortingType={setSortingType}
+          handleFavoriteOfferStatus={setFavoriteOfferStatus}
         />
       );
     }
@@ -69,6 +72,7 @@ class App extends PureComponent {
           recommendedOffers={recommendedOffers}
           handleTitleClick={handlePlaceTitleClick}
           handleReviewSubmit={submitReview}
+          handleFavoriteOfferStatus={setFavoriteOfferStatus}
         />
       );
     }
@@ -77,7 +81,17 @@ class App extends PureComponent {
   }
 
   render() {
-    const {isAuth, offers, reviews, login} = this.props;
+    const {
+      isAuth,
+      setFavoriteOfferStatus,
+      handlePlaceTitleClick,
+      user,
+      favoriteOffers,
+      offers,
+      reviews,
+      login
+    } = this.props;
+
     const recommendedOffers = [...offers].splice(0, MAX_RECOMMENDATIONS);
     return (
       <Switch>
@@ -88,6 +102,19 @@ class App extends PureComponent {
           {!isAuth
             ? <SignIn onSubmit={login} />
             : <Redirect to={Routes.MAIN} />
+          }
+        </Route>
+
+        <Route exact path={Routes.FAVORITES}>
+          {!isAuth ?
+            <Redirect to={Routes.SIGN_IN} />
+            :
+            <Favorites
+              user={user}
+              handleTitleClick={handlePlaceTitleClick}
+              handleFavoriteOfferStatus={setFavoriteOfferStatus}
+              favoriteOffers={favoriteOffers}
+            />
           }
         </Route>
         <Route exact path="/dev-offer">
@@ -121,6 +148,7 @@ App.propTypes = {
     }).isRequired,
   })),
   offers: arrayOf(OfferPropType),
+  favoriteOffers: arrayOf(OfferPropType),
   reviews: array,
   user: UserPropType,
   handlePlaceTitleClick: func.isRequired,
@@ -128,6 +156,7 @@ App.propTypes = {
   setSelectedCity: func.isRequired,
   setSortingType: func.isRequired,
   sethoveredOfferId: func.isRequired,
+  setFavoriteOfferStatus: func.isRequired,
   login: func.isRequired,
 };
 
@@ -135,12 +164,14 @@ const mapStateToProps = (state) => ({
   isAuth: UserSelectors.getIsAuthSelector(state),
   user: UserSelectors.getUserSelector(state),
   cities: DataSelectors.getCitiesSelector(state),
+  favoriteOffers: DataSelectors.getFavoriteOffersSelector(state),
   offers: DataSelectors.getOffersByCityAndSortedSelector(state),
   reviews: DataSelectors.getReviewsSelector(state),
   selectedCity: AppSelectors.getSelectedCitySelector(state),
   currentOfferId: AppSelectors.getcurrentOfferIdSelector(state),
   hoveredOfferId: AppSelectors.gethoveredOfferIdSelector(state),
-  sortingType: AppSelectors.getSortingTypeSelector(state)
+  sortingType: AppSelectors.getSortingTypeSelector(state),
+
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -154,7 +185,8 @@ const mapDispatchToProps = (dispatch) => ({
   sethoveredOfferId: (id) => dispatch(AppActionCreators.sethoveredOfferId(id)),
   setSelectedCity: (city) => dispatch(AppActionCreators.setSelectedCity(city)),
   setSortingType: (type) => dispatch(AppActionCreators.setSortingType(type)),
-  login: (authData) => dispatch(UserOperations.login(authData))
+  login: (authData) => dispatch(UserOperations.login(authData)),
+  setFavoriteOfferStatus: (id, status) => dispatch(DataOperations.setFavoriteOfferStatus(id, status))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

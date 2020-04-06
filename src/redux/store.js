@@ -13,6 +13,8 @@ import {
 } from './user/actions';
 
 import {Operations as DataOperations} from './data/actions';
+import {ActionCreators as AppActionCreators} from './app/actions';
+
 import history from '../history/history';
 import Routes from '../history/routes';
 
@@ -30,8 +32,11 @@ const store = createStore(
 );
 
 
-store.dispatch(DataOperations.loadOffers());
-store.dispatch(UserOperations.checkAuth());
+store.dispatch(DataOperations.loadOffers())
+  .then((offersParsed) => AppActionCreators.setSelectedCity(offersParsed[0].city))
+  .then(() => store.dispatch(UserOperations.checkAuth()))
+  .then(() => store.dispatch(DataOperations.loadFavoritesOffers()));
+
 
 export default store;
 

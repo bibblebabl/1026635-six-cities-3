@@ -20,6 +20,7 @@ const Property = ({
   user,
   reviews,
   recommendedOffers,
+  handleFavoriteOfferStatus,
   handleTitleClick,
   handleReviewSubmit,
   offer: {
@@ -76,7 +77,11 @@ const Property = ({
                 <h1 className="property__name">
                   {title}
                 </h1>
-                <button className={`property__bookmark-button ${isFavorite ? `property__bookmark-button--active` : ``} button`} type="button">
+                <button
+                  className={`property__bookmark-button ${isFavorite ? `property__bookmark-button--active` : ``} button`}
+                  type="button"
+                  onClick={() => handleFavoriteOfferStatus(id, isFavorite)}
+                >
                   <svg className="property__bookmark-icon" width={31} height={33}>
                     <use xlinkHref="#icon-bookmark" />
                   </svg>
@@ -166,8 +171,9 @@ const Property = ({
                     cardType="near-places"
                     key={offerElement.id}
                     offer={offerElement}
-                    onMouseOver={() => {}}
+                    onMouseOver={Function}
                     onTitleClick={handleTitleClick}
+                    onFavoriteOfferStatus={handleFavoriteOfferStatus}
                   />
                 )
               }
