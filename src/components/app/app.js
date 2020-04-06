@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import {arrayOf, func, number, shape, string, array} from 'prop-types';
+import {arrayOf, func, number, shape, string, array, bool} from 'prop-types';
 
 // Components
 import Main from '../main/main';
@@ -37,7 +37,17 @@ class App extends PureComponent {
       setSortingType,
       submitReview,
       handlePlaceTitleClick,
+      isAuth,
+      login
     } = this.props;
+
+
+    if (!isAuth) {
+      return (
+        <SignIn onSubmit={login}/>
+      );
+    }
+
 
     if (!currentOfferId) {
       return (
@@ -76,7 +86,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {offers, reviews} = this.props;
+    const {offers, reviews, login} = this.props;
     const recommendedOffers = [...offers].splice(0, MAX_RECOMMENDATIONS);
     return (
       <BrowserRouter>
@@ -92,7 +102,7 @@ class App extends PureComponent {
             />
           </Route>
           <Route exact path='/login'>
-            <SignIn onSubmit={() => {}} />
+            <SignIn onSubmit={login} />
           </Route>
         </Switch>
       </BrowserRouter>
@@ -108,7 +118,7 @@ App.propTypes = {
       y: number.isRequired,
     }).isRequired,
   }),
-  authorizationStatus: string.isRequired,
+  isAuth: bool,
   currentOfferId: number,
   hoveredOfferId: number,
   cities: arrayOf(string.isRequired),
@@ -120,10 +130,11 @@ App.propTypes = {
   setSelectedCity: func.isRequired,
   setSortingType: func.isRequired,
   sethoveredOfferId: func.isRequired,
+  login: func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  authorizationStatus: UserSelectors.getAuthStatusSelector(state),
+  isAuth: UserSelectors.getIsAuthSelector(state),
   user: UserSelectors.getUserSelector(state),
   cities: DataSelectors.getCitiesSelector(state),
   offers: DataSelectors.getOffersByCityAndSortedSelector(state),
@@ -142,11 +153,21 @@ const mapDispatchToProps = (dispatch) => ({
   submitReview: (id, review) => {
     dispatch(DataOperations.submitReview(id, review));
   },
-  sethoveredOfferId: () => dispatch(AppActionCreators.sethoveredOfferId),
-  setSelectedCity: () => dispatch(AppActionCreators.setSelectedCity),
-  setSortingType: () => dispatch(AppActionCreators.setSortingType),
-  loadOfferReviews: () => dispatch(DataActionCreators.loadReviews),
-  login: () => dispatch(UserOperations.login)
+  sethoveredOfferId() {
+    dispatch(AppActionCreators.sethoveredOfferId);
+  },
+  setSelectedCity() {
+    dispatch(AppActionCreators.setSelectedCity);
+  },
+  setSortingType() {
+    dispatch(AppActionCreators.setSortingType);
+  },
+  loadOfferReviews() {
+    dispatch(DataActionCreators.loadReviews);
+  },
+  login(authData) {
+    dispatch(UserOperations.login(authData));
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
