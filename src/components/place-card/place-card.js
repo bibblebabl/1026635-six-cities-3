@@ -1,5 +1,5 @@
 import React from 'react';
-import {func, string} from 'prop-types';
+import {func, string, number} from 'prop-types';
 import {offerPropType} from '../../prop-types/prop-types';
 
 const ArticleTitles = {
@@ -93,6 +93,8 @@ PlaceCard.propTypes = {
   offer: offerPropType.isRequired,
   onTitleClick: func,
   onMouseOver: func,
+  imgHeight: number,
+  imgWidth: number,
   onFavoriteOfferStatus: func
 };
 

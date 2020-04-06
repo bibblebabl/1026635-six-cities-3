@@ -192,6 +192,7 @@ Property.propTypes = {
   recommendedOffers: array,
   handleReviewSubmit: func,
   handleTitleClick: func,
+  handleFavoriteOfferStatus: func,
 };
 
 export default Property;

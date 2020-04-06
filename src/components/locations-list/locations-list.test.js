@@ -2,8 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 
 import LocationsList from './locations-list';
-
-const cities = [`Amsterdam`, `Hamburg`, `Brussels`, `Cologne`];
+import cities from '../../mocks/tests/cities';
 
 const props = {
   cities,
