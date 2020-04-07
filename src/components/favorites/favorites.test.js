@@ -14,8 +14,13 @@ import user from '../../mocks/tests/user';
 const handleTitleClick = jest.fn();
 const handleFavoriteOfferStatus = jest.fn();
 
+const favoriteOffers = offers.map((offer) => ({
+  ...offer,
+  isFavorite: true
+}));
+
 const props = {
-  favoriteOffers: offers.map((offer) => Object.assign({}, offer, {isFavorite: true})),
+  favoriteOffers,
   user: ModelUser.parseUser(user),
   handleTitleClick,
   handleFavoriteOfferStatus,

@@ -30,9 +30,9 @@ const Favorites = ({
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
               {
-                favoriteOffersByCity.map((offersByCity) => {
+                favoriteOffersByCity.map((offersByCity, index) => {
                   return (
-                    <li key={offersByCity.city} className="favorites__locations-items">
+                    <li key={`${offersByCity.city}-${index}`} className="favorites__locations-items">
                       <div className="favorites__locations locations locations--current">
                         <div className="locations__item">
                           <a className="locations__item-link" href="#">
@@ -46,7 +46,7 @@ const Favorites = ({
                             return (
                               <PlaceCard
                                 cardType='favorites'
-                                key={offer.id}
+                                key={`favorites-${offer.id}`}
                                 offer={offer}
                                 onMouseOver={Function}
                                 onTitleClick={handleTitleClick}

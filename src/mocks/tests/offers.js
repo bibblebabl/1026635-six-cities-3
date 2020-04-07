@@ -45,7 +45,7 @@ export default [
       "y": 6.969974,
       "zoom": 16
     },
-    "id": 33
+    "id": 11
   },
   {
     "city": {
@@ -92,7 +92,7 @@ export default [
       "y": 6.976974,
       "zoom": 16
     },
-    "id": 34
+    "id": 12
   },
   {
     "city": {
@@ -144,7 +144,7 @@ export default [
       "y": 4.883976,
       "zoom": 16
     },
-    "id": 35
+    "id": 13
   },
   {
     "city": {
@@ -194,7 +194,7 @@ export default [
       "y": 2.356499,
       "zoom": 16
     },
-    "id": 36
+    "id": 14
   },
   {
     "city": {
@@ -244,7 +244,7 @@ export default [
       "y": 9.976654000000002,
       "zoom": 16
     },
-    "id": 37
+    "id": 15
   },
   {
     "city": {
@@ -287,7 +287,7 @@ export default [
       "y": 4.9099759999999995,
       "zoom": 16
     },
-    "id": 38
+    "id": 16
   },
 ]
 ;
