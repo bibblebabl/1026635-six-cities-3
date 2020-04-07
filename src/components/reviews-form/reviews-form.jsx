@@ -1,28 +1,6 @@
 import React, {Fragment} from 'react';
 import {bool, func, string} from 'prop-types';
-
-const ratingValues = [
-  {
-    value: `5`,
-    title: `perfect`
-  },
-  {
-    value: `4`,
-    title: `good`
-  },
-  {
-    value: `3`,
-    title: `not bad`
-  },
-  {
-    value: `2`,
-    title: `badly`
-  },
-  {
-    value: `1`,
-    title: `terribly`
-  },
-];
+import {RATING_VALUES} from '../../data/constants';
 
 const ReviewsForm = ({
   isSubmiting,
@@ -44,7 +22,7 @@ const ReviewsForm = ({
       </label>
       <div className="reviews__rating-form form__rating">
         {
-          ratingValues.map((ratingElement) => {
+          RATING_VALUES.map((ratingElement) => {
             const id = `${ratingElement.value}-stars`;
             return (
               <Fragment key={id}>

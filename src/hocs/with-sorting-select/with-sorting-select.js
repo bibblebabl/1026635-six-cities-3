@@ -1,5 +1,5 @@
 import React from 'react';
-import {sortOptions} from '../../data/constants';
+import {SORT_OPTIONS} from '../../data/constants';
 
 const withSortingSelect = (Component) => {
   return class WithSortingSelect extends React.PureComponent {
@@ -10,7 +10,7 @@ const withSortingSelect = (Component) => {
         isOpen: false
       };
 
-      this.options = sortOptions;
+      this.options = SORT_OPTIONS;
       this.handleListOpen = this.handleListOpen.bind(this);
     }
 

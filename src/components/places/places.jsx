@@ -6,7 +6,7 @@ import PlaceCard from '../place-card/place-card';
 import Map from '../map/map';
 import Sorting from '../sorting/sorting';
 
-import {getOffersLocations} from '../../utils/';
+import {getOffersLocations} from '../../utils';
 import withSortingSelect from '../../hocs/with-sorting-select/with-sorting-select';
 
 const SortingWithSelect = withSortingSelect(Sorting);
