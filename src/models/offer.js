@@ -40,10 +40,4 @@ export default class ModelOffer {
   static parseOffers(data) {
     return data.map(ModelOffer.parseOffer);
   }
-
-  static toRAW(data) {
-    return {
-      ...data
-    };
-  }
 }

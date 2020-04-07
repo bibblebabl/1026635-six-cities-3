@@ -9,6 +9,7 @@ import ModelUser from '../../models/user';
 const api = createAPI(Function);
 
 import userMock from '../../mocks/tests/user';
+import {extend} from '../../utils';
 
 const user = userMock;
 
@@ -17,34 +18,35 @@ describe(`user reducer works correctly`, () => {
     expect(reducer(void 0, {})).toEqual(initialState);
   });
 
+
   it(`reducer updates authorizationStatus`, () => {
-    expect(reducer({
-      ...initialState,
-      authorizationStatus: AuthorizationStatus.NO_AUTH,
-    }, {
+    expect(reducer(extend(
+        initialState,
+        {authorizationStatus: AuthorizationStatus.NO_AUTH}
+    ), {
       type: ActionTypes.SET_AUTH_STATUS,
       payload: {
         status: AuthorizationStatus.AUTH
       }
-    })).toEqual({
-      ...initialState,
-      authorizationStatus: AuthorizationStatus.AUTH,
-    });
+    })).toEqual(extend(
+        initialState,
+        {authorizationStatus: AuthorizationStatus.AUTH}
+    ));
   });
 
   it(`it should set user`, () => {
-    expect(reducer({
-      ...initialState,
-      user: null
-    }, {
+    expect(reducer(extend(
+        initialState,
+        {user: null}
+    ), {
       type: ActionTypes.SET_USER,
       payload: {
         user
       }
-    })).toEqual({
-      ...initialState,
-      user
-    });
+    })).toEqual(extend(
+        initialState,
+        {user}
+    ));
   });
 });
 

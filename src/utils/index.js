@@ -2,6 +2,8 @@ import {sortByType} from './sorting';
 
 export const getUniqueArray = (array) => [...new Set(array)];
 
+export const extend = (object1, object2) => Object.assign({}, object1, object2);
+
 export const getCities = (offers) => {
   const citiesArray = offers.map((offer) => offer.city);
   return citiesArray.filter((value, index, array) => array.findIndex((el)=> (el.name === value.name)) === index);

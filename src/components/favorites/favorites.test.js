@@ -10,14 +10,16 @@ import ModelUser from '../../models/user';
 
 import offers from '../../mocks/tests/offers';
 import user from '../../mocks/tests/user';
+import {extend} from '../../utils';
 
 const handleTitleClick = jest.fn();
 const handleFavoriteOfferStatus = jest.fn();
 
-const favoriteOffers = offers.map((offer) => ({
-  ...offer,
-  isFavorite: true
-}));
+
+const favoriteOffers = offers.map((offer) => extend(
+    offer,
+    {isFavorite: true}
+));
 
 const props = {
   favoriteOffers,

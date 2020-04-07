@@ -1,4 +1,5 @@
 import {ActionTypes} from './actions';
+import {extend} from '../../utils';
 
 export const initialState = {
   selectedCity: {
@@ -17,28 +18,27 @@ export const initialState = {
 const reducer = (state = initialState, {type, payload}) => {
   switch (type) {
     case ActionTypes.SET_CURRENT_OFFER:
-      return {
-        ...state,
-        currentOfferId: payload.id
-      };
+      return extend(
+          state,
+          {currentOfferId: payload.id}
+      );
+
 
     case ActionTypes.SET_HOVERED_OFFER:
-      return {
-        ...state,
-        hoveredOfferId: payload.id
-      };
+      return extend(
+          state,
+          {hoveredOfferId: payload.id}
+      );
 
     case ActionTypes.SET_SELECTED_CITY:
-      return {
-        ...state,
-        selectedCity: payload.city
-      };
+      return extend(state,
+          {selectedCity: payload.city}
+      );
 
     case ActionTypes.SET_SORTING_TYPE:
-      return {
-        ...state,
-        sortingType: payload.type
-      };
+      return extend(state,
+          {sortingType: payload.type}
+      );
   }
 
   return state;
