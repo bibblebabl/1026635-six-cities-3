@@ -4,6 +4,7 @@ import {userPropType, offerPropType} from '../../prop-types/prop-types';
 import {arrayOf, func} from 'prop-types';
 import {getCities} from '../../utils';
 import PlaceCard from '../place-card/place-card';
+import NoFavorites from '../no-favorites/no-favorites';
 
 const Favorites = ({
   favoriteOffers,
@@ -11,6 +12,10 @@ const Favorites = ({
   handleFavoriteOfferStatus,
   user
 }) => {
+
+  if (!favoriteOffers.length) {
+    return <NoFavorites user={user} />;
+  }
 
   const favoriteOffersByCity = getCities(favoriteOffers).map((city)=> {
     return {
