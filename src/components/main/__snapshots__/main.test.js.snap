@@ -19,6 +19,7 @@ exports[`<Main /> renders correctly 1`] = `
           <a
             className="header__logo-link header__logo-link--active"
             href="/"
+            onClick={[Function]}
           >
             <img
               alt="6 cities logo"
@@ -40,7 +41,8 @@ exports[`<Main /> renders correctly 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/login"
+                onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
@@ -78,12 +80,38 @@ exports[`<Main /> renders correctly 1`] = `
             className="locations__item"
           >
             <a
+              className="locations__item-link tabs__item "
+              href="#"
+              onClick={[Function]}
+            >
+              <span>
+                Cologne
+              </span>
+            </a>
+          </li>
+          <li
+            className="locations__item"
+          >
+            <a
               className="locations__item-link tabs__item tabs__item--active"
               href="#"
               onClick={[Function]}
             >
               <span>
                 Amsterdam
+              </span>
+            </a>
+          </li>
+          <li
+            className="locations__item"
+          >
+            <a
+              className="locations__item-link tabs__item "
+              href="#"
+              onClick={[Function]}
+            >
+              <span>
+                Paris
               </span>
             </a>
           </li>
@@ -104,25 +132,12 @@ exports[`<Main /> renders correctly 1`] = `
             className="locations__item"
           >
             <a
-              className="locations__item-link tabs__item "
+              className="locations__item-link tabs__item tabs__item--active"
               href="#"
               onClick={[Function]}
             >
               <span>
-                Brussels
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="#"
-              onClick={[Function]}
-            >
-              <span>
-                Cologne
+                Amsterdam
               </span>
             </a>
           </li>
@@ -254,6 +269,7 @@ exports[`<Main /> renders correctly 1`] = `
                   </div>
                   <button
                     className="place-card__bookmark-button  button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -351,6 +367,7 @@ exports[`<Main /> renders correctly 1`] = `
                   </div>
                   <button
                     className="place-card__bookmark-button  button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -455,6 +472,7 @@ exports[`<Main /> renders correctly 1`] = `
                   </div>
                   <button
                     className="place-card__bookmark-button  button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -552,6 +570,7 @@ exports[`<Main /> renders correctly 1`] = `
                   </div>
                   <button
                     className="place-card__bookmark-button  button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -649,6 +668,7 @@ exports[`<Main /> renders correctly 1`] = `
                   </div>
                   <button
                     className="place-card__bookmark-button  button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -746,6 +766,7 @@ exports[`<Main /> renders correctly 1`] = `
                   </div>
                   <button
                     className="place-card__bookmark-button  button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg

@@ -10,13 +10,16 @@ const LocationsList = ({
     <ul className="locations__list tabs__list">
       {
         cities.map((city, index) => (
-          <li key={`${city}-${index}`} className="locations__item">
+          <li key={`${city.name}-${index}`} className="locations__item">
             <a
               href="#"
-              className={`locations__item-link tabs__item ${city === selectedCity.name ? `tabs__item--active` : ``}`}
-              onClick={() => onCityNameClick(city)}
+              className={`locations__item-link tabs__item ${city.name === selectedCity.name ? `tabs__item--active` : ``}`}
+              onClick={(event) => {
+                event.preventDefault();
+                onCityNameClick(city);
+              }}
             >
-              <span>{city}</span>
+              <span>{city.name}</span>
             </a>
           </li>
         ))
@@ -34,7 +37,13 @@ LocationsList.propTypes = {
     }).isRequired,
   }),
   onCityNameClick: func.isRequired,
-  cities: arrayOf(string.isRequired).isRequired,
+  cities: arrayOf(shape({
+    name: string.isRequired,
+    location: shape({
+      x: number.isRequired,
+      y: number.isRequired,
+    }),
+  }))
 };
 
 export default LocationsList;

@@ -23,6 +23,7 @@ const Main = ({
   handleTitleClick,
   handleCityNameClick,
   handleChangeSortingType,
+  handleFavoriteOfferStatus
 }) => {
   return (
     <div className="page page--gray page--main">
@@ -54,6 +55,7 @@ const Main = ({
                 handleChangeSortingType={handleChangeSortingType}
                 handlePlaceCardMouseOver={handlePlaceCardMouseOver}
                 handleTitleClick={handleTitleClick}
+                handleFavoriteOfferStatus={handleFavoriteOfferStatus}
               />
 
               : <PlacesEmpty />
@@ -76,12 +78,19 @@ Main.propTypes = {
   user: userPropType,
   hoveredOfferId: number,
   sortingType: string,
-  cities: arrayOf(string.isRequired),
+  cities: arrayOf(shape({
+    name: string.isRequired,
+    location: shape({
+      x: number.isRequired,
+      y: number.isRequired,
+    }).isRequired,
+  })),
   offers: arrayOf(offerPropType).isRequired,
   handlePlaceCardMouseOver: func,
   handleTitleClick: func,
   handleCityNameClick: func,
-  handleChangeSortingType: func
+  handleChangeSortingType: func,
+  handleFavoriteOfferStatus: func
 };
 
 export default Main;

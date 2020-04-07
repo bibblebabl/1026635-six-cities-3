@@ -4,6 +4,7 @@ import {ActionTypes} from './actions';
 export const initialState = {
   offers: [],
   offersNearby: [],
+  favoriteOffers: [],
   reviews: [],
   reviewIsSubmiting: false
 };
@@ -17,10 +18,17 @@ const reducer = (state = initialState, {type, payload}) => {
       };
   }
   switch (type) {
-    case ActionTypes.LOAD_OFFERS_NEARBY:
+    case ActionTypes.LOAD_NEARBY_OFFERS:
       return {
         ...state,
         offersNearby: payload.offers
+      };
+  }
+  switch (type) {
+    case ActionTypes.LOAD_FAVORITE_OFFERS:
+      return {
+        ...state,
+        favoriteOffers: payload.offers
       };
   }
   switch (type) {

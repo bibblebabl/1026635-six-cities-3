@@ -5,6 +5,8 @@ import Property from './property';
 
 import offers from '../../mocks/tests/offers';
 import reviews from '../../mocks/tests/reviews';
+import {Router} from 'react-router-dom';
+import history from '../../history/history';
 
 const [offer] = offers;
 
@@ -13,13 +15,15 @@ it(`<Property /> renders correctly`, () => {
   const handleTitleClick = jest.fn();
 
   const component = renderer.create(
-      <Property
-        offer={offer}
-        reviews={reviews}
-        recommendedOffers={offers}
-        handlePlaceCardMouseOver={handlePlaceCardMouseOver}
-        handleTitleClick={handleTitleClick}
-      />,
+      <Router history={history}>
+        <Property
+          offer={offer}
+          reviews={reviews}
+          recommendedOffers={offers}
+          handlePlaceCardMouseOver={handlePlaceCardMouseOver}
+          handleTitleClick={handleTitleClick}
+        />
+      </Router>,
       {
         createNodeMock: () => document.createElement(`div`)
       })

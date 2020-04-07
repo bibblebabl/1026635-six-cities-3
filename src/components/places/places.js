@@ -18,7 +18,8 @@ const Places = ({
   hoveredOfferId,
   handleChangeSortingType,
   handlePlaceCardMouseOver,
-  handleTitleClick
+  handleTitleClick,
+  handleFavoriteOfferStatus
 }) => {
   const offersLocations = getOffersLocations(offers);
 
@@ -34,10 +35,12 @@ const Places = ({
           {
             offers.map((offer) =>
               <PlaceCard
+                cardType="cities"
                 key={offer.id}
                 offer={offer}
                 onMouseOver={handlePlaceCardMouseOver}
                 onTitleClick={handleTitleClick}
+                onFavoriteOfferStatus={handleFavoriteOfferStatus}
               />
             )
           }
@@ -98,7 +101,8 @@ Places.propTypes = {
   }).isRequired),
   handlePlaceCardMouseOver: func,
   handleTitleClick: func,
-  handleChangeSortingType: func
+  handleChangeSortingType: func,
+  handleFavoriteOfferStatus: func
 };
 
 export default Places;

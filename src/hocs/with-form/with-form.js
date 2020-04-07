@@ -36,6 +36,8 @@ const withForm = (Component) => {
         comment: review,
         rating: Number(rating)
       });
+
+      this.reset();
     }
 
     handleInputChange(event) {
