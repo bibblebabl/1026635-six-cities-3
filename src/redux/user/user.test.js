@@ -8,13 +8,9 @@ import ModelUser from '../../models/user';
 
 const api = createAPI(Function);
 
-const user = {
-  "avatar_url": `img/1.png`,
-  "email": `Oliver.conner@gmail.com`,
-  "id": 1,
-  "is_pro": false,
-  "name": `Oliver.conner`
-};
+import userMock from '../../mocks/tests/user';
+
+const user = userMock;
 
 describe(`user reducer works correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
