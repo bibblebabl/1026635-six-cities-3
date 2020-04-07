@@ -25,7 +25,7 @@ exports[`<Property /> renders correctly 1`] = `
               alt="6 cities logo"
               className="header__logo"
               height={41}
-              src="img/logo.svg"
+              src="./img/logo.svg"
               width={81}
             />
           </a>
@@ -142,12 +142,13 @@ exports[`<Property /> renders correctly 1`] = `
               Wood and stone place
             </h1>
             <button
-              className="property__bookmark-button  button"
+              className="
+                  property__bookmark-button  button"
               onClick={[Function]}
               type="button"
             >
               <svg
-                className="property__bookmark-icon"
+                className="property__bookmark-icon place-card__bookmark-icon"
                 height={33}
                 width={31}
               >
@@ -285,7 +286,6 @@ exports[`<Property /> renders correctly 1`] = `
                   alt="Host avatar"
                   className="property__avatar user__avatar"
                   height={74}
-                  src="img/avatar-angelina.jpg"
                   width={74}
                 />
               </div>
@@ -493,7 +493,7 @@ exports[`<Property /> renders correctly 1`] = `
                 className="place-card__name"
               >
                 <a
-                  href="#"
+                  href="/offer/11"
                   onClick={[Function]}
                 >
                   Wood and stone place
@@ -591,7 +591,7 @@ exports[`<Property /> renders correctly 1`] = `
                 className="place-card__name"
               >
                 <a
-                  href="#"
+                  href="/offer/12"
                   onClick={[Function]}
                 >
                   Wood and stone place
@@ -696,7 +696,7 @@ exports[`<Property /> renders correctly 1`] = `
                 className="place-card__name"
               >
                 <a
-                  href="#"
+                  href="/offer/13"
                   onClick={[Function]}
                 >
                   Nice, cozy, warm big bed apartment
@@ -794,7 +794,7 @@ exports[`<Property /> renders correctly 1`] = `
                 className="place-card__name"
               >
                 <a
-                  href="#"
+                  href="/offer/14"
                   onClick={[Function]}
                 >
                   The Pondhouse - A Magical Place
@@ -892,7 +892,7 @@ exports[`<Property /> renders correctly 1`] = `
                 className="place-card__name"
               >
                 <a
-                  href="#"
+                  href="/offer/15"
                   onClick={[Function]}
                 >
                   House in countryside
@@ -990,7 +990,7 @@ exports[`<Property /> renders correctly 1`] = `
                 className="place-card__name"
               >
                 <a
-                  href="#"
+                  href="/offer/16"
                   onClick={[Function]}
                 >
                   Wood and stone place

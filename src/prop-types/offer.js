@@ -23,7 +23,7 @@ const offer = shape({
   maxAdults: number.isRequired,
   host: shape({
     name: string.isRequired,
-    avatar: string.isRequired,
+    avatarUrl: string.isRequired,
   }).isRequired,
 });
 

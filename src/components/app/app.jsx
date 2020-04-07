@@ -22,7 +22,6 @@ import {Operations as DataOperations} from '../../redux/data/actions';
 import UserPropType from '../../prop-types/user';
 import OfferPropType from '../../prop-types/offer';
 
-import {MAX_RECOMMENDATIONS} from '../../data/constants';
 import Routes from '../../history/routes';
 import Favorites from '../favorites/favorites';
 
@@ -36,48 +35,24 @@ class App extends PureComponent {
       setSelectedCity,
       sethoveredOfferId,
       setSortingType,
-      submitReview,
       handlePlaceTitleClick,
       setFavoriteOfferStatus
     } = this.props;
 
+    return (
+      <Main
+        {...this.props}
+        cities={cities}
+        user={user}
+        currentOfferId={currentOfferId}
+        handlePlaceCardMouseOver={sethoveredOfferId}
+        handleTitleClick={handlePlaceTitleClick}
+        handleCityNameClick={setSelectedCity}
+        handleChangeSortingType={setSortingType}
+        handleFavoriteOfferStatus={setFavoriteOfferStatus}
+      />
+    );
 
-    if (!currentOfferId) {
-      return (
-        <Main
-          {...this.props}
-          cities={cities}
-          user={user}
-          currentOfferId={currentOfferId}
-          handlePlaceCardMouseOver={sethoveredOfferId}
-          handleTitleClick={handlePlaceTitleClick}
-          handleCityNameClick={setSelectedCity}
-          handleChangeSortingType={setSortingType}
-          handleFavoriteOfferStatus={setFavoriteOfferStatus}
-        />
-      );
-    }
-
-    const {offers, reviews} = this.props;
-
-    const offer = offers.find((el) => el.id === currentOfferId);
-
-    if (offer) {
-      const recommendedOffers = [...offers].splice(0, MAX_RECOMMENDATIONS);
-      return (
-        <Property
-          user={user}
-          offer={offer}
-          reviews={reviews}
-          recommendedOffers={recommendedOffers}
-          handleTitleClick={handlePlaceTitleClick}
-          handleReviewSubmit={submitReview}
-          handleFavoriteOfferStatus={setFavoriteOfferStatus}
-        />
-      );
-    }
-
-    return null;
   }
 
   render() {
@@ -87,12 +62,13 @@ class App extends PureComponent {
       handlePlaceTitleClick,
       user,
       favoriteOffers,
+      offersNearby,
       offers,
       reviews,
-      login
+      login,
+      submitReview,
     } = this.props;
 
-    const recommendedOffers = [...offers].splice(0, MAX_RECOMMENDATIONS);
     return (
       <Switch>
         <Route exact path={Routes.MAIN}>
@@ -117,12 +93,26 @@ class App extends PureComponent {
             />
           }
         </Route>
-        <Route exact path="/dev-offer">
-          <Property
-            offer={offers[0]}
-            reviews={reviews}
-            recommendedOffers={recommendedOffers}
-          />
+        <Route exact path={`${Routes.OFFER}/:id`}
+          component={(props) => {
+            const offerId = Number(props.match.params.id);
+            const offer = offers.find((el) => el.id === offerId);
+            return (
+              offer ?
+                <Property
+                  {...props}
+                  user={user}
+                  offer={offer}
+                  reviews={reviews}
+                  offersNearby={offersNearby}
+                  handleTitleClick={handlePlaceTitleClick}
+                  handleReviewSubmit={submitReview}
+                  handleFavoriteOfferStatus={setFavoriteOfferStatus}
+                /> : null
+            );
+          }}
+        >
+
         </Route>
       </Switch>
     );
@@ -149,6 +139,7 @@ App.propTypes = {
   })),
   offers: arrayOf(OfferPropType),
   favoriteOffers: arrayOf(OfferPropType),
+  offersNearby: arrayOf(OfferPropType),
   reviews: array,
   user: UserPropType,
   handlePlaceTitleClick: func.isRequired,
@@ -165,6 +156,7 @@ const mapStateToProps = (state) => ({
   user: UserSelectors.getUserSelector(state),
   cities: DataSelectors.getCitiesSelector(state),
   favoriteOffers: DataSelectors.getFavoriteOffersSelector(state),
+  offersNearby: DataSelectors.getNearbyOffersSelector(state),
   offers: DataSelectors.getOffersByCityAndSortedSelector(state),
   reviews: DataSelectors.getReviewsSelector(state),
   selectedCity: AppSelectors.getSelectedCitySelector(state),
@@ -176,8 +168,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   handlePlaceTitleClick: (id) => {
-    dispatch(DataOperations.loadReviews(id));
-    dispatch(AppActionCreators.setCurrentOfferId(id));
+    dispatch(DataOperations.loadNearbyOffers(id))
+      .then(() => dispatch(DataOperations.loadReviews(id)))
+      .then(() => dispatch(AppActionCreators.setCurrentOfferId(id)));
   },
   submitReview: (id, review) => {
     dispatch(DataOperations.submitReview(id, review));

@@ -25,7 +25,7 @@ exports[`Favorites renders correctly 1`] = `
               alt="6 cities logo"
               className="header__logo"
               height={41}
-              src="img/logo.svg"
+              src="./img/logo.svg"
               width={81}
             />
           </a>
@@ -183,7 +183,7 @@ exports[`Favorites renders correctly 1`] = `
                     className="place-card__name"
                   >
                     <a
-                      href="#"
+                      href="/offer/11"
                       onClick={[Function]}
                     >
                       Wood and stone place
@@ -281,7 +281,7 @@ exports[`Favorites renders correctly 1`] = `
                     className="place-card__name"
                   >
                     <a
-                      href="#"
+                      href="/offer/12"
                       onClick={[Function]}
                     >
                       Wood and stone place
@@ -410,7 +410,7 @@ exports[`Favorites renders correctly 1`] = `
                     className="place-card__name"
                   >
                     <a
-                      href="#"
+                      href="/offer/13"
                       onClick={[Function]}
                     >
                       Nice, cozy, warm big bed apartment
@@ -508,7 +508,7 @@ exports[`Favorites renders correctly 1`] = `
                     className="place-card__name"
                   >
                     <a
-                      href="#"
+                      href="/offer/16"
                       onClick={[Function]}
                     >
                       Wood and stone place
@@ -630,7 +630,7 @@ exports[`Favorites renders correctly 1`] = `
                     className="place-card__name"
                   >
                     <a
-                      href="#"
+                      href="/offer/14"
                       onClick={[Function]}
                     >
                       The Pondhouse - A Magical Place
@@ -752,7 +752,7 @@ exports[`Favorites renders correctly 1`] = `
                     className="place-card__name"
                   >
                     <a
-                      href="#"
+                      href="/offer/15"
                       onClick={[Function]}
                     >
                       House in countryside

@@ -91,7 +91,7 @@ Places.propTypes = {
     "maxAdults": number.isRequired,
     "host": shape({
       name: string.isRequired,
-      avatar: string.isRequired,
+      avatarUrl: string.isRequired,
     }).isRequired,
     "location": shape({
       x: number.isRequired,
