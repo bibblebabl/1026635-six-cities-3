@@ -17,7 +17,7 @@ const Header = ({
               className="header__logo-link header__logo-link--active"
               to={Routes.MAIN}
             >
-              <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width={81} height={41} />
+              <img className="header__logo" src="./img/logo.svg" alt="6 cities logo" width={81} height={41} />
             </Link>
           </div>
           <nav className="header__nav">
@@ -27,7 +27,6 @@ const Header = ({
                   className="header__nav-link header__nav-link--profile"
                   to={user ? Routes.FAVORITES : Routes.SIGN_IN}
                 >
-
                   <div className="header__avatar-wrapper user__avatar-wrapper">
                   </div>
                   <span className="header__user-name user__name">{user ? user.email : `Sign In`}</span>

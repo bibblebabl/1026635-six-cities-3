@@ -24,7 +24,7 @@ export default class ModelOffer {
     this.host = {
       name: data.host.name,
       isPro: data.host.is_pro,
-      avatar: data.host.avatar_url,
+      avatarUrl: data.host.avatar_url,
     };
     this.location = {
       x: data.location.latitude,
@@ -39,11 +39,5 @@ export default class ModelOffer {
 
   static parseOffers(data) {
     return data.map(ModelOffer.parseOffer);
-  }
-
-  static toRAW(data) {
-    return {
-      ...data
-    };
   }
 }

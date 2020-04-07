@@ -1,6 +1,8 @@
 import React from 'react';
 import {func, string, number} from 'prop-types';
 import {offerPropType} from '../../prop-types/prop-types';
+import {Link} from 'react-router-dom';
+import Routes from '../../history/routes';
 
 const ArticleTitles = {
   "cities": `cities__place-card`,
@@ -79,7 +81,13 @@ const PlaceCard = ({
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#" onClick={() => onTitleClick(offer.id)}>{title}</a>
+
+          <Link
+            to={`${Routes.OFFER}/${offer.id}`}
+            onClick={() => onTitleClick(offer.id)}
+          >
+            {title}
+          </Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

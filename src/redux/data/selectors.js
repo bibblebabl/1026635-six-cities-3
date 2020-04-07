@@ -8,6 +8,7 @@ export const getSelector = (state) => state[NameSpaces.DATA];
 export const getOffersSelector = createSelector(getSelector, (state) => state.offers);
 export const getReviewsSelector = createSelector(getSelector, (state) => state.reviews);
 export const getFavoriteOffersSelector = createSelector(getSelector, (state) => state.favoriteOffers);
+export const getNearbyOffersSelector = createSelector(getSelector, (state) => state.offersNearby);
 
 export const getCitiesSelector = createSelector(getOffersSelector, (offers) => getCities(offers));
 

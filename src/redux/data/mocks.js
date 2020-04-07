@@ -48,7 +48,7 @@ export const parsedOffer = {
   host: {
     name: `Angelina`,
     isPro: true,
-    avatar: `img/avatar-angelina.jpg`
+    avatarUrl: `img/avatar-angelina.jpg`
   },
   location: {
     x: 52.36954000000001,

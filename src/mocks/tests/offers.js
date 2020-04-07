@@ -36,8 +36,8 @@ export default [
     "host": {
       "id": 25,
       "name": `Angelina`,
-      "is_pro": true,
-      "avatar": `img/avatar-angelina.jpg`
+      "isPro": true,
+      "avatarUrl": `img/avatar-angelina.jpg`
     },
     "description": `Peaceful studio in the most wanted area in town. Quiet house Near of everything. Completely renovated. Lovely neighbourhood, lot of trendy shops, restaurants and bars in a walking distance.`,
     "location": {
@@ -45,7 +45,7 @@ export default [
       "y": 6.969974,
       "zoom": 16
     },
-    "id": 33
+    "id": 11
   },
   {
     "city": {
@@ -83,8 +83,8 @@ export default [
     "host": {
       "id": 25,
       "name": `Angelina`,
-      "is_pro": true,
-      "avatar": `img/avatar-angelina.jpg`
+      "isPro": true,
+      "avatarUrl": `img/avatar-angelina.jpg`
     },
     "description": `A new spacious villa, one floor. All commodities, jacuzzi and beautiful scenery. Ideal for families or friends.`,
     "location": {
@@ -92,7 +92,7 @@ export default [
       "y": 6.976974,
       "zoom": 16
     },
-    "id": 34
+    "id": 12
   },
   {
     "city": {
@@ -135,8 +135,8 @@ export default [
     "host": {
       "id": 25,
       "name": `Angelina`,
-      "is_pro": true,
-      "avatar": `img/avatar-angelina.jpg`
+      "isPro": true,
+      "avatarUrl": `img/avatar-angelina.jpg`
     },
     "description": `A new spacious villa, one floor. All commodities, jacuzzi and beautiful scenery. Ideal for families or friends.`,
     "location": {
@@ -144,7 +144,7 @@ export default [
       "y": 4.883976,
       "zoom": 16
     },
-    "id": 35
+    "id": 13
   },
   {
     "city": {
@@ -185,8 +185,8 @@ export default [
     "host": {
       "id": 25,
       "name": `Angelina`,
-      "is_pro": true,
-      "avatar": `img/avatar-angelina.jpg`
+      "isPro": true,
+      "avatarUrl": `img/avatar-angelina.jpg`
     },
     "description": `I am happy to welcome you to my apartment in the city center! Three words: location, cosy and chic!`,
     "location": {
@@ -194,7 +194,7 @@ export default [
       "y": 2.356499,
       "zoom": 16
     },
-    "id": 36
+    "id": 14
   },
   {
     "city": {
@@ -235,8 +235,8 @@ export default [
     "host": {
       "id": 25,
       "name": `Angelina`,
-      "is_pro": true,
-      "avatar": `img/avatar-angelina.jpg`
+      "isPro": true,
+      "avatarUrl": `img/avatar-angelina.jpg`
     },
     "description": `This is a place for dreamers to reset, reflect, and create. Designed with a 'slow' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.`,
     "location": {
@@ -244,7 +244,7 @@ export default [
       "y": 9.976654000000002,
       "zoom": 16
     },
-    "id": 37
+    "id": 15
   },
   {
     "city": {
@@ -278,8 +278,8 @@ export default [
     "host": {
       "id": 25,
       "name": `Angelina`,
-      "is_pro": true,
-      "avatar": `img/avatar-angelina.jpg`
+      "isPro": true,
+      "avatarUrl": `img/avatar-angelina.jpg`
     },
     "description": `Discover daily local life in city center, friendly neighborhood, clandestine casino, karaoke, old-style artisans, art gallery and artist studio downstairs.`,
     "location": {
@@ -287,7 +287,7 @@ export default [
       "y": 4.9099759999999995,
       "zoom": 16
     },
-    "id": 38
+    "id": 16
   },
 ]
 ;

@@ -6,7 +6,7 @@ import PlaceCard from '../place-card/place-card';
 import Map from '../map/map';
 import Sorting from '../sorting/sorting';
 
-import {getOffersLocations} from '../../utils/';
+import {getOffersLocations} from '../../utils';
 import withSortingSelect from '../../hocs/with-sorting-select/with-sorting-select';
 
 const SortingWithSelect = withSortingSelect(Sorting);
@@ -91,7 +91,7 @@ Places.propTypes = {
     "maxAdults": number.isRequired,
     "host": shape({
       name: string.isRequired,
-      avatar: string.isRequired,
+      avatarUrl: string.isRequired,
     }).isRequired,
     "location": shape({
       x: number.isRequired,

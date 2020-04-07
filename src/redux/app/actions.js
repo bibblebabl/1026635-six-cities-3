@@ -12,7 +12,7 @@ export const ActionCreators = {
       id
     }
   }),
-  sethoveredOfferId: (id) => ({
+  setHoveredOfferId: (id) => ({
     type: ActionTypes.SET_HOVERED_OFFER,
     payload: {
       id
