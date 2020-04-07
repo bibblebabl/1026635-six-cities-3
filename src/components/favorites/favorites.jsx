@@ -48,7 +48,7 @@ const Favorites = ({
                                 cardType='favorites'
                                 key={`favorites-${offer.id}`}
                                 offer={offer}
-                                onMouseOver={Function}
+                                onMouseOver={() => {}}
                                 onTitleClick={handleTitleClick}
                                 onFavoriteOfferStatus={handleFavoriteOfferStatus}
                                 imgWidth={150}

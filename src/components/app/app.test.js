@@ -22,6 +22,7 @@ export const initialState = {
       }
     },
     currentOfferId: 1,
+    sortingType: `Popular`
   },
   DATA: {
     offers,

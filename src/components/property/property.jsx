@@ -178,7 +178,7 @@ class Property extends PureComponent {
                       cardType="near-places"
                       key={offerElement.id}
                       offer={offerElement}
-                      onMouseOver={Function}
+                      onMouseOver={() => {}}
                       onTitleClick={handleTitleClick}
                       onFavoriteOfferStatus={handleFavoriteOfferStatus}
                     />

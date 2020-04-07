@@ -33,19 +33,21 @@ class App extends PureComponent {
       cities,
       user,
       setSelectedCity,
-      sethoveredOfferId,
+      setHoveredOfferId,
       setSortingType,
       handlePlaceTitleClick,
-      setFavoriteOfferStatus
+      setFavoriteOfferStatus,
+      sortingType
     } = this.props;
 
     return (
       <Main
         {...this.props}
+        sortingType={sortingType}
         cities={cities}
         user={user}
         currentOfferId={currentOfferId}
-        handlePlaceCardMouseOver={sethoveredOfferId}
+        handlePlaceCardMouseOver={setHoveredOfferId}
         handleTitleClick={handlePlaceTitleClick}
         handleCityNameClick={setSelectedCity}
         handleChangeSortingType={setSortingType}
@@ -146,9 +148,10 @@ App.propTypes = {
   submitReview: func.isRequired,
   setSelectedCity: func.isRequired,
   setSortingType: func.isRequired,
-  sethoveredOfferId: func.isRequired,
+  setHoveredOfferId: func.isRequired,
   setFavoriteOfferStatus: func.isRequired,
   login: func.isRequired,
+  sortingType: string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -163,7 +166,6 @@ const mapStateToProps = (state) => ({
   currentOfferId: AppSelectors.getcurrentOfferIdSelector(state),
   hoveredOfferId: AppSelectors.gethoveredOfferIdSelector(state),
   sortingType: AppSelectors.getSortingTypeSelector(state),
-
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -175,7 +177,7 @@ const mapDispatchToProps = (dispatch) => ({
   submitReview: (id, review) => {
     dispatch(DataOperations.submitReview(id, review));
   },
-  sethoveredOfferId: (id) => dispatch(AppActionCreators.sethoveredOfferId(id)),
+  setHoveredOfferId: (id) => dispatch(AppActionCreators.setHoveredOfferId(id)),
   setSelectedCity: (city) => dispatch(AppActionCreators.setSelectedCity(city)),
   setSortingType: (type) => dispatch(AppActionCreators.setSortingType(type)),
   login: (authData) => dispatch(UserOperations.login(authData)),

@@ -86,7 +86,7 @@ exports[`<PlaceCard /> renders correctly 1`] = `
       className="place-card__name"
     >
       <a
-        href="#"
+        href="/offer/11"
         onClick={[Function]}
       >
         Wood and stone place

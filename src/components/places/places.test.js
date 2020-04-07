@@ -1,9 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {Router} from 'react-router-dom';
 
 import Places from './places';
 
 import offers from '../../mocks/tests/offers';
+import history from '../../history/history';
 
 const props = {
   offers,
@@ -19,12 +21,15 @@ const props = {
   hoveredOfferId: 5,
   handleChangeSortingType: jest.fn(),
   handlePlaceCardMouseOver: jest.fn(),
-  handleTitleClick: jest.fn()
+  handleTitleClick: jest.fn(),
+  handleFavoriteOfferStatus: jest.fn()
 };
 
 it(`<Places /> renders correctly`, () => {
   const component = renderer.create(
-      <Places {...props} />,
+      <Router history={history}>
+        <Places {...props} />
+      </Router>,
       {
         createNodeMock: () => document.createElement(`div`)
       })

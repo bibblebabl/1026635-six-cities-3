@@ -166,7 +166,7 @@ exports[`<Places /> renders correctly 1`] = `
             className="place-card__name"
           >
             <a
-              href="#"
+              href="/offer/11"
               onClick={[Function]}
             >
               Wood and stone place
@@ -264,7 +264,7 @@ exports[`<Places /> renders correctly 1`] = `
             className="place-card__name"
           >
             <a
-              href="#"
+              href="/offer/12"
               onClick={[Function]}
             >
               Wood and stone place
@@ -369,7 +369,7 @@ exports[`<Places /> renders correctly 1`] = `
             className="place-card__name"
           >
             <a
-              href="#"
+              href="/offer/13"
               onClick={[Function]}
             >
               Nice, cozy, warm big bed apartment
@@ -467,7 +467,7 @@ exports[`<Places /> renders correctly 1`] = `
             className="place-card__name"
           >
             <a
-              href="#"
+              href="/offer/14"
               onClick={[Function]}
             >
               The Pondhouse - A Magical Place
@@ -565,7 +565,7 @@ exports[`<Places /> renders correctly 1`] = `
             className="place-card__name"
           >
             <a
-              href="#"
+              href="/offer/15"
               onClick={[Function]}
             >
               House in countryside
@@ -663,7 +663,7 @@ exports[`<Places /> renders correctly 1`] = `
             className="place-card__name"
           >
             <a
-              href="#"
+              href="/offer/16"
               onClick={[Function]}
             >
               Wood and stone place

@@ -36,8 +36,8 @@ export default [
     "host": {
       "id": 25,
       "name": `Angelina`,
-      "is_pro": true,
-      "avatar": `img/avatar-angelina.jpg`
+      "isPro": true,
+      "avatarUrl": `img/avatar-angelina.jpg`
     },
     "description": `Peaceful studio in the most wanted area in town. Quiet house Near of everything. Completely renovated. Lovely neighbourhood, lot of trendy shops, restaurants and bars in a walking distance.`,
     "location": {
@@ -83,8 +83,8 @@ export default [
     "host": {
       "id": 25,
       "name": `Angelina`,
-      "is_pro": true,
-      "avatar": `img/avatar-angelina.jpg`
+      "isPro": true,
+      "avatarUrl": `img/avatar-angelina.jpg`
     },
     "description": `A new spacious villa, one floor. All commodities, jacuzzi and beautiful scenery. Ideal for families or friends.`,
     "location": {
@@ -135,8 +135,8 @@ export default [
     "host": {
       "id": 25,
       "name": `Angelina`,
-      "is_pro": true,
-      "avatar": `img/avatar-angelina.jpg`
+      "isPro": true,
+      "avatarUrl": `img/avatar-angelina.jpg`
     },
     "description": `A new spacious villa, one floor. All commodities, jacuzzi and beautiful scenery. Ideal for families or friends.`,
     "location": {
@@ -185,8 +185,8 @@ export default [
     "host": {
       "id": 25,
       "name": `Angelina`,
-      "is_pro": true,
-      "avatar": `img/avatar-angelina.jpg`
+      "isPro": true,
+      "avatarUrl": `img/avatar-angelina.jpg`
     },
     "description": `I am happy to welcome you to my apartment in the city center! Three words: location, cosy and chic!`,
     "location": {
@@ -235,8 +235,8 @@ export default [
     "host": {
       "id": 25,
       "name": `Angelina`,
-      "is_pro": true,
-      "avatar": `img/avatar-angelina.jpg`
+      "isPro": true,
+      "avatarUrl": `img/avatar-angelina.jpg`
     },
     "description": `This is a place for dreamers to reset, reflect, and create. Designed with a 'slow' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.`,
     "location": {
@@ -278,8 +278,8 @@ export default [
     "host": {
       "id": 25,
       "name": `Angelina`,
-      "is_pro": true,
-      "avatar": `img/avatar-angelina.jpg`
+      "isPro": true,
+      "avatarUrl": `img/avatar-angelina.jpg`
     },
     "description": `Discover daily local life in city center, friendly neighborhood, clandestine casino, karaoke, old-style artisans, art gallery and artist studio downstairs.`,
     "location": {
