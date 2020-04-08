@@ -20,31 +20,31 @@ import {userPropType, reviewPropType, offerPropType} from '../../prop-types/prop
 class Property extends PureComponent {
   render() {
     const {
+      offer,
       user,
       reviews,
       offersNearby,
       handleFavoriteOfferStatus,
       handleTitleClick,
       handleReviewSubmit,
-      offer: {
-        id,
-        bedrooms,
-        city,
-        description,
-        facilities,
-        host,
-        // id,
-        // image,
-        images,
-        isFavorite,
-        isPremium,
-        maxAdults,
-        price,
-        rating,
-        title,
-        type,
-      },
     } = this.props;
+
+    const {
+      id,
+      bedrooms,
+      city,
+      description,
+      facilities,
+      host,
+      images,
+      isFavorite,
+      isPremium,
+      maxAdults,
+      price,
+      rating,
+      title,
+      type,
+    } = offer;
 
     const fixedPropertyRating = rating;
     const propertyType = PROPERTY_TYPES[type];
