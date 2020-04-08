@@ -23,10 +23,10 @@ it(`<Main /> renders correctly`, () => {
     },
     user: null,
     sortingType: `Popular`,
-    handlePlaceCardMouseOver: jest.fn(),
-    handleTitleClick: jest.fn(),
-    handleCityNameClick: jest.fn(),
-    handleChangeSortingType: jest.fn(),
+    onPlaceCardMouseOver: jest.fn(),
+    onTitleClick: jest.fn(),
+    onCityNameClick: jest.fn(),
+    onChangeSortingType: jest.fn(),
   };
 
 

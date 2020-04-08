@@ -49,11 +49,11 @@ class App extends PureComponent {
         cities={cities}
         user={user}
         currentOfferId={currentOfferId}
-        handlePlaceCardMouseOver={setHoveredOfferId}
-        handleTitleClick={handlePlaceTitleClick}
-        handleCityNameClick={setSelectedCity}
-        handleChangeSortingType={setSortingType}
-        handleFavoriteOfferStatus={setFavoriteOfferStatus}
+        onPlaceCardMouseOver={setHoveredOfferId}
+        onTitleClick={handlePlaceTitleClick}
+        onCityNameClick={setSelectedCity}
+        onChangeSortingType={setSortingType}
+        onFavoriteOfferStatus={setFavoriteOfferStatus}
       />
     );
 
@@ -91,8 +91,8 @@ class App extends PureComponent {
             :
             <Favorites
               user={user}
-              handleTitleClick={handlePlaceTitleClick}
-              handleFavoriteOfferStatus={setFavoriteOfferStatus}
+              onTitleClick={handlePlaceTitleClick}
+              onFavoriteOfferStatus={setFavoriteOfferStatus}
               favoriteOffers={favoriteOffers}
             />
           }
@@ -110,9 +110,9 @@ class App extends PureComponent {
                 offer={offer}
                 reviews={reviews}
                 offersNearby={offersNearby}
-                handleTitleClick={handlePlaceTitleClick}
-                handleReviewSubmit={submitReview}
-                handleFavoriteOfferStatus={setFavoriteOfferStatus}
+                onTitleClick={handlePlaceTitleClick}
+                onReviewSubmit={submitReview}
+                onFavoriteOfferStatus={setFavoriteOfferStatus}
               />
             );
           }}

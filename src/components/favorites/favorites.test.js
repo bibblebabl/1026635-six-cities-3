@@ -12,8 +12,8 @@ import offers from '../../mocks/tests/offers';
 import user from '../../mocks/tests/user';
 import {extend} from '../../utils';
 
-const handleTitleClick = jest.fn();
-const handleFavoriteOfferStatus = jest.fn();
+const onTitleClick = jest.fn();
+const onFavoriteOfferStatus = jest.fn();
 
 
 const favoriteOffers = offers.map((offer) => extend(
@@ -24,8 +24,8 @@ const favoriteOffers = offers.map((offer) => extend(
 const props = {
   favoriteOffers,
   user: ModelUser.parseUser(user),
-  handleTitleClick,
-  handleFavoriteOfferStatus,
+  onTitleClick,
+  onFavoriteOfferStatus,
 };
 
 it(`Favorites renders correctly`, () => {

@@ -8,8 +8,8 @@ import NoFavorites from '../no-favorites/no-favorites';
 
 const Favorites = ({
   favoriteOffers,
-  handleTitleClick,
-  handleFavoriteOfferStatus,
+  onTitleClick,
+  onFavoriteOfferStatus,
   user
 }) => {
 
@@ -54,8 +54,8 @@ const Favorites = ({
                                 key={`favorites-${offer.id}`}
                                 offer={offer}
                                 onMouseOver={() => {}}
-                                onTitleClick={handleTitleClick}
-                                onFavoriteOfferStatus={handleFavoriteOfferStatus}
+                                onTitleClick={onTitleClick}
+                                onFavoriteOfferStatus={onFavoriteOfferStatus}
                                 imgWidth={150}
                                 imgHeight={110}
                               />
@@ -82,8 +82,8 @@ const Favorites = ({
 
 Favorites.propTypes = {
   favoriteOffers: arrayOf(offerPropType),
-  handleFavoriteOfferStatus: func,
-  handleTitleClick: func,
+  onFavoriteOfferStatus: func,
+  onTitleClick: func,
   user: userPropType
 };
 

@@ -17,9 +17,9 @@ const props = {
   offer,
   reviews,
   offersNearby: offers,
-  handleTitleClick: jest.fn(),
-  handleReviewSubmit: jest.fn(),
-  handleFavoriteOfferStatus: jest.fn(),
+  onTitleClick: jest.fn(),
+  onReviewSubmit: jest.fn(),
+  onFavoriteOfferStatus: jest.fn(),
 };
 
 it(`<Property /> renders correctly`, () => {

@@ -19,10 +19,10 @@ const props = {
     }
   },
   hoveredOfferId: 5,
-  handleChangeSortingType: jest.fn(),
-  handlePlaceCardMouseOver: jest.fn(),
-  handleTitleClick: jest.fn(),
-  handleFavoriteOfferStatus: jest.fn()
+  onChangeSortingType: jest.fn(),
+  onPlaceCardMouseOver: jest.fn(),
+  onTitleClick: jest.fn(),
+  onFavoriteOfferStatus: jest.fn()
 };
 
 it(`<Places /> renders correctly`, () => {

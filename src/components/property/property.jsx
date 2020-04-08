@@ -24,9 +24,9 @@ class Property extends PureComponent {
       user,
       reviews,
       offersNearby,
-      handleFavoriteOfferStatus,
-      handleTitleClick,
-      handleReviewSubmit,
+      onFavoriteOfferStatus,
+      onTitleClick,
+      onReviewSubmit,
     } = this.props;
 
     const {
@@ -85,7 +85,7 @@ class Property extends PureComponent {
                     className={`
                     property__bookmark-button ${isFavorite ? `property__bookmark-button--active` : ``} button`}
                     type="button"
-                    onClick={() => handleFavoriteOfferStatus(id, isFavorite)}
+                    onClick={() => onFavoriteOfferStatus(id, isFavorite)}
                   >
                     <svg className="property__bookmark-icon place-card__bookmark-icon" width={31} height={33}>
                       <use xlinkHref="#icon-bookmark" />
@@ -154,7 +154,7 @@ class Property extends PureComponent {
                     user &&
                     <ReviewsFormWithForm
                       id={id}
-                      onSubmit={handleReviewSubmit}
+                      onSubmit={onReviewSubmit}
                       isSubmiting={false}
                     />
                   }
@@ -179,8 +179,8 @@ class Property extends PureComponent {
                       key={offerElement.id}
                       offer={offerElement}
                       onMouseOver={() => {}}
-                      onTitleClick={handleTitleClick}
-                      onFavoriteOfferStatus={handleFavoriteOfferStatus}
+                      onTitleClick={onTitleClick}
+                      onFavoriteOfferStatus={onFavoriteOfferStatus}
                     />
                   )
                 }
@@ -198,9 +198,9 @@ Property.propTypes = {
   reviews: arrayOf(reviewPropType),
   user: userPropType,
   offersNearby: array,
-  handleReviewSubmit: func,
-  handleTitleClick: func,
-  handleFavoriteOfferStatus: func,
+  onReviewSubmit: func,
+  onTitleClick: func,
+  onFavoriteOfferStatus: func,
 };
 
 export default Property;

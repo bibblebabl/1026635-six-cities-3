@@ -19,11 +19,11 @@ const Main = ({
   hoveredOfferId,
   sortingType,
   selectedCity,
-  handlePlaceCardMouseOver,
-  handleTitleClick,
-  handleCityNameClick,
-  handleChangeSortingType,
-  handleFavoriteOfferStatus
+  onPlaceCardMouseOver,
+  onTitleClick,
+  onCityNameClick,
+  onChangeSortingType,
+  onFavoriteOfferStatus
 }) => {
   return (
     <div className="page page--gray page--main">
@@ -37,7 +37,7 @@ const Main = ({
 
             <LocationsList
               cities={cities.slice(0, MAX_CITIES)}
-              onCityNameClick={handleCityNameClick}
+              onCityNameClick={onCityNameClick}
               selectedCity={selectedCity}
             />
 
@@ -52,10 +52,10 @@ const Main = ({
                 sortingType={sortingType}
                 selectedCity={selectedCity}
                 hoveredOfferId={hoveredOfferId}
-                handleChangeSortingType={handleChangeSortingType}
-                handlePlaceCardMouseOver={handlePlaceCardMouseOver}
-                handleTitleClick={handleTitleClick}
-                handleFavoriteOfferStatus={handleFavoriteOfferStatus}
+                onChangeSortingType={onChangeSortingType}
+                onPlaceCardMouseOver={onPlaceCardMouseOver}
+                onTitleClick={onTitleClick}
+                onFavoriteOfferStatus={onFavoriteOfferStatus}
               />
 
               : <PlacesEmpty />
@@ -86,11 +86,11 @@ Main.propTypes = {
     }).isRequired,
   })),
   offers: arrayOf(offerPropType).isRequired,
-  handlePlaceCardMouseOver: func,
-  handleTitleClick: func,
-  handleCityNameClick: func,
-  handleChangeSortingType: func,
-  handleFavoriteOfferStatus: func
+  onPlaceCardMouseOver: func,
+  onTitleClick: func,
+  onCityNameClick: func,
+  onChangeSortingType: func,
+  onFavoriteOfferStatus: func
 };
 
 export default Main;

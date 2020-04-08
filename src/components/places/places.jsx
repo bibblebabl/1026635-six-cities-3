@@ -16,10 +16,10 @@ const Places = ({
   sortingType,
   selectedCity,
   hoveredOfferId,
-  handleChangeSortingType,
-  handlePlaceCardMouseOver,
-  handleTitleClick,
-  handleFavoriteOfferStatus
+  onChangeSortingType,
+  onPlaceCardMouseOver,
+  onTitleClick,
+  onFavoriteOfferStatus
 }) => {
   const offersLocations = getOffersLocations(offers);
 
@@ -29,7 +29,7 @@ const Places = ({
         <h2 className="visually-hidden">Places</h2>
         {selectedCity && <b className="places__found">{offers.length} places to stay in {selectedCity.name}</b>}
 
-        <SortingWithSelect sortingType={sortingType} onSortChange={handleChangeSortingType} />
+        <SortingWithSelect sortingType={sortingType} onSortChange={onChangeSortingType} />
 
         <div className="cities__places-list places__list tabs__content">
           {
@@ -38,9 +38,9 @@ const Places = ({
                 cardType="cities"
                 key={offer.id}
                 offer={offer}
-                onMouseOver={handlePlaceCardMouseOver}
-                onTitleClick={handleTitleClick}
-                onFavoriteOfferStatus={handleFavoriteOfferStatus}
+                onMouseOver={onPlaceCardMouseOver}
+                onTitleClick={onTitleClick}
+                onFavoriteOfferStatus={onFavoriteOfferStatus}
               />
             )
           }
@@ -99,10 +99,10 @@ Places.propTypes = {
       zoom: number,
     }).isRequired,
   }).isRequired),
-  handlePlaceCardMouseOver: func,
-  handleTitleClick: func,
-  handleChangeSortingType: func,
-  handleFavoriteOfferStatus: func
+  onPlaceCardMouseOver: func,
+  onTitleClick: func,
+  onChangeSortingType: func,
+  onFavoriteOfferStatus: func
 };
 
 export default Places;
