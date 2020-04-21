@@ -1,5 +1,5 @@
 import * as React from 'react';
-import leaflet from 'leaflet';
+import * as leaflet from 'leaflet';
 import {getLocationArray} from '../../utils/index';
 import { CityType } from '../../types/types';
 

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Map /> renders correctly 1`] = `
+<section
+  className="undefined map"
+  id="map"
+  style={
+    Object {
+      "height": "100%",
+    }
+  }
+/>
+`;
