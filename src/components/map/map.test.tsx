@@ -1,11 +1,12 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 
-import LocationsList from './locations-list';
-import cities from '../../mocks/tests/cities';
+import Map from './map';
+
+import {offersLocations} from './mock';
 
 const props = {
-  cities,
+  offersLocations,
   selectedCity: {
     "name": `Amsterdam`,
     "location": {
@@ -14,12 +15,14 @@ const props = {
       "zoom": 13
     }
   },
-  onCityNameClick: jest.fn()
+  hoveredOfferId: 15
 };
 
-it(`<LocationsList /> renders correctly`, () => {
+it(`<Map /> renders correctly`, () => {
+  document.body.innerHTML = `<div id="map"></div>`;
+
   const component = renderer.create(
-      <LocationsList {...props} />,
+      <Map {...props} />,
       {
         createNodeMock: () => document.createElement(`div`)
       })
@@ -27,3 +30,5 @@ it(`<LocationsList /> renders correctly`, () => {
 
   expect(component).toMatchSnapshot();
 });
+
+
